@@ -1,21 +1,15 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
-namespace StudentAPI.Core.Models
+namespace StudentAPI.Controllers.Resources
 {
-    public class SchoolInformation
+    public class SchoolInformationResource
     {
         public int Id { get; set; }
-        public string SchoolYear { get; set; }
-        [Required]
         public string Cycle { get; set; }
-        [Required]
         public string Semester { get; set; }
-        [Required]
         public string Specility { get; set; }
         public string ClassNbr { get; set; }
-
+        public string SchoolYear { get; set; }
         public DateTime LastUpdate { get; set; }
-
     }
 }

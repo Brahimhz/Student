@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAPI.Persistance;
 
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200504004916_UpdateTimeTablesTable")]
+    partial class UpdateTimeTablesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,18 +27,17 @@ namespace StudentAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Heure")
-                        .IsRequired();
+                    b.Property<string>("Heure");
 
-                    b.Property<string>("Jour")
-                        .IsRequired();
+                    b.Property<string>("Jour");
 
                     b.Property<string>("Lieu");
 
-                    b.Property<string>("Module")
-                        .IsRequired();
+                    b.Property<string>("Module");
 
-                    b.Property<int>("TimeTableId");
+                    b.Property<int?>("TimeTableId");
+
+                    b.Property<int>("TimeTanleId");
 
                     b.Property<string>("Type");
 
@@ -55,18 +56,13 @@ namespace StudentAPI.Migrations
 
                     b.Property<string>("ClassNbr");
 
-                    b.Property<string>("Cycle")
-                        .IsRequired();
-
-                    b.Property<DateTime>("LastUpdate");
+                    b.Property<string>("Cycle");
 
                     b.Property<string>("SchoolYear");
 
-                    b.Property<string>("Semester")
-                        .IsRequired();
+                    b.Property<byte>("Semester");
 
-                    b.Property<string>("Specility")
-                        .IsRequired();
+                    b.Property<string>("Specility");
 
                     b.HasKey("Id");
 
@@ -77,8 +73,7 @@ namespace StudentAPI.Migrations
                 {
                     b.HasOne("StudentAPI.Core.Models.TimeTable", "TimeTable")
                         .WithMany("Seances")
-                        .HasForeignKey("TimeTableId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("TimeTableId");
                 });
 #pragma warning restore 612, 618
         }
