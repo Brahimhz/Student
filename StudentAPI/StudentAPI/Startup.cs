@@ -25,6 +25,7 @@ namespace StudentAPI
         {
 
             services.AddScoped<ITimeTableRepository, TimeTableRepository>();
+            services.AddScoped<ISeanceRepository, SeanceRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(Startup));

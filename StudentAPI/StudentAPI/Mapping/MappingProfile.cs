@@ -14,6 +14,8 @@ namespace StudentAPI.Mapping
         {
             // Domaine => API
 
+            CreateMap<Seance, SeanceResource>();
+
             CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
 
 
@@ -37,6 +39,9 @@ namespace StudentAPI.Mapping
                 })));
 
             // API => Domaine
+
+            CreateMap<SeanceResource, Seance>()
+                .ForMember(s => s.Id, opt => opt.Ignore());
 
             CreateMap<TimeTableQueryResource, TimeTableQuery>();
 
