@@ -33,6 +33,7 @@ namespace StudentAPI.Controllers
 
             var module = mapper.Map<ModuleResource, Module>(moduleResource);
             module.LastUpdate = DateTime.Now;
+            module.AbvNom = module.getAbvName();
 
             repository.Add(module);
             await unitOfWork.CompleteAsync();
@@ -71,6 +72,7 @@ namespace StudentAPI.Controllers
 
             mapper.Map<ModuleResource, Module>(moduleResource, module);
             module.LastUpdate = DateTime.Now;
+            module.AbvNom = module.getAbvName();
 
             await unitOfWork.CompleteAsync();
 

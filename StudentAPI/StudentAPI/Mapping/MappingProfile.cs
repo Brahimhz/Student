@@ -40,7 +40,8 @@ namespace StudentAPI.Mapping
 
             // ***********  API => Domaine  **************
 
-            CreateMap<ModuleResource, Module>();
+            CreateMap<ModuleResource, Module>()
+                .ForMember(s => s.Id, opt => opt.Ignore());
 
             CreateMap<SaveSeanceResource, Seance>()
                 .ForMember(s => s.Id, opt => opt.Ignore());
