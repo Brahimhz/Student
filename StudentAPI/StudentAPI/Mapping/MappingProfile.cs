@@ -12,9 +12,16 @@ namespace StudentAPI.Mapping
     {
         public MappingProfile()
         {
-            // Domaine => API
+            // *************   Domaine => API   ***************
 
-            CreateMap<Seance, SeanceResource>();
+            CreateMap<Module, ModuleResource>();
+
+            CreateMap<Seance, SaveSeanceResource>()
+                .ForMember(ssr => ssr.ModuleId, opt => opt.MapFrom(s => s.ModuleId));
+
+            CreateMap<Seance, GetSeanceResource>()
+                .ForMember(ssr => ssr.Module, opt => opt.MapFrom(s => s.Module));
+
 
             CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
 
@@ -25,25 +32,20 @@ namespace StudentAPI.Mapping
 
 
             CreateMap<TimeTable, GetTimeTableResource>()
-                .ForMember(gtr => gtr.Seances, opt => opt.MapFrom(t => t.Seances.Select(s => new SeanceResource
-                {
+                .ForMember(gtr => gtr.Seances, opt => opt.MapFrom(t => t.Seances));
 
-                    Id = s.Id,
-                    Module = s.Module,
-                    Type = s.Type,
-                    Lieu = s.Lieu,
-                    Heure = s.Heure,
-                    Jour = s.Jour,
-                    TimeTableId = s.TimeTableId
 
-                })));
 
-            // API => Domaine
 
-            CreateMap<SeanceResource, Seance>()
+
+            // ***********  API => Domaine  **************
+
+            CreateMap<ModuleResource, Module>();
+
+            CreateMap<SaveSeanceResource, Seance>()
                 .ForMember(s => s.Id, opt => opt.Ignore());
 
-            CreateMap<TimeTableQueryResource, TimeTableQuery>();
+            CreateMap<SchoolInformationQueryResource, SchoolInformationQuery>();
 
             CreateMap<SaveTimeTableResource, TimeTable>()
                 .ForMember(t => t.Id, opt => opt.Ignore())

@@ -1,9 +1,9 @@
 ﻿namespace StudentAPI.Controllers.Resources
 {
-    public class SeanceResource
+    public class GetSeanceResource
     {
         public int Id { get; set; }
-        public string Module { get; set; }
+        public ModuleResource Module { get; set; }
         public string Type { get; set; }
         public string Lieu { get; set; }
         public string Heure { get; set; }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAPI.Persistance;
 
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200506034200_UpdateSeanceTable")]
+    partial class UpdateSeanceTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,6 +30,9 @@ namespace StudentAPI.Migrations
                     b.Property<string>("AbvNom")
                         .HasMaxLength(10);
 
+                    b.Property<string>("ClassNbr")
+                        .HasMaxLength(2);
+
                     b.Property<int>("Coefficient");
 
                     b.Property<int>("Credit");
@@ -41,6 +46,9 @@ namespace StudentAPI.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50);
+
+                    b.Property<string>("SchoolYear")
+                        .HasMaxLength(20);
 
                     b.Property<string>("Semester")
                         .IsRequired()

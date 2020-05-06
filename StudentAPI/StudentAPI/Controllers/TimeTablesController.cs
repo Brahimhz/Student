@@ -66,7 +66,7 @@ namespace StudentAPI.Controllers
                 return BadRequest(ModelState);
 
 
-            var timeTable = await repository.GetTimeTable(id);
+            var timeTable = await repository.GetTimeTable(id, eagerLoading: false);
 
             if (timeTable == null)
                 return NotFound();
@@ -97,9 +97,9 @@ namespace StudentAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<QueryResultResource<GetTimeTableResource>> GetTimeTables(TimeTableQueryResource filterResource)
+        public async Task<QueryResultResource<GetTimeTableResource>> GetTimeTables(SchoolInformationQueryResource filterResource)
         {
-            var filter = mapper.Map<TimeTableQueryResource, TimeTableQuery>(filterResource);
+            var filter = mapper.Map<SchoolInformationQueryResource, SchoolInformationQuery>(filterResource);
 
             var queryResult = await repository.GetTimeTables(filter);
 

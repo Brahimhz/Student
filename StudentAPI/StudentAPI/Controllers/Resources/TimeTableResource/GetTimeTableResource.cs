@@ -5,11 +5,11 @@ namespace StudentAPI.Controllers.Resources.TimeTableResource
 {
     public class GetTimeTableResource : SchoolInformationResource
     {
-        public ICollection<SeanceResource> Seances { get; set; }
+        public ICollection<GetSeanceResource> Seances { get; set; }
 
         public GetTimeTableResource()
         {
-            Seances = new Collection<SeanceResource>();
+            Seances = new Collection<GetSeanceResource>();
         }
     }
 }

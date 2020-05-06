@@ -11,6 +11,6 @@ namespace StudentAPI.Core.IRepository
         void AddTimeTable(TimeTable timeTable);
         void RemoveTimeTable(TimeTable timeTable);
 
-        Task<QueryResult<TimeTable>> GetTimeTables(TimeTableQuery queryObj);
+        Task<QueryResult<TimeTable>> GetTimeTables(SchoolInformationQuery queryObj);
     }
 }

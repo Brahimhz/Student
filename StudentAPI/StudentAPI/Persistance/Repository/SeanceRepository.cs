@@ -1,4 +1,5 @@
-﻿using StudentAPI.Core.IRepository;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentAPI.Core.IRepository;
 using StudentAPI.Core.Models;
 using System.Threading.Tasks;
 
@@ -27,7 +28,13 @@ namespace StudentAPI.Persistance.Repository
 
         public async Task<Seance> GetSeance(int id, bool eagerLoading = true)
         {
-            return await context.Seances.FindAsync(id);
+            if(!eagerLoading)
+                 return await context.Seances.FindAsync(id);
+
+            return await context.Seances
+                            .Include(s => s.Module)
+                            .SingleOrDefaultAsync(s => s.Id == id);
+
         }
 
 
