@@ -21,6 +21,8 @@ namespace StudentAPI.Core.Models
         public int Credit { get; set; }
 
         public ICollection<Seance> Seances { get; set; }
+        public ICollection<Exam> Exams { get; set; }
+
 
         public string getAbvName()
         {
@@ -30,6 +32,8 @@ namespace StudentAPI.Core.Models
         public Module()
         {
             Seances = new Collection<Seance>();
+            Exams = new Collection<Exam>();
+
         }
     }
 }

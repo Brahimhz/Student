@@ -12,13 +12,13 @@ namespace StudentAPI.Core.Models
         [StringLength(5)]
         public string Type { get; set; }
         [StringLength(50)]
-        public string Lieu { get; set; }
+        public string Location { get; set; }
         [Required]
         [StringLength(5)]
-        public string Heure { get; set; }
+        public string Time { get; set; }
         [Required]
         [StringLength(15)]
-        public string Jour { get; set; }
+        public string Day { get; set; }
         public TimeTable TimeTable { get; set; }
         public int TimeTableId { get; set; }
     }

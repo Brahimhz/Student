@@ -23,6 +23,9 @@ namespace StudentAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddScoped<IExamTableRepository, ExamTableRepository>();
+            services.AddScoped<IExamRepository, ExamRepository>();
             services.AddScoped<IModuleRepository, ModuleRepository>();
             services.AddScoped<ITimeTableRepository, TimeTableRepository>();
             services.AddScoped<ISeanceRepository, SeanceRepository>();

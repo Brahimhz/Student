@@ -3,77 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAPI.Persistance;
 
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200508002440_UpdateSeanceTablev3")]
+    partial class UpdateSeanceTablev3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("StudentAPI.Core.Models.Exam", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date");
-
-                    b.Property<int>("ExamTableId");
-
-                    b.Property<int>("ModuleId");
-
-                    b.Property<string>("Time")
-                        .IsRequired()
-                        .HasMaxLength(5);
-
-                    b.HasKey("Id");
-
-                    b.HasAlternateKey("ExamTableId", "Date", "Time");
-
-                    b.HasIndex("ModuleId");
-
-                    b.ToTable("Exams");
-                });
-
-            modelBuilder.Entity("StudentAPI.Core.Models.ExamTable", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClassNbr")
-                        .HasMaxLength(2);
-
-                    b.Property<string>("Cycle")
-                        .IsRequired()
-                        .HasMaxLength(20);
-
-                    b.Property<DateTime>("LastUpdate");
-
-                    b.Property<string>("SchoolYear")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Semester")
-                        .IsRequired()
-                        .HasMaxLength(2);
-
-                    b.Property<string>("Speciality")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ExamTables");
-                });
 
             modelBuilder.Entity("StudentAPI.Core.Models.Module", b =>
                 {
@@ -121,18 +67,18 @@ namespace StudentAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Day")
+                    b.Property<string>("Heure")
+                        .IsRequired()
+                        .HasMaxLength(5);
+
+                    b.Property<string>("Jour")
                         .IsRequired()
                         .HasMaxLength(15);
 
-                    b.Property<string>("Location")
+                    b.Property<string>("Lieu")
                         .HasMaxLength(50);
 
                     b.Property<int>("ModuleId");
-
-                    b.Property<string>("Time")
-                        .IsRequired()
-                        .HasMaxLength(5);
 
                     b.Property<int>("TimeTableId");
 
@@ -141,7 +87,7 @@ namespace StudentAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("TimeTableId", "Day", "Time");
+                    b.HasAlternateKey("TimeTableId", "Jour", "Heure");
 
                     b.HasIndex("ModuleId");
 
@@ -177,19 +123,6 @@ namespace StudentAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TimeTables");
-                });
-
-            modelBuilder.Entity("StudentAPI.Core.Models.Exam", b =>
-                {
-                    b.HasOne("StudentAPI.Core.Models.ExamTable", "ExamTable")
-                        .WithMany("Exams")
-                        .HasForeignKey("ExamTableId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("StudentAPI.Core.Models.Module", "Module")
-                        .WithMany("Exams")
-                        .HasForeignKey("ModuleId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("StudentAPI.Core.Models.Seance", b =>

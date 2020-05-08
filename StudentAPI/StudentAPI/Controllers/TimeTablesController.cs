@@ -26,7 +26,7 @@ namespace StudentAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateVehicle([FromBody]SaveTimeTableResource tableResource)
+        public async Task<IActionResult> CreateTimeTable([FromBody]SaveTimeTableResource tableResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -60,7 +60,7 @@ namespace StudentAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateVehicle(int id, [FromBody]SaveTimeTableResource tableResource)
+        public async Task<IActionResult> UpdateTimeTable(int id, [FromBody]SaveTimeTableResource tableResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
