@@ -5,11 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200503030931_CreateTimeTablesTable.cs" />
-    <Compile Remove="Migrations\20200503030931_CreateTimeTablesTable.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

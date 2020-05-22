@@ -9,8 +9,8 @@ using StudentAPI.Persistance;
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    [Migration("20200522013723_ReBegin")]
-    partial class ReBegin
+    [Migration("20200522014149_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
