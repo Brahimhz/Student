@@ -24,11 +24,6 @@ namespace StudentAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddScoped<IExamTableRepository, ExamTableRepository>();
-            services.AddScoped<IExamRepository, ExamRepository>();
-            services.AddScoped<IModuleRepository, ModuleRepository>();
-            services.AddScoped<ITimeTableRepository, TimeTableRepository>();
-            services.AddScoped<ISeanceRepository, SeanceRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper(typeof(Startup));
