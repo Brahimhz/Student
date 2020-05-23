@@ -1,0 +1,551 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="Model1TargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Plannings" EntityType="Model1.Planning" />
+          <EntitySet Name="Journees" EntityType="Model1.Journee" />
+          <AssociationSet Name="PlanningJournee" Association="Model1.PlanningJournee">
+            <End Role="Planning" EntitySet="Plannings" />
+            <End Role="Journee" EntitySet="Journees" />
+          </AssociationSet>
+          <EntitySet Name="Seances" EntityType="Model1.Seance" />
+          <AssociationSet Name="JourneeSeance" Association="Model1.JourneeSeance">
+            <End Role="Journee" EntitySet="Journees" />
+            <End Role="Seance" EntitySet="Seances" />
+          </AssociationSet>
+          <EntitySet Name="InfoSeances" EntityType="Model1.InfoSeance" />
+          <AssociationSet Name="SeanceInfoSeance" Association="Model1.SeanceInfoSeance">
+            <End Role="Seance" EntitySet="Seances" />
+            <End Role="InfoSeance" EntitySet="InfoSeances" />
+          </AssociationSet>
+          <EntitySet Name="Blocs" EntityType="Model1.Bloc" />
+          <EntitySet Name="Salles" EntityType="Model1.Salle" />
+          <AssociationSet Name="BlocSalle" Association="Model1.BlocSalle">
+            <End Role="Bloc" EntitySet="Blocs" />
+            <End Role="Salle" EntitySet="Salles" />
+          </AssociationSet>
+          <AssociationSet Name="SalleInfoSeance" Association="Model1.SalleInfoSeance">
+            <End Role="Salle" EntitySet="Salles" />
+            <End Role="InfoSeance" EntitySet="InfoSeances" />
+          </AssociationSet>
+          <EntitySet Name="Etablissements" EntityType="Model1.Etablissement" />
+          <AssociationSet Name="EtablissementBloc" Association="Model1.EtablissementBloc">
+            <End Role="Etablissement" EntitySet="Etablissements" />
+            <End Role="Bloc" EntitySet="Blocs" />
+          </AssociationSet>
+          <EntitySet Name="Departements" EntityType="Model1.Departement" />
+          <AssociationSet Name="EtablissementDepartement" Association="Model1.EtablissementDepartement">
+            <End Role="Etablissement" EntitySet="Etablissements" />
+            <End Role="Departement" EntitySet="Departements" />
+          </AssociationSet>
+          <EntitySet Name="Formations" EntityType="Model1.Formation" />
+          <EntitySet Name="DomaineFormations" EntityType="Model1.DomaineFormation" />
+          <AssociationSet Name="FormationDomaineFormation" Association="Model1.FormationDomaineFormation">
+            <End Role="Formation" EntitySet="Formations" />
+            <End Role="DomaineFormation" EntitySet="DomaineFormations" />
+          </AssociationSet>
+          <AssociationSet Name="DepartementDomaineFormation" Association="Model1.DepartementDomaineFormation">
+            <End Role="Departement" EntitySet="Departements" />
+            <End Role="DomaineFormation" EntitySet="DomaineFormations" />
+          </AssociationSet>
+          <EntitySet Name="Filieres" EntityType="Model1.Filiere" />
+          <AssociationSet Name="DomaineFormationFiliere" Association="Model1.DomaineFormationFiliere">
+            <End Role="DomaineFormation" EntitySet="DomaineFormations" />
+            <End Role="Filiere" EntitySet="Filieres" />
+          </AssociationSet>
+          <EntitySet Name="Specialites" EntityType="Model1.Specialite" />
+          <AssociationSet Name="FiliereSpecialite" Association="Model1.FiliereSpecialite">
+            <End Role="Filiere" EntitySet="Filieres" />
+            <End Role="Specialite" EntitySet="Specialites" />
+          </AssociationSet>
+          <EntitySet Name="NiveauSpecialites" EntityType="Model1.NiveauSpecialite" />
+          <AssociationSet Name="SpecialiteNiveauSpecialite" Association="Model1.SpecialiteNiveauSpecialite">
+            <End Role="Specialite" EntitySet="Specialites" />
+            <End Role="NiveauSpecialite" EntitySet="NiveauSpecialites" />
+          </AssociationSet>
+          <EntitySet Name="Sections" EntityType="Model1.Section" />
+          <AssociationSet Name="NiveauSpecialiteSection" Association="Model1.NiveauSpecialiteSection">
+            <End Role="NiveauSpecialite" EntitySet="NiveauSpecialites" />
+            <End Role="Section" EntitySet="Sections" />
+          </AssociationSet>
+          <EntitySet Name="Groupes" EntityType="Model1.Groupe" />
+          <AssociationSet Name="SectionGroupe" Association="Model1.SectionGroupe">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="Groupe" EntitySet="Groupes" />
+          </AssociationSet>
+          <EntitySet Name="SousGroupes" EntityType="Model1.SousGroupe" />
+          <AssociationSet Name="GroupeSousGroupe" Association="Model1.GroupeSousGroupe">
+            <End Role="Groupe" EntitySet="Groupes" />
+            <End Role="SousGroupe" EntitySet="SousGroupes" />
+          </AssociationSet>
+          <AssociationSet Name="SectionPlanningGroupe" Association="Model1.SectionPlanningGroupe">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="PlanningGroupe" EntitySet="Plannings" />
+          </AssociationSet>
+          <AssociationSet Name="GroupePlanningSGroupe" Association="Model1.GroupePlanningSGroupe">
+            <End Role="Groupe" EntitySet="Groupes" />
+            <End Role="PlanningSGroupe" EntitySet="Plannings" />
+          </AssociationSet>
+          <AssociationSet Name="SousGroupePlanningSGroupe" Association="Model1.SousGroupePlanningSGroupe">
+            <End Role="SousGroupe" EntitySet="SousGroupes" />
+            <End Role="PlanningSGroupe" EntitySet="Plannings" />
+          </AssociationSet>
+          <AssociationSet Name="PlanningGroupePlanningSGroupe" Association="Model1.PlanningGroupePlanningSGroupe">
+            <End Role="PlanningGroupe" EntitySet="Plannings" />
+            <End Role="PlanningSGroupe" EntitySet="Plannings" />
+          </AssociationSet>
+          <AssociationSet Name="PlanningSectionPlanningGroupe" Association="Model1.PlanningSectionPlanningGroupe">
+            <End Role="PlanningSection" EntitySet="Plannings" />
+            <End Role="PlanningGroupe" EntitySet="Plannings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Planning" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Journees" Relationship="Model1.PlanningJournee" FromRole="Planning" ToRole="Journee" />
+        </EntityType>
+        <EntityType Name="Journee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Planning" Relationship="Model1.PlanningJournee" FromRole="Journee" ToRole="Planning" />
+          <Property Name="PlanningId" Type="Int32" Nullable="false" />
+          <Property Name="Jour" Type="String" Nullable="false" />
+          <NavigationProperty Name="Seances" Relationship="Model1.JourneeSeance" FromRole="Journee" ToRole="Seance" />
+        </EntityType>
+        <Association Name="PlanningJournee">
+          <End Type="Model1.Planning" Role="Planning" Multiplicity="1" />
+          <End Type="Model1.Journee" Role="Journee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planning">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journee">
+              <PropertyRef Name="PlanningId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Seance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Heure" Type="String" Nullable="false" />
+          <NavigationProperty Name="Journee" Relationship="Model1.JourneeSeance" FromRole="Seance" ToRole="Journee" />
+          <Property Name="JourneeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InfoSeances" Relationship="Model1.SeanceInfoSeance" FromRole="Seance" ToRole="InfoSeance" />
+          <Property Name="InfoSeanceId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <Association Name="JourneeSeance">
+          <End Type="Model1.Journee" Role="Journee" Multiplicity="1" />
+          <End Type="Model1.Seance" Role="Seance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Journee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seance">
+              <PropertyRef Name="JourneeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="InfoSeance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="SeanceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Seance" Relationship="Model1.SeanceInfoSeance" FromRole="InfoSeance" ToRole="Seance" />
+          <NavigationProperty Name="Salle" Relationship="Model1.SalleInfoSeance" FromRole="InfoSeance" ToRole="Salle" />
+          <Property Name="SalleId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <Association Name="SeanceInfoSeance">
+          <End Type="Model1.Seance" Role="Seance" Multiplicity="1" />
+          <End Type="Model1.InfoSeance" Role="InfoSeance" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="Bloc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefBloc" Type="String" Nullable="false" />
+          <NavigationProperty Name="Salles" Relationship="Model1.BlocSalle" FromRole="Bloc" ToRole="Salle" />
+          <NavigationProperty Name="Etablissement" Relationship="Model1.EtablissementBloc" FromRole="Bloc" ToRole="Etablissement" />
+          <Property Name="EtablissementId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Salle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeSalle" Type="String" Nullable="false" />
+          <Property Name="RefSalle" Type="String" Nullable="false" />
+          <NavigationProperty Name="Bloc" Relationship="Model1.BlocSalle" FromRole="Salle" ToRole="Bloc" />
+          <Property Name="BlocId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InfoSeances" Relationship="Model1.SalleInfoSeance" FromRole="Salle" ToRole="InfoSeance" />
+        </EntityType>
+        <Association Name="BlocSalle">
+          <End Type="Model1.Bloc" Role="Bloc" Multiplicity="1" />
+          <End Type="Model1.Salle" Role="Salle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bloc">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Salle">
+              <PropertyRef Name="BlocId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PlanningSection" BaseType="Model1.Planning">
+          <Property Name="Type" Type="String" Nullable="false" />
+          <NavigationProperty Name="PlanningGroupes" Relationship="Model1.PlanningSectionPlanningGroupe" FromRole="PlanningSection" ToRole="PlanningGroupe" />
+        </EntityType>
+        <Association Name="SalleInfoSeance">
+          <End Type="Model1.Salle" Role="Salle" Multiplicity="0..1" />
+          <End Type="Model1.InfoSeance" Role="InfoSeance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InfoSeance">
+              <PropertyRef Name="SalleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PlanningGroupe" BaseType="Model1.Planning">
+          <NavigationProperty Name="Section" Relationship="Model1.SectionPlanningGroupe" FromRole="PlanningGroupe" ToRole="Section" />
+          <Property Name="SectionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PlanningSGroupes" Relationship="Model1.PlanningGroupePlanningSGroupe" FromRole="PlanningGroupe" ToRole="PlanningSGroupe" />
+          <NavigationProperty Name="PlanningSection" Relationship="Model1.PlanningSectionPlanningGroupe" FromRole="PlanningGroupe" ToRole="PlanningSection" />
+          <Property Name="PlanningSectionId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlanningSGroupe" BaseType="Model1.Planning">
+          <NavigationProperty Name="Groupe" Relationship="Model1.GroupePlanningSGroupe" FromRole="PlanningSGroupe" ToRole="Groupe" />
+          <Property Name="GroupeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SousGroupe" Relationship="Model1.SousGroupePlanningSGroupe" FromRole="PlanningSGroupe" ToRole="SousGroupe" />
+          <Property Name="SousGroupeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PlanningGroupe" Relationship="Model1.PlanningGroupePlanningSGroupe" FromRole="PlanningSGroupe" ToRole="PlanningGroupe" />
+          <Property Name="PlanningGroupeId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Etablissement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomEtablissement" Type="String" Nullable="false" />
+          <NavigationProperty Name="Blocs" Relationship="Model1.EtablissementBloc" FromRole="Etablissement" ToRole="Bloc" />
+          <NavigationProperty Name="Departements" Relationship="Model1.EtablissementDepartement" FromRole="Etablissement" ToRole="Departement" />
+        </EntityType>
+        <Association Name="EtablissementBloc">
+          <End Type="Model1.Etablissement" Role="Etablissement" Multiplicity="1" />
+          <End Type="Model1.Bloc" Role="Bloc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etablissement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bloc">
+              <PropertyRef Name="EtablissementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Departement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomDepartement" Type="String" Nullable="false" />
+          <NavigationProperty Name="Etablissement" Relationship="Model1.EtablissementDepartement" FromRole="Departement" ToRole="Etablissement" />
+          <Property Name="EtablissementId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DomaineFormations" Relationship="Model1.DepartementDomaineFormation" FromRole="Departement" ToRole="DomaineFormation" />
+        </EntityType>
+        <Association Name="EtablissementDepartement">
+          <End Type="Model1.Etablissement" Role="Etablissement" Multiplicity="1" />
+          <End Type="Model1.Departement" Role="Departement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etablissement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Departement">
+              <PropertyRef Name="EtablissementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Formation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Systeme" Type="String" Nullable="false" />
+          <Property Name="TypeFormation" Type="String" Nullable="false" />
+          <NavigationProperty Name="DomaineFormations" Relationship="Model1.FormationDomaineFormation" FromRole="Formation" ToRole="DomaineFormation" />
+        </EntityType>
+        <EntityType Name="DomaineFormation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Formation" Relationship="Model1.FormationDomaineFormation" FromRole="DomaineFormation" ToRole="Formation" />
+          <Property Name="FormationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Departement" Relationship="Model1.DepartementDomaineFormation" FromRole="DomaineFormation" ToRole="Departement" />
+          <Property Name="DepartementId" Type="Int32" Nullable="false" />
+          <Property Name="NomDF" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="true" MaxLength="Max" />
+          <NavigationProperty Name="Filieres" Relationship="Model1.DomaineFormationFiliere" FromRole="DomaineFormation" ToRole="Filiere" />
+        </EntityType>
+        <Association Name="FormationDomaineFormation">
+          <End Type="Model1.Formation" Role="Formation" Multiplicity="1" />
+          <End Type="Model1.DomaineFormation" Role="DomaineFormation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DomaineFormation">
+              <PropertyRef Name="FormationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DepartementDomaineFormation">
+          <End Type="Model1.Departement" Role="Departement" Multiplicity="1" />
+          <End Type="Model1.DomaineFormation" Role="DomaineFormation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DomaineFormation">
+              <PropertyRef Name="DepartementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Filiere">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomFiliere" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="true" MaxLength="Max" />
+          <NavigationProperty Name="DomaineFormation" Relationship="Model1.DomaineFormationFiliere" FromRole="Filiere" ToRole="DomaineFormation" />
+          <Property Name="DomaineFormationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Specialites" Relationship="Model1.FiliereSpecialite" FromRole="Filiere" ToRole="Specialite" />
+        </EntityType>
+        <Association Name="DomaineFormationFiliere">
+          <End Type="Model1.DomaineFormation" Role="DomaineFormation" Multiplicity="1" />
+          <End Type="Model1.Filiere" Role="Filiere" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DomaineFormation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Filiere">
+              <PropertyRef Name="DomaineFormationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Specialite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomSpecialite" Type="String" Nullable="false" />
+          <Property Name="Durée" Type="String" Nullable="true" />
+          <NavigationProperty Name="Filiere" Relationship="Model1.FiliereSpecialite" FromRole="Specialite" ToRole="Filiere" />
+          <Property Name="FiliereId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NiveauSpecialites" Relationship="Model1.SpecialiteNiveauSpecialite" FromRole="Specialite" ToRole="NiveauSpecialite" />
+        </EntityType>
+        <Association Name="FiliereSpecialite">
+          <End Type="Model1.Filiere" Role="Filiere" Multiplicity="1" />
+          <End Type="Model1.Specialite" Role="Specialite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filiere">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Specialite">
+              <PropertyRef Name="FiliereId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NiveauSpecialite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Niveau" Type="String" Nullable="false" />
+          <NavigationProperty Name="Specialite" Relationship="Model1.SpecialiteNiveauSpecialite" FromRole="NiveauSpecialite" ToRole="Specialite" />
+          <Property Name="SpecialiteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sections" Relationship="Model1.NiveauSpecialiteSection" FromRole="NiveauSpecialite" ToRole="Section" />
+        </EntityType>
+        <Association Name="SpecialiteNiveauSpecialite">
+          <End Type="Model1.Specialite" Role="Specialite" Multiplicity="1" />
+          <End Type="Model1.NiveauSpecialite" Role="NiveauSpecialite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NiveauSpecialite">
+              <PropertyRef Name="SpecialiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreGroupe" Type="String" Nullable="true" />
+          <NavigationProperty Name="NiveauSpecialite" Relationship="Model1.NiveauSpecialiteSection" FromRole="Section" ToRole="NiveauSpecialite" />
+          <Property Name="NiveauSpecialiteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Groupes" Relationship="Model1.SectionGroupe" FromRole="Section" ToRole="Groupe" />
+          <NavigationProperty Name="PlanningGroupes" Relationship="Model1.SectionPlanningGroupe" FromRole="Section" ToRole="PlanningGroupe" />
+        </EntityType>
+        <Association Name="NiveauSpecialiteSection">
+          <End Type="Model1.NiveauSpecialite" Role="NiveauSpecialite" Multiplicity="1" />
+          <End Type="Model1.Section" Role="Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NiveauSpecialite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="NiveauSpecialiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Groupe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreSGrope" Type="String" Nullable="true" />
+          <NavigationProperty Name="Section" Relationship="Model1.SectionGroupe" FromRole="Groupe" ToRole="Section" />
+          <Property Name="SectionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SousGroupes" Relationship="Model1.GroupeSousGroupe" FromRole="Groupe" ToRole="SousGroupe" />
+          <NavigationProperty Name="PlanningSGroupes" Relationship="Model1.GroupePlanningSGroupe" FromRole="Groupe" ToRole="PlanningSGroupe" />
+        </EntityType>
+        <Association Name="SectionGroupe">
+          <End Type="Model1.Section" Role="Section" Multiplicity="1" />
+          <End Type="Model1.Groupe" Role="Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SousGroupe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Groupe" Relationship="Model1.GroupeSousGroupe" FromRole="SousGroupe" ToRole="Groupe" />
+          <Property Name="GroupeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PlanningSGroupe" Relationship="Model1.SousGroupePlanningSGroupe" FromRole="SousGroupe" ToRole="PlanningSGroupe" />
+          <Property Name="PlanningSGroupeId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <Association Name="GroupeSousGroupe">
+          <End Type="Model1.Groupe" Role="Groupe" Multiplicity="1" />
+          <End Type="Model1.SousGroupe" Role="SousGroupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SousGroupe">
+              <PropertyRef Name="GroupeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SectionPlanningGroupe">
+          <End Type="Model1.Section" Role="Section" Multiplicity="1" />
+          <End Type="Model1.PlanningGroupe" Role="PlanningGroupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlanningGroupe">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GroupePlanningSGroupe">
+          <End Type="Model1.Groupe" Role="Groupe" Multiplicity="1" />
+          <End Type="Model1.PlanningSGroupe" Role="PlanningSGroupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlanningSGroupe">
+              <PropertyRef Name="GroupeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SousGroupePlanningSGroupe">
+          <End Type="Model1.SousGroupe" Role="SousGroupe" Multiplicity="1" />
+          <End Type="Model1.PlanningSGroupe" Role="PlanningSGroupe" Multiplicity="0..1" />
+        </Association>
+        <Association Name="PlanningGroupePlanningSGroupe">
+          <End Type="Model1.PlanningGroupe" Role="PlanningGroupe" Multiplicity="1" />
+          <End Type="Model1.PlanningSGroupe" Role="PlanningSGroupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanningGroupe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlanningSGroupe">
+              <PropertyRef Name="PlanningGroupeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PlanningSectionPlanningGroupe">
+          <End Type="Model1.PlanningSection" Role="PlanningSection" Multiplicity="1" />
+          <End Type="Model1.PlanningGroupe" Role="PlanningGroupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanningSection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlanningGroupe">
+              <PropertyRef Name="PlanningSectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

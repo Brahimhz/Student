@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d16ceed74abb4515b8404267c933991f" Name="Diagram1" ZoomLevel="73" >
+        <EntityTypeShape EntityType="Model1.Planning" Width="1.5" PointX="1" PointY="6.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="Model1.Journee" Width="1.5" PointX="1.25" PointY="9.875" IsExpanded="false" />
+        <AssociationConnector Association="Model1.PlanningJournee" />
+        <EntityTypeShape EntityType="Model1.Seance" Width="1.5" PointX="1.25" PointY="13.5" IsExpanded="false" />
+        <AssociationConnector Association="Model1.JourneeSeance" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model1.InfoSeance" Width="1.5" PointX="2.125" PointY="18.25" IsExpanded="false" />
+        <AssociationConnector Association="Model1.SeanceInfoSeance" />
+        <EntityTypeShape EntityType="Model1.Bloc" Width="1.5" PointX="5.375" PointY="8.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="Model1.Salle" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="false" />
+        <AssociationConnector Association="Model1.BlocSalle" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model1.PlanningSection" Width="1.5" PointX="1.625" PointY="22.375" IsExpanded="false" />
+        <AssociationConnector Association="Model1.SalleInfoSeance" />
+        <InheritanceConnector EntityType="Model1.PlanningSection" ManuallyRouted="false" >
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="Model1.PlanningGroupe" Width="1.5" PointX="2.125" PointY="25.125" IsExpanded="false" />
+        <InheritanceConnector EntityType="Model1.PlanningGroupe" ManuallyRouted="false" >
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="Model1.PlanningSGroupe" Width="1.625" PointX="3" PointY="29.125" IsExpanded="false" />
+        <InheritanceConnector EntityType="Model1.PlanningSGroupe" ManuallyRouted="false" >
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="Model1.Etablissement" Width="1.5" PointX="9" PointY="3.625" IsExpanded="false" />
+        <AssociationConnector Association="Model1.EtablissementBloc" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model1.Departement" Width="1.5" PointX="17.125" PointY="6.5" IsExpanded="false" />
+        <AssociationConnector Association="Model1.EtablissementDepartement" />
+        <EntityTypeShape EntityType="Model1.Formation" Width="1.5" PointX="13" PointY="6.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="Model1.DomaineFormation" Width="1.875" PointX="14.875" PointY="8.375" IsExpanded="false" />
+        <AssociationConnector Association="Model1.FormationDomaineFormation" />
+        <AssociationConnector Association="Model1.DepartementDomaineFormation" />
+        <EntityTypeShape EntityType="Model1.Filiere" Width="2" PointX="14.75" PointY="12.25" IsExpanded="false" />
+        <AssociationConnector Association="Model1.DomaineFormationFiliere" />
+        <EntityTypeShape EntityType="Model1.Specialite" Width="1.5" PointX="14.875" PointY="16.375" IsExpanded="false" />
+        <AssociationConnector Association="Model1.FiliereSpecialite" />
+        <EntityTypeShape EntityType="Model1.NiveauSpecialite" Width="1.5" PointX="14.875" PointY="19.625" IsExpanded="false" />
+        <AssociationConnector Association="Model1.SpecialiteNiveauSpecialite" />
+        <EntityTypeShape EntityType="Model1.Section" Width="1.5" PointX="7.25" PointY="21.75" IsExpanded="false" />
+        <AssociationConnector Association="Model1.NiveauSpecialiteSection" />
+        <EntityTypeShape EntityType="Model1.Groupe" Width="1.5" PointX="7.375" PointY="25.375" IsExpanded="false" />
+        <AssociationConnector Association="Model1.SectionGroupe" />
+        <EntityTypeShape EntityType="Model1.SousGroupe" Width="1.5" PointX="7.875" PointY="30" IsExpanded="false" />
+        <AssociationConnector Association="Model1.GroupeSousGroupe" />
+        <AssociationConnector Association="Model1.SectionPlanningGroupe" />
+        <AssociationConnector Association="Model1.GroupePlanningSGroupe" />
+        <AssociationConnector Association="Model1.SousGroupePlanningSGroupe" />
+        <AssociationConnector Association="Model1.PlanningGroupePlanningSGroupe" />
+        <AssociationConnector Association="Model1.PlanningSectionPlanningGroupe" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
