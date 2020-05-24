@@ -12,23 +12,29 @@ namespace StudentDomain
     using System;
     using System.Collections.Generic;
     
-    public partial class Section
+    public partial class Personne
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Section()
+        public Personne()
         {
-            this.Groupes = new HashSet<Groupe>();
-            this.PlanningSections = new HashSet<PlanningSection>();
+            this.RelationCommunications2 = new HashSet<RelationCommunication>();
+            this.RelationCommunications1 = new HashSet<RelationCommunication>();
+            this.DocumentPartages = new HashSet<DocumentPartage>();
         }
     
         public int Id { get; set; }
-        public string NombreGroupe { get; set; }
-        public int NiveauSpecialiteId { get; set; }
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
+        public string Genre { get; set; }
+        public System.DateTime DateNaissance { get; set; }
+        public string Telephone { get; set; }
+        public string Email { get; set; }
     
-        public virtual NiveauSpecialite NiveauSpecialite { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Groupe> Groupes { get; set; }
+        public virtual ICollection<RelationCommunication> RelationCommunications2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PlanningSection> PlanningSections { get; set; }
+        public virtual ICollection<RelationCommunication> RelationCommunications1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentPartage> DocumentPartages { get; set; }
     }
 }

@@ -14,11 +14,20 @@ namespace StudentDomain
     
     public partial class SousGroupe
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SousGroupe()
+        {
+            this.PlanningSGroupes = new HashSet<PlanningSGroupe>();
+            this.Parcours = new HashSet<Parcour>();
+        }
+    
         public int Id { get; set; }
         public int GroupeId { get; set; }
-        public Nullable<int> PlanningSGroupeId { get; set; }
     
         public virtual Groupe Groupe { get; set; }
-        public virtual PlanningSGroupe PlanningSGroupe { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlanningSGroupe> PlanningSGroupes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Parcour> Parcours { get; set; }
     }
 }

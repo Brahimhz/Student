@@ -20,12 +20,12 @@ namespace StudentDomain
             this.PlanningSGroupes = new HashSet<PlanningSGroupe>();
         }
     
-        public int SectionId { get; set; }
         public int PlanningSectionId { get; set; }
+        public int GroupeId { get; set; }
     
-        public virtual Section Section { get; set; }
+        public virtual PlanningSection PlanningSection { get; set; }
+        public virtual Groupe Groupe { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlanningSGroupe> PlanningSGroupes { get; set; }
-        public virtual PlanningSection PlanningSection { get; set; }
     }
 }

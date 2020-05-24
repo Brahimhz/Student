@@ -12,21 +12,21 @@ namespace StudentDomain
     using System;
     using System.Collections.Generic;
     
-    public partial class Filiere
+    public partial class Discussion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Filiere()
+        public Discussion()
         {
-            this.Specialites = new HashSet<Specialite>();
+            this.Messages = new HashSet<Message>();
         }
     
         public int Id { get; set; }
-        public string NomFiliere { get; set; }
-        public string DescriptionFiliere { get; set; }
-        public int DomaineFormationId { get; set; }
+        public System.DateTime DateDebut { get; set; }
+        public Nullable<System.DateTime> DateFin { get; set; }
+        public int RelationCommunicationId { get; set; }
     
-        public virtual DomaineFormation DomaineFormation { get; set; }
+        public virtual RelationCommunication RelationCommunication { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Specialite> Specialites { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
     }
 }

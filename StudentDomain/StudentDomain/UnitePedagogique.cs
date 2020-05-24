@@ -12,21 +12,21 @@ namespace StudentDomain
     using System;
     using System.Collections.Generic;
     
-    public partial class Filiere
+    public partial class UnitePedagogique
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Filiere()
+        public UnitePedagogique()
         {
-            this.Specialites = new HashSet<Specialite>();
+            this.Matieres = new HashSet<Matiere>();
+            this.ResultatUnites = new HashSet<ResultatUnite>();
         }
     
         public int Id { get; set; }
-        public string NomFiliere { get; set; }
-        public string DescriptionFiliere { get; set; }
-        public int DomaineFormationId { get; set; }
+        public string TypeUnite { get; set; }
     
-        public virtual DomaineFormation DomaineFormation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Specialite> Specialites { get; set; }
+        public virtual ICollection<Matiere> Matieres { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ResultatUnite> ResultatUnites { get; set; }
     }
 }

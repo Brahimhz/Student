@@ -18,8 +18,12 @@ namespace StudentDomain
         public string Type { get; set; }
         public int SeanceId { get; set; }
         public Nullable<int> SalleId { get; set; }
+        public int MatiereRefId { get; set; }
+        public Nullable<int> EnseignatId { get; set; }
     
         public virtual Seance Seance { get; set; }
         public virtual Salle Salle { get; set; }
+        public virtual MatiereRef MatiereRef { get; set; }
+        public virtual Enseignat Enseignat { get; set; }
     }
 }

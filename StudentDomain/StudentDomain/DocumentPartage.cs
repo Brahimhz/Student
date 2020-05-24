@@ -12,12 +12,15 @@ namespace StudentDomain
     using System;
     using System.Collections.Generic;
     
-    public partial class PlanningSGroupe : Planning
+    public partial class DocumentPartage
     {
-        public int PlanningGroupeId { get; set; }
-        public int SousGroupeId { get; set; }
+        public int Id { get; set; }
+        public string NomDoc { get; set; }
+        public string TypeDoc { get; set; }
+        public int PersonneId { get; set; }
+        public Nullable<int> MatiereRefId { get; set; }
     
-        public virtual PlanningGroupe PlanningGroupe { get; set; }
-        public virtual SousGroupe SousGroupe { get; set; }
+        public virtual Personne Personne { get; set; }
+        public virtual MatiereRef MatiereRef { get; set; }
     }
 }

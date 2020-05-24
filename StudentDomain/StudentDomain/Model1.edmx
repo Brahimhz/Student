@@ -89,27 +89,119 @@
             <End Role="Groupe" EntitySet="Groupes" />
             <End Role="SousGroupe" EntitySet="SousGroupes" />
           </AssociationSet>
-          <AssociationSet Name="SectionPlanningGroupe" Association="Model1.SectionPlanningGroupe">
+          <EntitySet Name="Matieres" EntityType="Model1.Matiere" />
+          <AssociationSet Name="SectionPlanningSection" Association="Model1.SectionPlanningSection">
             <End Role="Section" EntitySet="Sections" />
+            <End Role="PlanningSection" EntitySet="Plannings" />
+          </AssociationSet>
+          <AssociationSet Name="PlanningSectionPlanningGroupe" Association="Model1.PlanningSectionPlanningGroupe">
+            <End Role="PlanningSection" EntitySet="Plannings" />
             <End Role="PlanningGroupe" EntitySet="Plannings" />
           </AssociationSet>
-          <AssociationSet Name="GroupePlanningSGroupe" Association="Model1.GroupePlanningSGroupe">
+          <AssociationSet Name="GroupePlanningGroupe" Association="Model1.GroupePlanningGroupe">
             <End Role="Groupe" EntitySet="Groupes" />
+            <End Role="PlanningGroupe" EntitySet="Plannings" />
+          </AssociationSet>
+          <AssociationSet Name="PlanningGroupePlanningSGroupe" Association="Model1.PlanningGroupePlanningSGroupe">
+            <End Role="PlanningGroupe" EntitySet="Plannings" />
             <End Role="PlanningSGroupe" EntitySet="Plannings" />
           </AssociationSet>
           <AssociationSet Name="SousGroupePlanningSGroupe" Association="Model1.SousGroupePlanningSGroupe">
             <End Role="SousGroupe" EntitySet="SousGroupes" />
             <End Role="PlanningSGroupe" EntitySet="Plannings" />
           </AssociationSet>
-          <AssociationSet Name="PlanningGroupePlanningSGroupe" Association="Model1.PlanningGroupePlanningSGroupe">
-            <End Role="PlanningGroupe" EntitySet="Plannings" />
-            <End Role="PlanningSGroupe" EntitySet="Plannings" />
+          <EntitySet Name="UnitePedagogiques" EntityType="Model1.UnitePedagogique" />
+          <AssociationSet Name="UnitePedagogiqueMatiere" Association="Model1.UnitePedagogiqueMatiere">
+            <End Role="UnitePedagogique" EntitySet="UnitePedagogiques" />
+            <End Role="Matiere" EntitySet="Matieres" />
           </AssociationSet>
-          <AssociationSet Name="PlanningSectionPlanningGroupe" Association="Model1.PlanningSectionPlanningGroupe">
-            <End Role="PlanningSection" EntitySet="Plannings" />
-            <End Role="PlanningGroupe" EntitySet="Plannings" />
+          <EntitySet Name="MatiereRefs" EntityType="Model1.MatiereRef" />
+          <AssociationSet Name="MatiereRefMatiere" Association="Model1.MatiereRefMatiere">
+            <End Role="MatiereRef" EntitySet="MatiereRefs" />
+            <End Role="Matiere" EntitySet="Matieres" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="NiveauSpecialiteMatiere" Association="Model1.NiveauSpecialiteMatiere">
+            <End Role="NiveauSpecialite" EntitySet="NiveauSpecialites" />
+            <End Role="Matiere" EntitySet="Matieres" />
+          </AssociationSet>
+          <EntitySet Name="Personnes" EntityType="Model1.Personne" />
+          <AssociationSet Name="RespCommunicationDepartement" Association="Model1.RespCommunicationDepartement">
+            <End Role="RespCommunication" EntitySet="Personnes" />
+            <End Role="Departement" EntitySet="Departements" />
+          </AssociationSet>
+          <EntitySet Name="Parcours" EntityType="Model1.Parcour" />
+          <AssociationSet Name="EtudientParcour" Association="Model1.EtudientParcour">
+            <End Role="Etudient" EntitySet="Personnes" />
+            <End Role="Parcour" EntitySet="Parcours" />
+          </AssociationSet>
+          <AssociationSet Name="NiveauSpecialiteParcour" Association="Model1.NiveauSpecialiteParcour">
+            <End Role="Parcour" EntitySet="Parcours" />
+            <End Role="NiveauSpecialite" EntitySet="NiveauSpecialites" />
+          </AssociationSet>
+          <AssociationSet Name="ParcourSousGroupe" Association="Model1.ParcourSousGroupe">
+            <End Role="Parcour" EntitySet="Parcours" />
+            <End Role="SousGroupe" EntitySet="SousGroupes" />
+          </AssociationSet>
+          <EntitySet Name="Resultats" EntityType="Model1.Resultat" />
+          <AssociationSet Name="ResultatParcour" Association="Model1.ResultatParcour">
+            <End Role="Resultat" EntitySet="Resultats" />
+            <End Role="Parcour" EntitySet="Parcours" />
+          </AssociationSet>
+          <EntitySet Name="ResultatUnites" EntityType="Model1.ResultatUnite" />
+          <EntitySet Name="ResultatMatieres" EntityType="Model1.ResultatMatiere" />
+          <AssociationSet Name="ResultatUniteUnitePedagogique" Association="Model1.ResultatUniteUnitePedagogique">
+            <End Role="ResultatUnite" EntitySet="ResultatUnites" />
+            <End Role="UnitePedagogique" EntitySet="UnitePedagogiques" />
+          </AssociationSet>
+          <AssociationSet Name="ResultatMatiereMatiere" Association="Model1.ResultatMatiereMatiere">
+            <End Role="ResultatMatiere" EntitySet="ResultatMatieres" />
+            <End Role="Matiere" EntitySet="Matieres" />
+          </AssociationSet>
+          <AssociationSet Name="ResultatUniteResultat" Association="Model1.ResultatUniteResultat">
+            <End Role="ResultatUnite" EntitySet="ResultatUnites" />
+            <End Role="Resultat" EntitySet="Resultats" />
+          </AssociationSet>
+          <AssociationSet Name="ResultatMatiereResultatUnite" Association="Model1.ResultatMatiereResultatUnite">
+            <End Role="ResultatMatiere" EntitySet="ResultatMatieres" />
+            <End Role="ResultatUnite" EntitySet="ResultatUnites" />
+          </AssociationSet>
+          <AssociationSet Name="MatiereRefInfoSeance" Association="Model1.MatiereRefInfoSeance">
+            <End Role="MatiereRef" EntitySet="MatiereRefs" />
+            <End Role="InfoSeance" EntitySet="InfoSeances" />
+          </AssociationSet>
+          <AssociationSet Name="EnseignatInfoSeance" Association="Model1.EnseignatInfoSeance">
+            <End Role="Enseignat" EntitySet="Personnes" />
+            <End Role="InfoSeance" EntitySet="InfoSeances" />
+          </AssociationSet>
+          <EntitySet Name="RelationCommunications" EntityType="Model1.RelationCommunication" />
+          <AssociationSet Name="RelationCommunicationPersonne" Association="Model1.RelationCommunicationPersonne">
+            <End Role="RelationCommunication" EntitySet="RelationCommunications" />
+            <End Role="Personne" EntitySet="Personnes" />
+          </AssociationSet>
+          <AssociationSet Name="RelationCommunicationPersonne1" Association="Model1.RelationCommunicationPersonne1">
+            <End Role="RelationCommunication" EntitySet="RelationCommunications" />
+            <End Role="Personne" EntitySet="Personnes" />
+          </AssociationSet>
+          <EntitySet Name="Discussions" EntityType="Model1.Discussion" />
+          <AssociationSet Name="RelationCommunicationDiscussion" Association="Model1.RelationCommunicationDiscussion">
+            <End Role="Discussion" EntitySet="Discussions" />
+            <End Role="RelationCommunication" EntitySet="RelationCommunications" />
+          </AssociationSet>
+          <EntitySet Name="Messages" EntityType="Model1.Message" />
+          <AssociationSet Name="DiscussionMessage" Association="Model1.DiscussionMessage">
+            <End Role="Message" EntitySet="Messages" />
+            <End Role="Discussion" EntitySet="Discussions" />
+          </AssociationSet>
+          <EntitySet Name="DocumentPartages" EntityType="Model1.DocumentPartage" />
+          <AssociationSet Name="PersonneDocumentPartage" Association="Model1.PersonneDocumentPartage">
+            <End Role="DocumentPartage" EntitySet="DocumentPartages" />
+            <End Role="Personne" EntitySet="Personnes" />
+          </AssociationSet>
+          <AssociationSet Name="DocumentPartageMatiereRef" Association="Model1.DocumentPartageMatiereRef">
+            <End Role="DocumentPartage" EntitySet="DocumentPartages" />
+            <End Role="MatiereRef" EntitySet="MatiereRefs" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Planning" Abstract="true">
           <Key>
             <PropertyRef Name="Id" />
@@ -172,6 +264,10 @@
           <NavigationProperty Name="Seance" Relationship="Model1.SeanceInfoSeance" FromRole="InfoSeance" ToRole="Seance" />
           <NavigationProperty Name="Salle" Relationship="Model1.SalleInfoSeance" FromRole="InfoSeance" ToRole="Salle" />
           <Property Name="SalleId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="MatiereRef" Relationship="Model1.MatiereRefInfoSeance" FromRole="InfoSeance" ToRole="MatiereRef" />
+          <Property Name="MatiereRefId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Enseignat" Relationship="Model1.EnseignatInfoSeance" FromRole="InfoSeance" ToRole="Enseignat" />
+          <Property Name="EnseignatId" Type="Int32" Nullable="true" />
         </EntityType>
         <Association Name="SeanceInfoSeance">
           <End Type="Model1.Seance" Role="Seance" Multiplicity="1" />
@@ -212,6 +308,8 @@
         </Association>
         <EntityType Name="PlanningSection" BaseType="Model1.Planning">
           <Property Name="Type" Type="String" Nullable="false" />
+          <NavigationProperty Name="Section" Relationship="Model1.SectionPlanningSection" FromRole="PlanningSection" ToRole="Section" />
+          <Property Name="SectionId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PlanningGroupes" Relationship="Model1.PlanningSectionPlanningGroupe" FromRole="PlanningSection" ToRole="PlanningGroupe" />
         </EntityType>
         <Association Name="SalleInfoSeance">
@@ -227,19 +325,17 @@
           </ReferentialConstraint>
         </Association>
         <EntityType Name="PlanningGroupe" BaseType="Model1.Planning">
-          <NavigationProperty Name="Section" Relationship="Model1.SectionPlanningGroupe" FromRole="PlanningGroupe" ToRole="Section" />
-          <Property Name="SectionId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PlanningSGroupes" Relationship="Model1.PlanningGroupePlanningSGroupe" FromRole="PlanningGroupe" ToRole="PlanningSGroupe" />
           <NavigationProperty Name="PlanningSection" Relationship="Model1.PlanningSectionPlanningGroupe" FromRole="PlanningGroupe" ToRole="PlanningSection" />
           <Property Name="PlanningSectionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Groupe" Relationship="Model1.GroupePlanningGroupe" FromRole="PlanningGroupe" ToRole="Groupe" />
+          <Property Name="GroupeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PlanningSGroupes" Relationship="Model1.PlanningGroupePlanningSGroupe" FromRole="PlanningGroupe" ToRole="PlanningSGroupe" />
         </EntityType>
         <EntityType Name="PlanningSGroupe" BaseType="Model1.Planning">
-          <NavigationProperty Name="Groupe" Relationship="Model1.GroupePlanningSGroupe" FromRole="PlanningSGroupe" ToRole="Groupe" />
-          <Property Name="GroupeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SousGroupe" Relationship="Model1.SousGroupePlanningSGroupe" FromRole="PlanningSGroupe" ToRole="SousGroupe" />
-          <Property Name="SousGroupeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PlanningGroupe" Relationship="Model1.PlanningGroupePlanningSGroupe" FromRole="PlanningSGroupe" ToRole="PlanningGroupe" />
           <Property Name="PlanningGroupeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SousGroupe" Relationship="Model1.SousGroupePlanningSGroupe" FromRole="PlanningSGroupe" ToRole="SousGroupe" />
+          <Property Name="SousGroupeId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Etablissement">
           <Key>
@@ -271,6 +367,8 @@
           <NavigationProperty Name="Etablissement" Relationship="Model1.EtablissementDepartement" FromRole="Departement" ToRole="Etablissement" />
           <Property Name="EtablissementId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DomaineFormations" Relationship="Model1.DepartementDomaineFormation" FromRole="Departement" ToRole="DomaineFormation" />
+          <NavigationProperty Name="RespCommunication" Relationship="Model1.RespCommunicationDepartement" FromRole="Departement" ToRole="RespCommunication" />
+          <Property Name="RespCommunicationId" Type="Int32" Nullable="true" />
         </EntityType>
         <Association Name="EtablissementDepartement">
           <End Type="Model1.Etablissement" Role="Etablissement" Multiplicity="1" />
@@ -303,7 +401,7 @@
           <NavigationProperty Name="Departement" Relationship="Model1.DepartementDomaineFormation" FromRole="DomaineFormation" ToRole="Departement" />
           <Property Name="DepartementId" Type="Int32" Nullable="false" />
           <Property Name="NomDF" Type="String" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="true" MaxLength="Max" />
+          <Property Name="DescriptionDF" Type="String" Nullable="true" MaxLength="Max" />
           <NavigationProperty Name="Filieres" Relationship="Model1.DomaineFormationFiliere" FromRole="DomaineFormation" ToRole="Filiere" />
         </EntityType>
         <Association Name="FormationDomaineFormation">
@@ -336,7 +434,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NomFiliere" Type="String" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="true" MaxLength="Max" />
+          <Property Name="DescriptionFiliere" Type="String" Nullable="true" MaxLength="Max" />
           <NavigationProperty Name="DomaineFormation" Relationship="Model1.DomaineFormationFiliere" FromRole="Filiere" ToRole="DomaineFormation" />
           <Property Name="DomaineFormationId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Specialites" Relationship="Model1.FiliereSpecialite" FromRole="Filiere" ToRole="Specialite" />
@@ -385,6 +483,8 @@
           <NavigationProperty Name="Specialite" Relationship="Model1.SpecialiteNiveauSpecialite" FromRole="NiveauSpecialite" ToRole="Specialite" />
           <Property Name="SpecialiteId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Sections" Relationship="Model1.NiveauSpecialiteSection" FromRole="NiveauSpecialite" ToRole="Section" />
+          <NavigationProperty Name="Matieres" Relationship="Model1.NiveauSpecialiteMatiere" FromRole="NiveauSpecialite" ToRole="Matiere" />
+          <NavigationProperty Name="Parcours" Relationship="Model1.NiveauSpecialiteParcour" FromRole="NiveauSpecialite" ToRole="Parcour" />
         </EntityType>
         <Association Name="SpecialiteNiveauSpecialite">
           <End Type="Model1.Specialite" Role="Specialite" Multiplicity="1" />
@@ -407,7 +507,7 @@
           <NavigationProperty Name="NiveauSpecialite" Relationship="Model1.NiveauSpecialiteSection" FromRole="Section" ToRole="NiveauSpecialite" />
           <Property Name="NiveauSpecialiteId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Groupes" Relationship="Model1.SectionGroupe" FromRole="Section" ToRole="Groupe" />
-          <NavigationProperty Name="PlanningGroupes" Relationship="Model1.SectionPlanningGroupe" FromRole="Section" ToRole="PlanningGroupe" />
+          <NavigationProperty Name="PlanningSections" Relationship="Model1.SectionPlanningSection" FromRole="Section" ToRole="PlanningSection" />
         </EntityType>
         <Association Name="NiveauSpecialiteSection">
           <End Type="Model1.NiveauSpecialite" Role="NiveauSpecialite" Multiplicity="1" />
@@ -430,7 +530,7 @@
           <NavigationProperty Name="Section" Relationship="Model1.SectionGroupe" FromRole="Groupe" ToRole="Section" />
           <Property Name="SectionId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SousGroupes" Relationship="Model1.GroupeSousGroupe" FromRole="Groupe" ToRole="SousGroupe" />
-          <NavigationProperty Name="PlanningSGroupes" Relationship="Model1.GroupePlanningSGroupe" FromRole="Groupe" ToRole="PlanningSGroupe" />
+          <NavigationProperty Name="PlanningGroupes" Relationship="Model1.GroupePlanningGroupe" FromRole="Groupe" ToRole="PlanningGroupe" />
         </EntityType>
         <Association Name="SectionGroupe">
           <End Type="Model1.Section" Role="Section" Multiplicity="1" />
@@ -451,8 +551,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Groupe" Relationship="Model1.GroupeSousGroupe" FromRole="SousGroupe" ToRole="Groupe" />
           <Property Name="GroupeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PlanningSGroupe" Relationship="Model1.SousGroupePlanningSGroupe" FromRole="SousGroupe" ToRole="PlanningSGroupe" />
-          <Property Name="PlanningSGroupeId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="PlanningSGroupes" Relationship="Model1.SousGroupePlanningSGroupe" FromRole="SousGroupe" ToRole="PlanningSGroupe" />
+          <NavigationProperty Name="Parcours" Relationship="Model1.ParcourSousGroupe" FromRole="SousGroupe" ToRole="Parcour" />
         </EntityType>
         <Association Name="GroupeSousGroupe">
           <End Type="Model1.Groupe" Role="Groupe" Multiplicity="1" />
@@ -466,33 +566,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="SectionPlanningGroupe">
+        <EntityType Name="Matiere">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Coefficient" Type="Double" Nullable="false" />
+          <Property Name="Credit" Type="Double" Nullable="false" />
+          <NavigationProperty Name="UnitePedagogique" Relationship="Model1.UnitePedagogiqueMatiere" FromRole="Matiere" ToRole="UnitePedagogique" />
+          <Property Name="UnitePedagogiqueId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MatiereRef" Relationship="Model1.MatiereRefMatiere" FromRole="Matiere" ToRole="MatiereRef" />
+          <Property Name="MatiereRefId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NiveauSpecialite" Relationship="Model1.NiveauSpecialiteMatiere" FromRole="Matiere" ToRole="NiveauSpecialite" />
+          <Property Name="NiveauSpecialiteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ResultatMatieres" Relationship="Model1.ResultatMatiereMatiere" FromRole="Matiere" ToRole="ResultatMatiere" />
+        </EntityType>
+        <Association Name="SectionPlanningSection">
           <End Type="Model1.Section" Role="Section" Multiplicity="1" />
-          <End Type="Model1.PlanningGroupe" Role="PlanningGroupe" Multiplicity="*" />
+          <End Type="Model1.PlanningSection" Role="PlanningSection" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Section">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PlanningGroupe">
+            <Dependent Role="PlanningSection">
               <PropertyRef Name="SectionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="GroupePlanningSGroupe">
+        <Association Name="PlanningSectionPlanningGroupe">
+          <End Type="Model1.PlanningSection" Role="PlanningSection" Multiplicity="1" />
+          <End Type="Model1.PlanningGroupe" Role="PlanningGroupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanningSection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlanningGroupe">
+              <PropertyRef Name="PlanningSectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GroupePlanningGroupe">
           <End Type="Model1.Groupe" Role="Groupe" Multiplicity="1" />
-          <End Type="Model1.PlanningSGroupe" Role="PlanningSGroupe" Multiplicity="*" />
+          <End Type="Model1.PlanningGroupe" Role="PlanningGroupe" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Groupe">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PlanningSGroupe">
+            <Dependent Role="PlanningGroupe">
               <PropertyRef Name="GroupeId" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="SousGroupePlanningSGroupe">
-          <End Type="Model1.SousGroupe" Role="SousGroupe" Multiplicity="1" />
-          <End Type="Model1.PlanningSGroupe" Role="PlanningSGroupe" Multiplicity="0..1" />
         </Association>
         <Association Name="PlanningGroupePlanningSGroupe">
           <End Type="Model1.PlanningGroupe" Role="PlanningGroupe" Multiplicity="1" />
@@ -506,15 +629,382 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PlanningSectionPlanningGroupe">
-          <End Type="Model1.PlanningSection" Role="PlanningSection" Multiplicity="1" />
-          <End Type="Model1.PlanningGroupe" Role="PlanningGroupe" Multiplicity="*" />
+        <Association Name="SousGroupePlanningSGroupe">
+          <End Type="Model1.SousGroupe" Role="SousGroupe" Multiplicity="1" />
+          <End Type="Model1.PlanningSGroupe" Role="PlanningSGroupe" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PlanningSection">
+            <Principal Role="SousGroupe">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PlanningGroupe">
-              <PropertyRef Name="PlanningSectionId" />
+            <Dependent Role="PlanningSGroupe">
+              <PropertyRef Name="SousGroupeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UnitePedagogique">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeUnite" Type="String" Nullable="false" />
+          <NavigationProperty Name="Matieres" Relationship="Model1.UnitePedagogiqueMatiere" FromRole="UnitePedagogique" ToRole="Matiere" />
+          <NavigationProperty Name="ResultatUnites" Relationship="Model1.ResultatUniteUnitePedagogique" FromRole="UnitePedagogique" ToRole="ResultatUnite" />
+        </EntityType>
+        <Association Name="UnitePedagogiqueMatiere">
+          <End Type="Model1.UnitePedagogique" Role="UnitePedagogique" Multiplicity="1" />
+          <End Type="Model1.Matiere" Role="Matiere" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitePedagogique">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matiere">
+              <PropertyRef Name="UnitePedagogiqueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MatiereRef">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomMatiere" Type="String" Nullable="false" />
+          <Property Name="Abrevation" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="true" MaxLength="Max" />
+          <NavigationProperty Name="Matieres" Relationship="Model1.MatiereRefMatiere" FromRole="MatiereRef" ToRole="Matiere" />
+          <NavigationProperty Name="InfoSeances" Relationship="Model1.MatiereRefInfoSeance" FromRole="MatiereRef" ToRole="InfoSeance" />
+          <NavigationProperty Name="DocumentPartages" Relationship="Model1.DocumentPartageMatiereRef" FromRole="MatiereRef" ToRole="DocumentPartage" />
+        </EntityType>
+        <Association Name="MatiereRefMatiere">
+          <End Type="Model1.MatiereRef" Role="MatiereRef" Multiplicity="1" />
+          <End Type="Model1.Matiere" Role="Matiere" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MatiereRef">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matiere">
+              <PropertyRef Name="MatiereRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NiveauSpecialiteMatiere">
+          <End Type="Model1.NiveauSpecialite" Role="NiveauSpecialite" Multiplicity="1" />
+          <End Type="Model1.Matiere" Role="Matiere" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NiveauSpecialite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matiere">
+              <PropertyRef Name="NiveauSpecialiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Personne">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" Nullable="false" />
+          <Property Name="Prenom" Type="String" Nullable="false" />
+          <Property Name="Genre" Type="String" Nullable="false" />
+          <Property Name="DateNaissance" Type="DateTime" Nullable="false" />
+          <Property Name="Telephone" Type="String" Nullable="true" />
+          <Property Name="Email" Type="String" Nullable="true" />
+          <NavigationProperty Name="RelationCommunications2" Relationship="Model1.RelationCommunicationPersonne" FromRole="Personne" ToRole="RelationCommunication" />
+          <NavigationProperty Name="RelationCommunications1" Relationship="Model1.RelationCommunicationPersonne1" FromRole="Personne" ToRole="RelationCommunication" />
+          <NavigationProperty Name="DocumentPartages" Relationship="Model1.PersonneDocumentPartage" FromRole="Personne" ToRole="DocumentPartage" />
+        </EntityType>
+        <EntityType Name="RespCommunication" BaseType="Model1.Personne">
+          <NavigationProperty Name="Departement" Relationship="Model1.RespCommunicationDepartement" FromRole="RespCommunication" ToRole="Departement" />
+          <Property Name="DepartementId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="RespCommunicationDepartement">
+          <End Type="Model1.RespCommunication" Role="RespCommunication" Multiplicity="0..1" />
+          <End Type="Model1.Departement" Role="Departement" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Enseignat" BaseType="Model1.Personne" >
+          <Property Name="Grade" Type="String" Nullable="false" />
+          <NavigationProperty Name="InfoSeances" Relationship="Model1.EnseignatInfoSeance" FromRole="Enseignat" ToRole="InfoSeance" />
+        </EntityType>
+        <EntityType Name="Etudient" BaseType="Model1.Personne" >
+          <Property Name="Matricule" Type="String" Nullable="true" />
+          <NavigationProperty Name="Parcours" Relationship="Model1.EtudientParcour" FromRole="Etudient" ToRole="Parcour" />
+        </EntityType>
+        <EntityType Name="Parcour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Etudient" Relationship="Model1.EtudientParcour" FromRole="Parcour" ToRole="Etudient" />
+          <Property Name="EtudientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NiveauSpecialite" Relationship="Model1.NiveauSpecialiteParcour" FromRole="Parcour" ToRole="NiveauSpecialite" />
+          <Property Name="NiveauSpecialiteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SousGroupe" Relationship="Model1.ParcourSousGroupe" FromRole="Parcour" ToRole="SousGroupe" />
+          <Property Name="SousGroupeId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Resultat" Relationship="Model1.ResultatParcour" FromRole="Parcour" ToRole="Resultat" />
+          <Property Name="ResultatId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <Association Name="EtudientParcour">
+          <End Type="Model1.Etudient" Role="Etudient" Multiplicity="1" />
+          <End Type="Model1.Parcour" Role="Parcour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etudient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parcour">
+              <PropertyRef Name="EtudientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NiveauSpecialiteParcour">
+          <End Type="Model1.Parcour" Role="Parcour" Multiplicity="*" />
+          <End Type="Model1.NiveauSpecialite" Role="NiveauSpecialite" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="NiveauSpecialite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parcour">
+              <PropertyRef Name="NiveauSpecialiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ParcourSousGroupe">
+          <End Type="Model1.Parcour" Role="Parcour" Multiplicity="*" />
+          <End Type="Model1.SousGroupe" Role="SousGroupe" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SousGroupe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parcour">
+              <PropertyRef Name="SousGroupeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Resultat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MoyenneFinal" Type="Double" Nullable="true" />
+          <Property Name="Credit" Type="Double" Nullable="true" />
+          <NavigationProperty Name="Parcour" Relationship="Model1.ResultatParcour" FromRole="Resultat" ToRole="Parcour" />
+          <Property Name="ParcourId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ResultatUnites" Relationship="Model1.ResultatUniteResultat" FromRole="Resultat" ToRole="ResultatUnite" />
+        </EntityType>
+        <Association Name="ResultatParcour">
+          <End Type="Model1.Resultat" Role="Resultat" Multiplicity="0..1" />
+          <End Type="Model1.Parcour" Role="Parcour" Multiplicity="1" />
+        </Association>
+        <EntityType Name="ResultatUnite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MoyenneUnite" Type="Double" Nullable="true" />
+          <Property Name="CreditUnite" Type="Double" Nullable="true" />
+          <NavigationProperty Name="UnitePedagogique" Relationship="Model1.ResultatUniteUnitePedagogique" FromRole="ResultatUnite" ToRole="UnitePedagogique" />
+          <Property Name="UnitePedagogiqueId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Resultat" Relationship="Model1.ResultatUniteResultat" FromRole="ResultatUnite" ToRole="Resultat" />
+          <Property Name="ResultatId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ResultatMatieres" Relationship="Model1.ResultatMatiereResultatUnite" FromRole="ResultatUnite" ToRole="ResultatMatiere" />
+        </EntityType>
+        <EntityType Name="ResultatMatiere">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoteControl" Type="Double" Nullable="true" />
+          <Property Name="NoteExamen" Type="Double" Nullable="true" />
+          <Property Name="CreditMatiere" Type="Double" Nullable="true" />
+          <NavigationProperty Name="Matiere" Relationship="Model1.ResultatMatiereMatiere" FromRole="ResultatMatiere" ToRole="Matiere" />
+          <Property Name="MatiereId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ResultatUnite" Relationship="Model1.ResultatMatiereResultatUnite" FromRole="ResultatMatiere" ToRole="ResultatUnite" />
+          <Property Name="ResultatUniteId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ResultatUniteUnitePedagogique">
+          <End Type="Model1.ResultatUnite" Role="ResultatUnite" Multiplicity="*" />
+          <End Type="Model1.UnitePedagogique" Role="UnitePedagogique" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="UnitePedagogique">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResultatUnite">
+              <PropertyRef Name="UnitePedagogiqueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ResultatMatiereMatiere">
+          <End Type="Model1.ResultatMatiere" Role="ResultatMatiere" Multiplicity="*" />
+          <End Type="Model1.Matiere" Role="Matiere" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Matiere">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResultatMatiere">
+              <PropertyRef Name="MatiereId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ResultatUniteResultat">
+          <End Type="Model1.ResultatUnite" Role="ResultatUnite" Multiplicity="*" />
+          <End Type="Model1.Resultat" Role="Resultat" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Resultat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResultatUnite">
+              <PropertyRef Name="ResultatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ResultatMatiereResultatUnite">
+          <End Type="Model1.ResultatMatiere" Role="ResultatMatiere" Multiplicity="*" />
+          <End Type="Model1.ResultatUnite" Role="ResultatUnite" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="ResultatUnite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResultatMatiere">
+              <PropertyRef Name="ResultatUniteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MatiereRefInfoSeance">
+          <End Type="Model1.MatiereRef" Role="MatiereRef" Multiplicity="1" />
+          <End Type="Model1.InfoSeance" Role="InfoSeance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MatiereRef">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InfoSeance">
+              <PropertyRef Name="MatiereRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EnseignatInfoSeance">
+          <End Type="Model1.Enseignat" Role="Enseignat" Multiplicity="0..1" />
+          <End Type="Model1.InfoSeance" Role="InfoSeance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enseignat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InfoSeance">
+              <PropertyRef Name="EnseignatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RelationCommunication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Personne2" Relationship="Model1.RelationCommunicationPersonne" FromRole="RelationCommunication" ToRole="Personne" />
+          <Property Name="PersonneId1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Personne1" Relationship="Model1.RelationCommunicationPersonne1" FromRole="RelationCommunication" ToRole="Personne" />
+          <Property Name="PersonneId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Discussions" Relationship="Model1.RelationCommunicationDiscussion" FromRole="RelationCommunication" ToRole="Discussion" />
+        </EntityType>
+        <Association Name="RelationCommunicationPersonne">
+          <End Type="Model1.RelationCommunication" Role="RelationCommunication" Multiplicity="*" />
+          <End Type="Model1.Personne" Role="Personne" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RelationCommunication">
+              <PropertyRef Name="PersonneId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RelationCommunicationPersonne1">
+          <End Type="Model1.RelationCommunication" Role="RelationCommunication" Multiplicity="*" />
+          <End Type="Model1.Personne" Role="Personne" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RelationCommunication">
+              <PropertyRef Name="PersonneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Discussion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateDebut" Type="DateTime" Nullable="false" />
+          <Property Name="DateFin" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="RelationCommunication" Relationship="Model1.RelationCommunicationDiscussion" FromRole="Discussion" ToRole="RelationCommunication" />
+          <Property Name="RelationCommunicationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Messages" Relationship="Model1.DiscussionMessage" FromRole="Discussion" ToRole="Message" />
+        </EntityType>
+        <Association Name="RelationCommunicationDiscussion">
+          <End Type="Model1.Discussion" Role="Discussion" Multiplicity="*" />
+          <End Type="Model1.RelationCommunication" Role="RelationCommunication" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="RelationCommunication">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Discussion">
+              <PropertyRef Name="RelationCommunicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" />
+          <Property Name="DateMsg" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Discussion" Relationship="Model1.DiscussionMessage" FromRole="Message" ToRole="Discussion" />
+          <Property Name="DiscussionId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="DiscussionMessage">
+          <End Type="Model1.Message" Role="Message" Multiplicity="*" />
+          <End Type="Model1.Discussion" Role="Discussion" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Discussion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="DiscussionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DocumentPartage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomDoc" Type="String" Nullable="false" />
+          <Property Name="TypeDoc" Type="String" Nullable="false" />
+          <NavigationProperty Name="Personne" Relationship="Model1.PersonneDocumentPartage" FromRole="DocumentPartage" ToRole="Personne" />
+          <Property Name="PersonneId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MatiereRef" Relationship="Model1.DocumentPartageMatiereRef" FromRole="DocumentPartage" ToRole="MatiereRef" />
+          <Property Name="MatiereRefId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <Association Name="PersonneDocumentPartage">
+          <End Type="Model1.DocumentPartage" Role="DocumentPartage" Multiplicity="*" />
+          <End Type="Model1.Personne" Role="Personne" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentPartage">
+              <PropertyRef Name="PersonneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DocumentPartageMatiereRef">
+          <End Type="Model1.DocumentPartage" Role="DocumentPartage" Multiplicity="*" />
+          <End Type="Model1.MatiereRef" Role="MatiereRef" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MatiereRef">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentPartage">
+              <PropertyRef Name="MatiereRefId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

@@ -24,7 +24,7 @@ namespace StudentDomain
         public int FormationId { get; set; }
         public int DepartementId { get; set; }
         public string NomDF { get; set; }
-        public string Description { get; set; }
+        public string DescriptionDF { get; set; }
     
         public virtual Formation Formation { get; set; }
         public virtual Departement Departement { get; set; }

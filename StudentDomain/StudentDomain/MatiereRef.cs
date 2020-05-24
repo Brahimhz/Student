@@ -12,23 +12,26 @@ namespace StudentDomain
     using System;
     using System.Collections.Generic;
     
-    public partial class Section
+    public partial class MatiereRef
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Section()
+        public MatiereRef()
         {
-            this.Groupes = new HashSet<Groupe>();
-            this.PlanningSections = new HashSet<PlanningSection>();
+            this.Matieres = new HashSet<Matiere>();
+            this.InfoSeances = new HashSet<InfoSeance>();
+            this.DocumentPartages = new HashSet<DocumentPartage>();
         }
     
         public int Id { get; set; }
-        public string NombreGroupe { get; set; }
-        public int NiveauSpecialiteId { get; set; }
+        public string NomMatiere { get; set; }
+        public string Abrevation { get; set; }
+        public string Description { get; set; }
     
-        public virtual NiveauSpecialite NiveauSpecialite { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Groupe> Groupes { get; set; }
+        public virtual ICollection<Matiere> Matieres { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PlanningSection> PlanningSections { get; set; }
+        public virtual ICollection<InfoSeance> InfoSeances { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentPartage> DocumentPartages { get; set; }
     }
 }

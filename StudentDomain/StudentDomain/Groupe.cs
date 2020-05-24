@@ -18,7 +18,7 @@ namespace StudentDomain
         public Groupe()
         {
             this.SousGroupes = new HashSet<SousGroupe>();
-            this.PlanningSGroupes = new HashSet<PlanningSGroupe>();
+            this.PlanningGroupes = new HashSet<PlanningGroupe>();
         }
     
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace StudentDomain
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SousGroupe> SousGroupes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PlanningSGroupe> PlanningSGroupes { get; set; }
+        public virtual ICollection<PlanningGroupe> PlanningGroupes { get; set; }
     }
 }

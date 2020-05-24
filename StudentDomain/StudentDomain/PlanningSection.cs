@@ -21,7 +21,9 @@ namespace StudentDomain
         }
     
         public string Type { get; set; }
+        public int SectionId { get; set; }
     
+        public virtual Section Section { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlanningGroupe> PlanningGroupes { get; set; }
     }

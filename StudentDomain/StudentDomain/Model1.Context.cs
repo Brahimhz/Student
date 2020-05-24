@@ -41,5 +41,17 @@ namespace StudentDomain
         public virtual DbSet<Section> Sections { get; set; }
         public virtual DbSet<Groupe> Groupes { get; set; }
         public virtual DbSet<SousGroupe> SousGroupes { get; set; }
+        public virtual DbSet<Matiere> Matieres { get; set; }
+        public virtual DbSet<UnitePedagogique> UnitePedagogiques { get; set; }
+        public virtual DbSet<MatiereRef> MatiereRefs { get; set; }
+        public virtual DbSet<Personne> Personnes { get; set; }
+        public virtual DbSet<Parcour> Parcours { get; set; }
+        public virtual DbSet<Resultat> Resultats { get; set; }
+        public virtual DbSet<ResultatUnite> ResultatUnites { get; set; }
+        public virtual DbSet<ResultatMatiere> ResultatMatieres { get; set; }
+        public virtual DbSet<RelationCommunication> RelationCommunications { get; set; }
+        public virtual DbSet<Discussion> Discussions { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<DocumentPartage> DocumentPartages { get; set; }
     }
 }

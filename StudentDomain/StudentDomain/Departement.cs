@@ -23,9 +23,11 @@ namespace StudentDomain
         public int Id { get; set; }
         public string NomDepartement { get; set; }
         public int EtablissementId { get; set; }
+        public Nullable<int> RespCommunicationId { get; set; }
     
         public virtual Etablissement Etablissement { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DomaineFormation> DomaineFormations { get; set; }
+        public virtual RespCommunication RespCommunication { get; set; }
     }
 }
