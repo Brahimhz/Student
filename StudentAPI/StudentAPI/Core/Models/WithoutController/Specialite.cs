@@ -7,26 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentDomain
+namespace StudentAPI.Core.Models
 {
-    using System;
     using System.Collections.Generic;
-    
-    public partial class RelationCommunication
+
+    public partial class Specialite
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RelationCommunication()
+        public Specialite()
         {
-            this.Discussions = new HashSet<Discussion>();
+            this.NiveauSpecialites = new HashSet<NiveauSpecialite>();
         }
-    
+
         public int Id { get; set; }
-        public int PersonneId1 { get; set; }
-        public int PersonneId2 { get; set; }
-    
+        public string NomSpecialite { get; set; }
+        public string Durée { get; set; }
+        public int FiliereId { get; set; }
+
+        public virtual Filiere Filiere { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Discussion> Discussions { get; set; }
-        public virtual Personne Personne1 { get; set; }
-        public virtual Personne Personne2 { get; set; }
+        public virtual ICollection<NiveauSpecialite> NiveauSpecialites { get; set; }
     }
 }

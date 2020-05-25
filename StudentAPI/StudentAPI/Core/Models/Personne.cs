@@ -7,20 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentDomain
+namespace StudentAPI.Core.Models
 {
-    using System;
     using System.Collections.Generic;
-    
+
     public partial class Personne
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Personne()
         {
             this.DocumentPartages = new HashSet<DocumentPartage>();
-            this.RelationCommunications = new HashSet<RelationCommunication>();
+            this.RelationCommunications1 = new HashSet<RelationCommunication>();
+            this.RelationCommunications2 = new HashSet<RelationCommunication>();
         }
-    
+
         public int Id { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
@@ -28,10 +28,13 @@ namespace StudentDomain
         public System.DateTime DateNaissance { get; set; }
         public string Telephone { get; set; }
         public string Email { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentPartage> DocumentPartages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RelationCommunication> RelationCommunications { get; set; }
+        public virtual ICollection<RelationCommunication> RelationCommunications1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RelationCommunication> RelationCommunications2 { get; set; }
     }
 }

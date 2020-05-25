@@ -7,26 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentDomain
+namespace StudentAPI.Core.Models
 {
-    using System;
     using System.Collections.Generic;
-    
-    public partial class RelationCommunication
+
+    public partial class DomaineFormation
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RelationCommunication()
+        public DomaineFormation()
         {
-            this.Discussions = new HashSet<Discussion>();
+            this.Filieres = new HashSet<Filiere>();
         }
-    
+
         public int Id { get; set; }
-        public int PersonneId1 { get; set; }
-        public int PersonneId2 { get; set; }
-    
+        public int FormationId { get; set; }
+        public int DepartementId { get; set; }
+        public string NomDF { get; set; }
+        public string DescriptionDF { get; set; }
+
+        public virtual Formation Formation { get; set; }
+        public virtual Departement Departement { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Discussion> Discussions { get; set; }
-        public virtual Personne Personne1 { get; set; }
-        public virtual Personne Personne2 { get; set; }
+        public virtual ICollection<Filiere> Filieres { get; set; }
     }
 }

@@ -7,31 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentDomain
+namespace StudentAPI.Core.Models
 {
-    using System;
     using System.Collections.Generic;
-    
-    public partial class Personne
+
+    public partial class MatiereRef
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Personne()
+        public MatiereRef()
         {
+            this.Matieres = new HashSet<Matiere>();
+            this.InfoSeances = new HashSet<InfoSeance>();
             this.DocumentPartages = new HashSet<DocumentPartage>();
-            this.RelationCommunications = new HashSet<RelationCommunication>();
         }
-    
+
         public int Id { get; set; }
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
-        public string Genre { get; set; }
-        public System.DateTime DateNaissance { get; set; }
-        public string Telephone { get; set; }
-        public string Email { get; set; }
-    
+        public string NomMatiere { get; set; }
+        public string Abrevation { get; set; }
+        public string Description { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Matiere> Matieres { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InfoSeance> InfoSeances { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentPartage> DocumentPartages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RelationCommunication> RelationCommunications { get; set; }
     }
 }

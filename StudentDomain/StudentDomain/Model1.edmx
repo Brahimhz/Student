@@ -174,14 +174,6 @@
             <End Role="InfoSeance" EntitySet="InfoSeances" />
           </AssociationSet>
           <EntitySet Name="RelationCommunications" EntityType="Model1.RelationCommunication" />
-          <AssociationSet Name="RelationCommunicationPersonne" Association="Model1.RelationCommunicationPersonne">
-            <End Role="RelationCommunication" EntitySet="RelationCommunications" />
-            <End Role="Personne" EntitySet="Personnes" />
-          </AssociationSet>
-          <AssociationSet Name="RelationCommunicationPersonne1" Association="Model1.RelationCommunicationPersonne1">
-            <End Role="RelationCommunication" EntitySet="RelationCommunications" />
-            <End Role="Personne" EntitySet="Personnes" />
-          </AssociationSet>
           <EntitySet Name="Discussions" EntityType="Model1.Discussion" />
           <AssociationSet Name="RelationCommunicationDiscussion" Association="Model1.RelationCommunicationDiscussion">
             <End Role="Discussion" EntitySet="Discussions" />
@@ -200,6 +192,14 @@
           <AssociationSet Name="DocumentPartageMatiereRef" Association="Model1.DocumentPartageMatiereRef">
             <End Role="DocumentPartage" EntitySet="DocumentPartages" />
             <End Role="MatiereRef" EntitySet="MatiereRefs" />
+          </AssociationSet>
+          <AssociationSet Name="PersonneRelationCommunication" Association="Model1.PersonneRelationCommunication">
+            <End Role="Personne" EntitySet="Personnes" />
+            <End Role="RelationCommunication" EntitySet="RelationCommunications" />
+          </AssociationSet>
+          <AssociationSet Name="PersonneRelationCommunication1" Association="Model1.PersonneRelationCommunication1">
+            <End Role="Personne" EntitySet="Personnes" />
+            <End Role="RelationCommunication" EntitySet="RelationCommunications" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Planning" Abstract="true">
@@ -709,9 +709,8 @@
           <Property Name="DateNaissance" Type="DateTime" Nullable="false" />
           <Property Name="Telephone" Type="String" Nullable="true" />
           <Property Name="Email" Type="String" Nullable="true" />
-          <NavigationProperty Name="RelationCommunications2" Relationship="Model1.RelationCommunicationPersonne" FromRole="Personne" ToRole="RelationCommunication" />
-          <NavigationProperty Name="RelationCommunications1" Relationship="Model1.RelationCommunicationPersonne1" FromRole="Personne" ToRole="RelationCommunication" />
           <NavigationProperty Name="DocumentPartages" Relationship="Model1.PersonneDocumentPartage" FromRole="Personne" ToRole="DocumentPartage" />
+          <NavigationProperty Name="RelationCommunications" Relationship="Model1.PersonneRelationCommunication" FromRole="Personne" ToRole="RelationCommunication" />
         </EntityType>
         <EntityType Name="RespCommunication" BaseType="Model1.Personne">
           <NavigationProperty Name="Departement" Relationship="Model1.RespCommunicationDepartement" FromRole="RespCommunication" ToRole="Departement" />
@@ -897,36 +896,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Personne2" Relationship="Model1.RelationCommunicationPersonne" FromRole="RelationCommunication" ToRole="Personne" />
-          <Property Name="PersonneId1" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Personne1" Relationship="Model1.RelationCommunicationPersonne1" FromRole="RelationCommunication" ToRole="Personne" />
-          <Property Name="PersonneId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Discussions" Relationship="Model1.RelationCommunicationDiscussion" FromRole="RelationCommunication" ToRole="Discussion" />
+          <NavigationProperty Name="Personne1" Relationship="Model1.PersonneRelationCommunication" FromRole="RelationCommunication" ToRole="Personne" />
+          <Property Name="PersonneId1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Personne2" Relationship="Model1.PersonneRelationCommunication1" FromRole="RelationCommunication" ToRole="Personne" />
+          <Property Name="PersonneId2" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="RelationCommunicationPersonne">
-          <End Type="Model1.RelationCommunication" Role="RelationCommunication" Multiplicity="*" />
-          <End Type="Model1.Personne" Role="Personne" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Personne">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RelationCommunication">
-              <PropertyRef Name="PersonneId1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RelationCommunicationPersonne1">
-          <End Type="Model1.RelationCommunication" Role="RelationCommunication" Multiplicity="*" />
-          <End Type="Model1.Personne" Role="Personne" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Personne">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RelationCommunication">
-              <PropertyRef Name="PersonneId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Discussion">
           <Key>
             <PropertyRef Name="Id" />
@@ -1005,6 +980,30 @@
             </Principal>
             <Dependent Role="DocumentPartage">
               <PropertyRef Name="MatiereRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PersonneRelationCommunication">
+          <End Type="Model1.Personne" Role="Personne" Multiplicity="1" />
+          <End Type="Model1.RelationCommunication" Role="RelationCommunication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RelationCommunication">
+              <PropertyRef Name="PersonneId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PersonneRelationCommunication1">
+          <End Type="Model1.Personne" Role="Personne" Multiplicity="1" />
+          <End Type="Model1.RelationCommunication" Role="RelationCommunication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RelationCommunication">
+              <PropertyRef Name="PersonneId2" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

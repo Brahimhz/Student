@@ -7,26 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentDomain
+namespace StudentAPI.Core.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class RelationCommunication
+
+    public partial class Discussion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RelationCommunication()
+        public Discussion()
         {
-            this.Discussions = new HashSet<Discussion>();
+            this.Messages = new HashSet<Message>();
         }
-    
+
         public int Id { get; set; }
-        public int PersonneId1 { get; set; }
-        public int PersonneId2 { get; set; }
-    
+        public System.DateTime DateDebut { get; set; }
+        public Nullable<System.DateTime> DateFin { get; set; }
+        public int RelationCommunicationId { get; set; }
+
+        public virtual RelationCommunication RelationCommunication { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Discussion> Discussions { get; set; }
-        public virtual Personne Personne1 { get; set; }
-        public virtual Personne Personne2 { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
     }
 }

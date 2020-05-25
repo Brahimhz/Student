@@ -2,7 +2,7 @@
 
 namespace StudentAPI.Migrations
 {
-    public partial class Initial : Migration
+    public partial class reset : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

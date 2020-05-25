@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d16ceed74abb4515b8404267c933991f" Name="Diagram1" ZoomLevel="63" >
+      <Diagram DiagramId="d16ceed74abb4515b8404267c933991f" Name="Diagram1" ZoomLevel="59" >
         <EntityTypeShape EntityType="Model1.Planning" Width="1.5" PointX="1" PointY="6.375" IsExpanded="false" />
         <EntityTypeShape EntityType="Model1.Journee" Width="1.5" PointX="1.25" PointY="9.875" IsExpanded="false" />
         <AssociationConnector Association="Model1.PlanningJournee" />
-        <EntityTypeShape EntityType="Model1.Seance" Width="1.5" PointX="1.25" PointY="13.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="Model1.Seance" Width="1.5" PointX="1.25" PointY="13.5" IsExpanded="true" />
         <AssociationConnector Association="Model1.JourneeSeance" ManuallyRouted="false" >
         </AssociationConnector>
         <EntityTypeShape EntityType="Model1.InfoSeance" Width="1.5" PointX="2.125" PointY="18.25" IsExpanded="false" />
@@ -30,9 +30,9 @@
         <EntityTypeShape EntityType="Model1.Etablissement" Width="1.5" PointX="17.5" PointY="3.75" IsExpanded="false" />
         <AssociationConnector Association="Model1.EtablissementBloc" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model1.Departement" Width="2" PointX="25.875" PointY="6.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="Model1.Departement" Width="2" PointX="26.125" PointY="7" IsExpanded="false" />
         <AssociationConnector Association="Model1.EtablissementDepartement" ></AssociationConnector>
-        <EntityTypeShape EntityType="Model1.Formation" Width="1.5" PointX="20.375" PointY="6.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="Model1.Formation" Width="1.5" PointX="20.375" PointY="5.75" IsExpanded="false" />
         <EntityTypeShape EntityType="Model1.DomaineFormation" Width="1.875" PointX="23.25" PointY="8.5" IsExpanded="false" />
         <AssociationConnector Association="Model1.FormationDomaineFormation" />
         <AssociationConnector Association="Model1.DepartementDomaineFormation" />
@@ -84,10 +84,6 @@
         <AssociationConnector Association="Model1.MatiereRefInfoSeance" />
         <AssociationConnector Association="Model1.EnseignatInfoSeance" />
         <EntityTypeShape EntityType="Model1.RelationCommunication" Width="1.5" PointX="48" PointY="4.625" IsExpanded="false" />
-        <AssociationConnector Association="Model1.RelationCommunicationPersonne" ManuallyRouted="false" >
-        </AssociationConnector>
-        <AssociationConnector Association="Model1.RelationCommunicationPersonne1" ManuallyRouted="false" >
-        </AssociationConnector>
         <EntityTypeShape EntityType="Model1.Discussion" Width="1.625" PointX="48" PointY="8" IsExpanded="false" />
         <AssociationConnector Association="Model1.RelationCommunicationDiscussion" />
         <EntityTypeShape EntityType="Model1.Message" Width="1.5" PointX="48.125" PointY="10.75" IsExpanded="false" />
@@ -95,6 +91,8 @@
         <EntityTypeShape EntityType="Model1.DocumentPartage" Width="1.5" PointX="53.125" PointY="5.375" IsExpanded="false" />
         <AssociationConnector Association="Model1.PersonneDocumentPartage" />
         <AssociationConnector Association="Model1.DocumentPartageMatiereRef" />
+        <AssociationConnector Association="Model1.PersonneRelationCommunication" />
+        <AssociationConnector Association="Model1.PersonneRelationCommunication1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

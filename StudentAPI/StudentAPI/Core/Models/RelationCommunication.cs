@@ -7,11 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentDomain
+namespace StudentAPI.Core.Models
 {
-    using System;
     using System.Collections.Generic;
-    
+
     public partial class RelationCommunication
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +18,11 @@ namespace StudentDomain
         {
             this.Discussions = new HashSet<Discussion>();
         }
-    
+
         public int Id { get; set; }
         public int PersonneId1 { get; set; }
         public int PersonneId2 { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Discussion> Discussions { get; set; }
         public virtual Personne Personne1 { get; set; }

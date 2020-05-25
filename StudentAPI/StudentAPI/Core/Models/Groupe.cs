@@ -7,31 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StudentDomain
+namespace StudentAPI.Core.Models
 {
-    using System;
     using System.Collections.Generic;
-    
-    public partial class Personne
+
+    public partial class Groupe
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Personne()
+        public Groupe()
         {
-            this.DocumentPartages = new HashSet<DocumentPartage>();
-            this.RelationCommunications = new HashSet<RelationCommunication>();
+            this.SousGroupes = new HashSet<SousGroupe>();
+            this.PlanningGroupes = new HashSet<PlanningGroupe>();
         }
-    
+
         public int Id { get; set; }
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
-        public string Genre { get; set; }
-        public System.DateTime DateNaissance { get; set; }
-        public string Telephone { get; set; }
-        public string Email { get; set; }
-    
+        public string NombreSGrope { get; set; }
+        public int SectionId { get; set; }
+
+        public virtual Section Section { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DocumentPartage> DocumentPartages { get; set; }
+        public virtual ICollection<SousGroupe> SousGroupes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RelationCommunication> RelationCommunications { get; set; }
+        public virtual ICollection<PlanningGroupe> PlanningGroupes { get; set; }
     }
 }
