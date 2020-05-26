@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAPI.Persistance;
 
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200526002049_reset")]
+    partial class reset
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -362,7 +364,7 @@ namespace StudentAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Personnes");
+                    b.ToTable("Personne");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Personne");
                 });
@@ -586,15 +588,15 @@ namespace StudentAPI.Migrations
                     b.HasDiscriminator().HasValue("Enseignat");
                 });
 
-            modelBuilder.Entity("StudentAPI.Core.Models.Etudiant", b =>
+            modelBuilder.Entity("StudentAPI.Core.Models.Etudient", b =>
                 {
                     b.HasBaseType("StudentAPI.Core.Models.Personne");
 
                     b.Property<string>("Matricule");
 
-                    b.ToTable("Etudiant");
+                    b.ToTable("Etudient");
 
-                    b.HasDiscriminator().HasValue("Etudiant");
+                    b.HasDiscriminator().HasValue("Etudient");
                 });
 
             modelBuilder.Entity("StudentAPI.Core.Models.RespCommunication", b =>
@@ -783,7 +785,7 @@ namespace StudentAPI.Migrations
 
             modelBuilder.Entity("StudentAPI.Core.Models.Parcour", b =>
                 {
-                    b.HasOne("StudentAPI.Core.Models.Etudiant", "Etudient")
+                    b.HasOne("StudentAPI.Core.Models.Etudient", "Etudient")
                         .WithMany("Parcours")
                         .HasForeignKey("EtudientId")
                         .OnDelete(DeleteBehavior.Cascade);

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StudentAPI.Migrations
 {
-    public partial class DomainVer01 : Migration
+    public partial class reset : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

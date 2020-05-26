@@ -9,6 +9,7 @@
 
 namespace StudentAPI.Core.Models
 {
+    using System;
     using System.Collections.Generic;
 
     public partial class Personne
@@ -25,7 +26,7 @@ namespace StudentAPI.Core.Models
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string Genre { get; set; }
-        public System.DateTime DateNaissance { get; set; }
+        public DateTime DateNaissance { get; set; }
         public string Telephone { get; set; }
         public string Email { get; set; }
 

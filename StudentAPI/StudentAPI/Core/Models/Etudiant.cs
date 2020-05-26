@@ -11,10 +11,10 @@ namespace StudentAPI.Core.Models
 {
     using System.Collections.Generic;
 
-    public partial class Etudient : Personne
+    public partial class Etudiant : Personne
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Etudient()
+        public Etudiant()
         {
             this.Parcours = new HashSet<Parcour>();
         }

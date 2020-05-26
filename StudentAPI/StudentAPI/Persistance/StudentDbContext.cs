@@ -59,11 +59,11 @@ namespace StudentAPI.Persistance
 
 
             modelBuilder.Entity<PlanningSection>()
-   .HasOne(ps => ps.Section)
-   .WithMany(s => s.PlanningSections)
-   .IsRequired()
-   .HasForeignKey(ps => ps.SectionId)
-   .OnDelete(DeleteBehavior.Restrict);
+               .HasOne(ps => ps.Section)
+               .WithMany(s => s.PlanningSections)
+               .IsRequired()
+               .HasForeignKey(ps => ps.SectionId)
+               .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<PlanningGroupe>()
                .HasOne(pg => pg.Groupe)
@@ -109,9 +109,12 @@ namespace StudentAPI.Persistance
               .HasForeignKey(psg => psg.PlanningGroupeId)
               .OnDelete(DeleteBehavior.Restrict);
 
+
+
+
         }
 
-
+        public virtual DbSet<Personne> Personne { get; set; }
         public virtual DbSet<Journee> Journees { get; set; }
         public virtual DbSet<Seance> Seances { get; set; }
         public virtual DbSet<InfoSeance> InfoSeances { get; set; }
@@ -139,7 +142,7 @@ namespace StudentAPI.Persistance
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<DocumentPartage> DocumentPartages { get; set; }
 
-        public virtual DbSet<Etudient> Etudients { get; set; }
+        public virtual DbSet<Etudiant> Etudiants { get; set; }
         public virtual DbSet<Enseignat> Enseignats { get; set; }
         public virtual DbSet<RespCommunication> RespCommunications { get; set; }
         public virtual DbSet<PlanningSection> PlanningSections { get; set; }

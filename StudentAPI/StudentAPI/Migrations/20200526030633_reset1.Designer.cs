@@ -10,8 +10,8 @@ using StudentAPI.Persistance;
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    [Migration("20200525042537_DomainVer01")]
-    partial class DomainVer01
+    [Migration("20200526030633_reset1")]
+    partial class reset1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -364,7 +364,7 @@ namespace StudentAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Personne");
+                    b.ToTable("Personnes");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Personne");
                 });
@@ -588,15 +588,15 @@ namespace StudentAPI.Migrations
                     b.HasDiscriminator().HasValue("Enseignat");
                 });
 
-            modelBuilder.Entity("StudentAPI.Core.Models.Etudient", b =>
+            modelBuilder.Entity("StudentAPI.Core.Models.Etudiant", b =>
                 {
                     b.HasBaseType("StudentAPI.Core.Models.Personne");
 
                     b.Property<string>("Matricule");
 
-                    b.ToTable("Etudient");
+                    b.ToTable("Etudiant");
 
-                    b.HasDiscriminator().HasValue("Etudient");
+                    b.HasDiscriminator().HasValue("Etudiant");
                 });
 
             modelBuilder.Entity("StudentAPI.Core.Models.RespCommunication", b =>
@@ -785,7 +785,7 @@ namespace StudentAPI.Migrations
 
             modelBuilder.Entity("StudentAPI.Core.Models.Parcour", b =>
                 {
-                    b.HasOne("StudentAPI.Core.Models.Etudient", "Etudient")
+                    b.HasOne("StudentAPI.Core.Models.Etudiant", "Etudient")
                         .WithMany("Parcours")
                         .HasForeignKey("EtudientId")
                         .OnDelete(DeleteBehavior.Cascade);

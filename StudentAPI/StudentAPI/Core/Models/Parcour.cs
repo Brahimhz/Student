@@ -19,7 +19,7 @@ namespace StudentAPI.Core.Models
         public Nullable<int> SousGroupeId { get; set; }
         public Nullable<int> ResultatId { get; set; }
 
-        public virtual Etudient Etudient { get; set; }
+        public virtual Etudiant Etudient { get; set; }
         public virtual NiveauSpecialite NiveauSpecialite { get; set; }
         public virtual SousGroupe SousGroupe { get; set; }
         public virtual Resultat Resultat { get; set; }
