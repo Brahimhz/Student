@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace StudentAPI.AppService.Implementation
 {
-    public abstract class AppService<T,TGetResource,TSetResource,TQueryObject>:IAppService<TGetResource,TSetResource,TQueryObject>
+    public abstract class AppService<T,TGetResource,TSetResource,TQueryObject>:IAppService<T,TGetResource,TSetResource,TQueryObject>
         where T:class
         where TQueryObject : IQueryObject
     {

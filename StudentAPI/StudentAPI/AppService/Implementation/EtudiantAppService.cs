@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity.UI.Pages.Internal.Account.Manage;
+using StudentAPI.AppService.Contracts;
 using StudentAPI.Controllers.Resources.Etudiant;
 using StudentAPI.Core.IRepository;
 using StudentAPI.Core.Models;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace StudentAPI.AppService.Implementation
 {
-    public class EtudiantAppService : AppService<Etudiant, GetEtudiantResource, SetEtudiantResource, RequestQuery>
+    public class EtudiantAppService : AppService<Etudiant, GetEtudiantResource, SetEtudiantResource, RequestQuery>, IEtudiantAppService
     {
         private readonly IMapper _mapper;
         private readonly IEtudiantRepository _repository;
@@ -25,5 +26,9 @@ namespace StudentAPI.AppService.Implementation
             _unitOfWork = unitOfWork;
         }
 
+        public Task<GetEtudiantResource> GetByMatricule(string matricule)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -5,7 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StudentAPI.AppService;
+using StudentAPI.AppService.Contracts;
+using StudentAPI.AppService.Implementation;
 using StudentAPI.Core.IRepository;
+using StudentAPI.Core.Models;
 using StudentAPI.Persistance;
 using StudentAPI.Persistance.Repository;
 
@@ -23,7 +27,14 @@ namespace StudentAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IEtudiantRepository, EtudientRepository>();
+            services.AddScoped<IRepository<Etudiant>, EtudientRepository>();
+
+            services.AddTransient(typeof(IAppService<,,,>),typeof(AppService<,,,>));
+
+            services.AddTransient<IEtudiantAppService, EtudiantAppService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentAPI.AppService
 {
-    public interface IAppService<TGetResource,TSetResource,TQueryObject>
+    public interface IAppService<T,TGetResource,TSetResource,TQueryObject>
         where TQueryObject : IQueryObject
     {
         Task<TGetResource> GetById(int id, bool eagerLoading = true);
