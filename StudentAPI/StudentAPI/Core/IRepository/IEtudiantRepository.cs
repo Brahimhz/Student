@@ -4,14 +4,8 @@ using System.Threading.Tasks;
 
 namespace StudentAPI.Core.IRepository
 {
-    public interface IEtudiantRepository
+    public interface IEtudiantRepository : IRepository<Etudiant>
     {
-        Task<Etudiant> GetEtudiant(int id, bool eagerLoading = true);
-        Task<QueryResult<Etudiant>> GetEtudiants(EtudiantQuery filter);
-
-
-        void Add(Etudiant etudiant);
-        void Remove(Etudiant etudiant);
-
+        Task<Etudiant> GetByMatricule(string matricule);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using StudentAPI.AppService.Contracts;
 using StudentAPI.Controllers.Resources.Etudiant;
 using StudentAPI.Core.IRepository;
 using StudentAPI.Core.Models;
@@ -11,50 +12,35 @@ namespace StudentAPI.Controllers
     [ApiController]
     public class EtudiantController : ControllerBase
     {
-        private readonly IMapper mapper;
-        private readonly IEtudiantRepository repository;
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IEtudiantAppService _etudiantAppService;
 
-        public EtudiantController(IMapper mapper, IEtudiantRepository repository, IUnitOfWork unitOfWork)
+        public EtudiantController(IEtudiantAppService etudiantAppService)
         {
-            this.mapper = mapper;
-            this.repository = repository;
-            this.unitOfWork = unitOfWork;
+            _etudiantAppService = etudiantAppService;
         }
 
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetVehicle(int id)
+        public async Task<IActionResult> Get(int id)
         {
 
-            var etudiant = await repository.GetEtudiant(id);
+            var etudiantR = await _etudiantAppService.GetById(id);
 
-            if (etudiant == null)
-                return NotFound();
-
-            var etudiantR = mapper.Map<Etudiant, GetEtudiantResource>(etudiant);
+            if (etudiantR == null)
+                return NotFound();            
 
             return Ok(etudiantR);
         }
 
         [HttpPost]
-
         public async Task<IActionResult> CreateEtudiant([FromBody]SetEtudiantResource etudiantResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-
-
-            var etudiant = mapper.Map<SetEtudiantResource, Etudiant>(etudiantResource);
-
-            repository.Add(etudiant);
-            await unitOfWork.CompleteAsync();
-
-            etudiant = await repository.GetEtudiant(etudiant.Id);
-            var result = mapper.Map<Etudiant, GetEtudiantResource>(etudiant);
-
+            var result = _etudiantAppService.Add(etudiantResource);
+           
             return Ok(result);
         }
     }

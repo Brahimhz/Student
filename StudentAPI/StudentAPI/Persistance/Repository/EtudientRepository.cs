@@ -8,37 +8,18 @@ using System.Threading.Tasks;
 
 namespace StudentAPI.Persistance.Repository
 {
-    public class EtudientRepository : IEtudiantRepository
+    public class EtudientRepository : GenericRepository<Etudiant>, IEtudiantRepository
     {
         private readonly StudentDbContext context;
 
-        public EtudientRepository(StudentDbContext context)
+        public EtudientRepository(StudentDbContext context) : base(context)
         {
             this.context = context;
         }
 
-        public void Add(Etudiant etudiant)
+        public async Task<Etudiant> GetByMatricule(string matricule)
         {
-            context.Etudiants.Add(etudiant);
+            return await context.Etudiants.SingleOrDefaultAsync(x => x.Matricule == matricule);
         }
-        public void Remove(Etudiant etudiant)
-        {
-            context.Etudiants.Remove(etudiant);
-        }
-
-
-        public async Task<Etudiant> GetEtudiant(int id, bool eagerLoading = true)
-        {
-            //  return await context.Personne.OfType<Etudiant>().SingleOrDefaultAsync(e => e.Id == id);
-
-            return await context.Etudiants.FindAsync(id);
-
-        }
-
-        public async Task<QueryResult<Etudiant>> GetEtudiants(EtudiantQuery filter)
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }

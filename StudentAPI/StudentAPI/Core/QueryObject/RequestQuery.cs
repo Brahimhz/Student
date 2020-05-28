@@ -2,8 +2,9 @@
 
 namespace StudentAPI.Core.QueryObject
 {
-    public class EtudiantQuery : IQueryObject
+    public class RequestQuery : IQueryObject
     {
+        public string Filter { get; set; }
         public string SortBy { get; set; }
         public bool IsAsc { get; set; }
 
