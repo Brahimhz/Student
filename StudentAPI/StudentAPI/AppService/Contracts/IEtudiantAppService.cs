@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudentAPI.AppService.Contracts
 {
-    public interface IEtudiantAppService : IAppService<Etudiant,GetEtudiantResource, SetEtudiantResource, RequestQuery>
+    public interface IEtudiantAppService : IGenericAppService<Etudiant,GetEtudiantResource, SetEtudiantResource, RequestQuery>
     {
         Task<GetEtudiantResource> GetByMatricule(string matricule);
     }

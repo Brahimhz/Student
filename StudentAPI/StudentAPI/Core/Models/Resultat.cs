@@ -24,6 +24,8 @@ namespace StudentAPI.Core.Models
         public Nullable<double> MoyenneFinal { get; set; }
         public Nullable<double> Credit { get; set; }
         public int ParcourId { get; set; }
+        public DateTime LastUpdate { get; set; }
+
 
         public virtual Parcour Parcour { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

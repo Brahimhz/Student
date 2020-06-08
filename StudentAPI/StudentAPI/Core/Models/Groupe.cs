@@ -24,6 +24,7 @@ namespace StudentAPI.Core.Models
         public string NombreSGrope { get; set; }
         public int SectionId { get; set; }
 
+
         public virtual Section Section { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SousGroupe> SousGroupes { get; set; }

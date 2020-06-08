@@ -9,6 +9,7 @@
 
 namespace StudentAPI.Core.Models
 {
+    using System;
     using System.Collections.Generic;
 
     public partial class Matiere
@@ -25,6 +26,8 @@ namespace StudentAPI.Core.Models
         public int UnitePedagogiqueId { get; set; }
         public int MatiereRefId { get; set; }
         public int NiveauSpecialiteId { get; set; }
+        public DateTime LastUpdate { get; set; }
+
 
         public virtual UnitePedagogique UnitePedagogique { get; set; }
         public virtual MatiereRef MatiereRef { get; set; }

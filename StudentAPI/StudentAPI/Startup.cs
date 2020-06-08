@@ -8,8 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using StudentAPI.AppService;
 using StudentAPI.AppService.Contracts;
 using StudentAPI.AppService.Implementation;
+using StudentAPI.Controllers.Resources.Etudiant;
 using StudentAPI.Core.IRepository;
 using StudentAPI.Core.Models;
+using StudentAPI.Core.QueryObject;
 using StudentAPI.Persistance;
 using StudentAPI.Persistance.Repository;
 
@@ -27,16 +29,24 @@ namespace StudentAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+            //Dependency Injection
+            //Repository
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
             services.AddScoped<IEtudiantRepository, EtudientRepository>();
-            services.AddScoped<IRepository<Etudiant>, EtudientRepository>();
-
-            services.AddTransient(typeof(IAppService<,,,>),typeof(AppService<,,,>));
-
-            services.AddTransient<IEtudiantAppService, EtudiantAppService>();
+            services.AddScoped<IGenericRepository<Etudiant>, EtudientRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+
+
+            //AppServices
+            services.AddTransient(typeof(IGenericAppService<,,,>), typeof(GenericAppService<,,,>));
+
+            services.AddTransient<IGenericAppService<Etudiant, GetEtudiantResource, SetEtudiantResource, RequestQuery>, EtudiantAppService>();
+            services.AddTransient<IEtudiantAppService, EtudiantAppService>();
+
+
 
             services.AddAutoMapper(typeof(Startup));
 

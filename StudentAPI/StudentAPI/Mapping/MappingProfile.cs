@@ -25,6 +25,8 @@ namespace StudentAPI.Mapping
                 .ForMember(e => e.Parcours, opt => opt.Ignore())
                 .ForMember(e => e.RelationCommunications1, opt => opt.Ignore())
                 .ForMember(e => e.RelationCommunications2, opt => opt.Ignore());
+
+            CreateMap<GetEtudiantResource, SetEtudiantResource>();
         }
     }
 }

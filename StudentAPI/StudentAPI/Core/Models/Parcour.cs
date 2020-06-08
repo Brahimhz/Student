@@ -18,6 +18,8 @@ namespace StudentAPI.Core.Models
         public int NiveauSpecialiteId { get; set; }
         public Nullable<int> SousGroupeId { get; set; }
         public Nullable<int> ResultatId { get; set; }
+        public DateTime LastUpdate { get; set; }
+
 
         public virtual Etudiant Etudient { get; set; }
         public virtual NiveauSpecialite NiveauSpecialite { get; set; }

@@ -23,6 +23,7 @@ namespace StudentAPI.Core.Models
         public int PlanningId { get; set; }
         public string Jour { get; set; }
 
+
         public virtual Planning Planning { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Seance> Seances { get; set; }

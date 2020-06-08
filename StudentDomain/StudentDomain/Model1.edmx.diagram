@@ -64,7 +64,7 @@
         <EntityTypeShape EntityType="Model1.RespCommunication" Width="1.5" PointX="33.875" PointY="10.5" IsExpanded="false" />
         <InheritanceConnector EntityType="Model1.RespCommunication" />
         <AssociationConnector Association="Model1.RespCommunicationDepartement" />
-        <EntityTypeShape EntityType="Model1.Enseignat" Width="1.5" PointX="37.75" PointY="10.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="Model1.Enseignat" Width="1.5" PointX="37.75" PointY="10.625" IsExpanded="true" />
         <InheritanceConnector EntityType="Model1.Enseignat" />
         <InheritanceConnector EntityType="Model1.Enseignat" />
         <EntityTypeShape EntityType="Model1.Etudient" Width="1.5" PointX="41.125" PointY="10.625" IsExpanded="false" />

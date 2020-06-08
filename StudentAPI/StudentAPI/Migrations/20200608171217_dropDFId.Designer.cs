@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAPI.Persistance;
 
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200608171217_dropDFId")]
+    partial class dropDFId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,21 +113,15 @@ namespace StudentAPI.Migrations
 
             modelBuilder.Entity("StudentAPI.Core.Models.DomaineFormation", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("DepartementId");
-
-                    b.Property<string>("DescriptionDF");
 
                     b.Property<int>("FormationId");
 
+                    b.Property<string>("DescriptionDF");
+
                     b.Property<string>("NomDF");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("DepartementId");
+                    b.HasKey("DepartementId", "FormationId");
 
                     b.HasIndex("FormationId");
 
@@ -153,13 +149,17 @@ namespace StudentAPI.Migrations
 
                     b.Property<string>("DescriptionFiliere");
 
+                    b.Property<int?>("DomaineFormationDepartementId");
+
+                    b.Property<int?>("DomaineFormationFormationId");
+
                     b.Property<int>("DomaineFormationId");
 
                     b.Property<string>("NomFiliere");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DomaineFormationId");
+                    b.HasIndex("DomaineFormationDepartementId", "DomaineFormationFormationId");
 
                     b.ToTable("Filieres");
                 });
@@ -735,8 +735,7 @@ namespace StudentAPI.Migrations
                 {
                     b.HasOne("StudentAPI.Core.Models.DomaineFormation", "DomaineFormation")
                         .WithMany("Filieres")
-                        .HasForeignKey("DomaineFormationId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DomaineFormationDepartementId", "DomaineFormationFormationId");
                 });
 
             modelBuilder.Entity("StudentAPI.Core.Models.Groupe", b =>

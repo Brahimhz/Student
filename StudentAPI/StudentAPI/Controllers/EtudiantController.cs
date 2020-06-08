@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using StudentAPI.AppService.Contracts;
 using StudentAPI.Controllers.Resources.Etudiant;
-using StudentAPI.Core.IRepository;
-using StudentAPI.Core.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace StudentAPI.Controllers
@@ -22,13 +20,13 @@ namespace StudentAPI.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> GetEtudiant(int id)
         {
 
             var etudiantR = await _etudiantAppService.GetById(id);
 
             if (etudiantR == null)
-                return NotFound();            
+                return NotFound();
 
             return Ok(etudiantR);
         }
@@ -39,9 +37,38 @@ namespace StudentAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = _etudiantAppService.Add(etudiantResource);
-           
-            return Ok(result);
+            etudiantResource.LastUpdate = DateTime.Now;
+
+            return Ok(await _etudiantAppService.Add(etudiantResource));
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEtudiant(int id)
+        {
+            var etudiantR = await _etudiantAppService.GetById(id);
+
+            if (etudiantR == null)
+                return NotFound();
+
+            _etudiantAppService.Remove(id);
+
+            return Ok(id);
+
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateEtudiant(int id, [FromBody]SetEtudiantResource etudiantResource)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            etudiantResource.LastUpdate = DateTime.Now;
+
+            return Ok(await _etudiantAppService.Update(id, etudiantResource));
+
+
+
+        }
+
     }
 }

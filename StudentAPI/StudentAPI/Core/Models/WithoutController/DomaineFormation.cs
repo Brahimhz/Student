@@ -19,6 +19,7 @@ namespace StudentAPI.Core.Models
             this.Filieres = new HashSet<Filiere>();
         }
 
+
         public int Id { get; set; }
         public int FormationId { get; set; }
         public int DepartementId { get; set; }

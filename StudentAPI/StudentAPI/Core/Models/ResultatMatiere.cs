@@ -19,6 +19,8 @@ namespace StudentAPI.Core.Models
         public Nullable<double> CreditMatiere { get; set; }
         public int MatiereId { get; set; }
         public int ResultatUniteId { get; set; }
+        public DateTime LastUpdate { get; set; }
+
 
         public virtual Matiere Matiere { get; set; }
         public virtual ResultatUnite ResultatUnite { get; set; }

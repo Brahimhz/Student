@@ -11,10 +11,10 @@ namespace StudentAPI.Core.Models
 {
     using System.Collections.Generic;
 
-    public partial class Enseignat : Personne
+    public partial class Enseignant : Personne
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Enseignat()
+        public Enseignant()
         {
             this.InfoSeances = new HashSet<InfoSeance>();
         }

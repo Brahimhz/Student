@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace StudentAPI.AppService.Implementation
 {
-    public class EtudiantAppService : AppService<Etudiant, GetEtudiantResource, SetEtudiantResource, RequestQuery>, IEtudiantAppService
+    public class EtudiantAppService : GenericAppService<Etudiant, GetEtudiantResource, SetEtudiantResource, RequestQuery>, IEtudiantAppService
     {
         private readonly IMapper _mapper;
         private readonly IEtudiantRepository _repository;

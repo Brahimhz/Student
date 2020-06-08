@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace StudentAPI.Controllers.Resources
 {
@@ -13,6 +12,8 @@ namespace StudentAPI.Controllers.Resources
         public DateTime DateNaissance { get; set; }
         public string Telephone { get; set; }
         public string Email { get; set; }
+        public DateTime LastUpdate { get; set; }
+
 
     }
 }

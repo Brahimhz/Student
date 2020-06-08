@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace StudentAPI.Core.IRepository
 {
-    public interface IEtudiantRepository : IRepository<Etudiant>
+    public interface IEtudiantRepository : IGenericRepository<Etudiant>
     {
         Task<Etudiant> GetByMatricule(string matricule);
     }

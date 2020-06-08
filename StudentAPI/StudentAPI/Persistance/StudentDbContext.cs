@@ -16,9 +16,23 @@ namespace StudentAPI.Persistance
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+            modelBuilder.Entity<Filiere>()
+            .HasOne<DomaineFormation>(f => f.DomaineFormation)
+            .WithMany(df => df.Filieres)
+            .HasForeignKey(f => f.DomaineFormationId);
+
+            modelBuilder.Entity<DomaineFormation>()
+                .HasKey(df => df.Id);
+            modelBuilder.Entity<DomaineFormation>()
+                  .Property(p => p.Id)
+                  .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<RelationCommunication>()
+             .HasKey(rc => new { rc.PersonneId1, rc.PersonneId2 });
+
 
             modelBuilder.Entity<InfoSeance>()
-                .HasKey(i => new { i.MatiereRefId });
+                    .HasKey(i => new { i.MatiereRefId });
 
             modelBuilder.Entity<InfoSeance>()
                 .HasOne(i => i.Seance)
@@ -28,13 +42,6 @@ namespace StudentAPI.Persistance
 
             modelBuilder.Entity<Matiere>()
              .HasKey(m => new { m.MatiereRefId, m.NiveauSpecialiteId, m.UnitePedagogiqueId });
-
-            modelBuilder.Entity<DomaineFormation>()
-             .HasKey(df => new { df.DepartementId, df.FormationId });
-
-            modelBuilder.Entity<RelationCommunication>()
-             .HasKey(rc => new { rc.PersonneId1, rc.PersonneId2 });
-
 
 
             modelBuilder.Entity<Parcour>()
@@ -116,6 +123,8 @@ namespace StudentAPI.Persistance
 
         public virtual DbSet<Personne> Personne { get; set; }
         public virtual DbSet<Journee> Journees { get; set; }
+        public virtual DbSet<DomaineFormation> DomaineFormations { get; set; }
+
         public virtual DbSet<Seance> Seances { get; set; }
         public virtual DbSet<InfoSeance> InfoSeances { get; set; }
         public virtual DbSet<Bloc> Blocs { get; set; }
@@ -123,7 +132,6 @@ namespace StudentAPI.Persistance
         public virtual DbSet<Etablissement> Etablissements { get; set; }
         public virtual DbSet<Departement> Departements { get; set; }
         public virtual DbSet<Formation> Formations { get; set; }
-        public virtual DbSet<DomaineFormation> DomaineFormations { get; set; }
         public virtual DbSet<Filiere> Filieres { get; set; }
         public virtual DbSet<Specialite> Specialites { get; set; }
         public virtual DbSet<NiveauSpecialite> NiveauSpecialites { get; set; }
@@ -143,7 +151,7 @@ namespace StudentAPI.Persistance
         public virtual DbSet<DocumentPartage> DocumentPartages { get; set; }
 
         public virtual DbSet<Etudiant> Etudiants { get; set; }
-        public virtual DbSet<Enseignat> Enseignats { get; set; }
+        public virtual DbSet<Enseignant> Enseignats { get; set; }
         public virtual DbSet<RespCommunication> RespCommunications { get; set; }
         public virtual DbSet<PlanningSection> PlanningSections { get; set; }
         public virtual DbSet<PlanningGroupe> PlanningGroupes { get; set; }

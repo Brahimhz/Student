@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+
 namespace StudentAPI.Core.Models
 {
     public partial class Message
@@ -15,6 +17,8 @@ namespace StudentAPI.Core.Models
         public string Text { get; set; }
         public System.DateTime DateMsg { get; set; }
         public int DiscussionId { get; set; }
+        public DateTime LastUpdate { get; set; }
+
 
         public virtual Discussion Discussion { get; set; }
     }

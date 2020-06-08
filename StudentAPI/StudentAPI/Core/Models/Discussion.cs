@@ -25,8 +25,11 @@ namespace StudentAPI.Core.Models
         public Nullable<System.DateTime> DateFin { get; set; }
         public int RelationCommunicationId { get; set; }
 
+        public DateTime LastUpdate { get; set; }
+
         public virtual RelationCommunication RelationCommunication { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> Messages { get; set; }
+
     }
 }
