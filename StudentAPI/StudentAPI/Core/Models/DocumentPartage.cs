@@ -20,7 +20,7 @@ namespace StudentAPI.Core.Models
         public Nullable<int> MatiereRefId { get; set; }
         public DateTime LastUpdate { get; set; }
 
-
+        public virtual DocumentFile Document { get; set; }
         public virtual Personne Personne { get; set; }
         public virtual MatiereRef MatiereRef { get; set; }
     }

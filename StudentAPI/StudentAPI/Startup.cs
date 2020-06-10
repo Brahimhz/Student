@@ -8,10 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using StudentAPI.AppService;
 using StudentAPI.AppService.Contracts;
 using StudentAPI.AppService.Implementation;
+using StudentAPI.Controllers.Resources.DocumentPartage;
 using StudentAPI.Controllers.Resources.Etudiant;
 using StudentAPI.Core.IRepository;
 using StudentAPI.Core.Models;
 using StudentAPI.Core.QueryObject;
+using StudentAPI.Core.Settings;
 using StudentAPI.Persistance;
 using StudentAPI.Persistance.Repository;
 
@@ -29,12 +31,23 @@ namespace StudentAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
+
+            //Settings
+            services.Configure<DocumentSettings>(Configuration.GetSection("DocumentSettings"));
+
+
             //Dependency Injection
             //Repository
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             services.AddScoped<IEtudiantRepository, EtudientRepository>();
             services.AddScoped<IGenericRepository<Etudiant>, EtudientRepository>();
+
+            services.AddScoped<IDocumentPartageRepository, DocumentPartageRepository>();
+            services.AddScoped<IGenericRepository<DocumentPartage>, DocumentPartageRepository>();
+
+
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -46,9 +59,9 @@ namespace StudentAPI
             services.AddTransient<IGenericAppService<Etudiant, GetEtudiantResource, SetEtudiantResource, RequestQuery>, EtudiantAppService>();
             services.AddTransient<IEtudiantAppService, EtudiantAppService>();
 
+            services.AddTransient<IGenericAppService<DocumentPartage, GetDocumentPartageResource, SetDocumentPartageResource, RequestQuery>, DocumentPartageAppService>();
+            services.AddTransient<IDocumentPartageAppService, DocumentPartageAppService>();
 
-
-            services.AddAutoMapper(typeof(Startup));
 
             services.AddDbContext<StudentDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 

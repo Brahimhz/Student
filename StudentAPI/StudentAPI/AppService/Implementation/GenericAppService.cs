@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using StudentAPI.Core.IRepository;
-using StudentAPI.Core.Models;
 using StudentAPI.Extensions;
-using System;
 using System.Threading.Tasks;
 
 namespace StudentAPI.AppService.Implementation
@@ -22,10 +20,6 @@ namespace StudentAPI.AppService.Implementation
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<QueryResult<TGetResource>> GetAll(TQueryObject filter)
-        {
-            throw new NotImplementedException();
-        }
         public async Task<TGetResource> GetById(int id, bool eagerLoading = true)
         {
             return _mapper.Map<T, TGetResource>(await _repository.GetById(id));

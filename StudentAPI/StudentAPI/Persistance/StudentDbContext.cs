@@ -121,6 +121,7 @@ namespace StudentAPI.Persistance
 
         }
 
+        public virtual DbSet<DocumentFile> DocumentFiles { get; set; }
         public virtual DbSet<Personne> Personne { get; set; }
         public virtual DbSet<Journee> Journees { get; set; }
         public virtual DbSet<DomaineFormation> DomaineFormations { get; set; }

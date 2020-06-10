@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAPI.Persistance;
 
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200610114048_DocParAddFileNameProp")]
+    partial class DocParAddFileNameProp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,30 +86,14 @@ namespace StudentAPI.Migrations
                     b.ToTable("Discussions");
                 });
 
-            modelBuilder.Entity("StudentAPI.Core.Models.DocumentFile", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("DocumentPartageId");
-
-                    b.Property<string>("FileName")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DocumentPartageId")
-                        .IsUnique();
-
-                    b.ToTable("DocumentFiles");
-                });
-
             modelBuilder.Entity("StudentAPI.Core.Models.DocumentPartage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FileName")
+                        .IsRequired();
 
                     b.Property<DateTime>("LastUpdate");
 
@@ -723,14 +709,6 @@ namespace StudentAPI.Migrations
                     b.HasOne("StudentAPI.Core.Models.RelationCommunication", "RelationCommunication")
                         .WithMany("Discussions")
                         .HasForeignKey("RelationCommunicationPersonneId1", "RelationCommunicationPersonneId2");
-                });
-
-            modelBuilder.Entity("StudentAPI.Core.Models.DocumentFile", b =>
-                {
-                    b.HasOne("StudentAPI.Core.Models.DocumentPartage")
-                        .WithOne("Document")
-                        .HasForeignKey("StudentAPI.Core.Models.DocumentFile", "DocumentPartageId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("StudentAPI.Core.Models.DocumentPartage", b =>

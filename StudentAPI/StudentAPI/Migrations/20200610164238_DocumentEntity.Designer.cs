@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAPI.Persistance;
 
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200610164238_DocumentEntity")]
+    partial class DocumentEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,7 +86,7 @@ namespace StudentAPI.Migrations
                     b.ToTable("Discussions");
                 });
 
-            modelBuilder.Entity("StudentAPI.Core.Models.DocumentFile", b =>
+            modelBuilder.Entity("StudentAPI.Core.Models.Document", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -100,7 +102,7 @@ namespace StudentAPI.Migrations
                     b.HasIndex("DocumentPartageId")
                         .IsUnique();
 
-                    b.ToTable("DocumentFiles");
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("StudentAPI.Core.Models.DocumentPartage", b =>
@@ -725,11 +727,11 @@ namespace StudentAPI.Migrations
                         .HasForeignKey("RelationCommunicationPersonneId1", "RelationCommunicationPersonneId2");
                 });
 
-            modelBuilder.Entity("StudentAPI.Core.Models.DocumentFile", b =>
+            modelBuilder.Entity("StudentAPI.Core.Models.Document", b =>
                 {
                     b.HasOne("StudentAPI.Core.Models.DocumentPartage")
                         .WithOne("Document")
-                        .HasForeignKey("StudentAPI.Core.Models.DocumentFile", "DocumentPartageId")
+                        .HasForeignKey("StudentAPI.Core.Models.Document", "DocumentPartageId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
