@@ -201,6 +201,10 @@
             <End Role="Personne" EntitySet="Personnes" />
             <End Role="RelationCommunication" EntitySet="RelationCommunications" />
           </AssociationSet>
+          <AssociationSet Name="NiveauSpecialiteDocumentPartage" Association="Model1.NiveauSpecialiteDocumentPartage">
+            <End Role="NiveauSpecialite" EntitySet="NiveauSpecialites" />
+            <End Role="DocumentPartage" EntitySet="DocumentPartages" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Planning" Abstract="true">
           <Key>
@@ -485,6 +489,7 @@
           <NavigationProperty Name="Sections" Relationship="Model1.NiveauSpecialiteSection" FromRole="NiveauSpecialite" ToRole="Section" />
           <NavigationProperty Name="Matieres" Relationship="Model1.NiveauSpecialiteMatiere" FromRole="NiveauSpecialite" ToRole="Matiere" />
           <NavigationProperty Name="Parcours" Relationship="Model1.NiveauSpecialiteParcour" FromRole="NiveauSpecialite" ToRole="Parcour" />
+          <NavigationProperty Name="DocumentPartages" Relationship="Model1.NiveauSpecialiteDocumentPartage" FromRole="NiveauSpecialite" ToRole="DocumentPartage" />
         </EntityType>
         <Association Name="SpecialiteNiveauSpecialite">
           <End Type="Model1.Specialite" Role="Specialite" Multiplicity="1" />
@@ -958,6 +963,8 @@
           <Property Name="PersonneId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="MatiereRef" Relationship="Model1.DocumentPartageMatiereRef" FromRole="DocumentPartage" ToRole="MatiereRef" />
           <Property Name="MatiereRefId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="NiveauSpecialite" Relationship="Model1.NiveauSpecialiteDocumentPartage" FromRole="DocumentPartage" ToRole="NiveauSpecialite" />
+          <Property Name="NiveauSpecialiteId" Type="Int32" Nullable="true" />
         </EntityType>
         <Association Name="PersonneDocumentPartage">
           <End Type="Model1.DocumentPartage" Role="DocumentPartage" Multiplicity="*" />
@@ -1004,6 +1011,18 @@
             </Principal>
             <Dependent Role="RelationCommunication">
               <PropertyRef Name="PersonneId2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NiveauSpecialiteDocumentPartage">
+          <End Type="Model1.NiveauSpecialite" Role="NiveauSpecialite" Multiplicity="0..1" />
+          <End Type="Model1.DocumentPartage" Role="DocumentPartage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NiveauSpecialite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentPartage">
+              <PropertyRef Name="NiveauSpecialiteId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

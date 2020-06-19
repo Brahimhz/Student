@@ -19,8 +19,10 @@ namespace StudentDomain
         public string TypeDoc { get; set; }
         public int PersonneId { get; set; }
         public Nullable<int> MatiereRefId { get; set; }
+        public Nullable<int> NiveauSpecialiteId { get; set; }
     
         public virtual Personne Personne { get; set; }
         public virtual MatiereRef MatiereRef { get; set; }
+        public virtual NiveauSpecialite NiveauSpecialite { get; set; }
     }
 }

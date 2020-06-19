@@ -2,7 +2,6 @@
 {
     public interface IQueryObject
     {
-        string Filter { get; set; }
         string SortBy { get; set; }
         bool IsAsc { get; set; }
         int Page { get; set; }

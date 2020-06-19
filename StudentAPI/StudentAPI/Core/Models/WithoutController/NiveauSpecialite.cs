@@ -19,6 +19,8 @@ namespace StudentAPI.Core.Models
             this.Sections = new HashSet<Section>();
             this.Matieres = new HashSet<Matiere>();
             this.Parcours = new HashSet<Parcour>();
+            this.DocumentPartages = new HashSet<DocumentPartage>();
+
         }
 
         public int Id { get; set; }
@@ -32,5 +34,8 @@ namespace StudentAPI.Core.Models
         public virtual ICollection<Matiere> Matieres { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Parcour> Parcours { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentPartage> DocumentPartages { get; set; }
+
     }
 }

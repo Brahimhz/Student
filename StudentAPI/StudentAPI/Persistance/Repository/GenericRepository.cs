@@ -28,9 +28,7 @@ namespace StudentAPI.Persistance.Repository
 
         public async Task<T> GetById(int id)
         {
-
             return await _dbSet.FindAsync(id);
-
         }
 
     }

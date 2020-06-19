@@ -37,8 +37,15 @@ namespace StudentAPI
             services.Configure<DocumentSettings>(Configuration.GetSection("DocumentSettings"));
 
 
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
             //Dependency Injection
+
             //Repository
+
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             services.AddScoped<IEtudiantRepository, EtudientRepository>();
@@ -47,27 +54,25 @@ namespace StudentAPI
             services.AddScoped<IDocumentPartageRepository, DocumentPartageRepository>();
             services.AddScoped<IGenericRepository<DocumentPartage>, DocumentPartageRepository>();
 
-
-
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-
-
             //AppServices
+
             services.AddTransient(typeof(IGenericAppService<,,,>), typeof(GenericAppService<,,,>));
 
-            services.AddTransient<IGenericAppService<Etudiant, GetEtudiantResource, SetEtudiantResource, RequestQuery>, EtudiantAppService>();
+            services.AddTransient<IGenericAppService<Etudiant, GetEtudiantResource, SetEtudiantResource, DocumentPartageQuery>, EtudiantAppService>();
             services.AddTransient<IEtudiantAppService, EtudiantAppService>();
 
-            services.AddTransient<IGenericAppService<DocumentPartage, GetDocumentPartageResource, SetDocumentPartageResource, RequestQuery>, DocumentPartageAppService>();
+            services.AddTransient<IGenericAppService<DocumentPartage, GetDocumentPartageResource, SetDocumentPartageResource, DocumentPartageQuery>, DocumentPartageAppService>();
             services.AddTransient<IDocumentPartageAppService, DocumentPartageAppService>();
 
+            services.AddTransient<IDocumentFileAppService, DocumentFileAppService>();
 
             services.AddDbContext<StudentDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

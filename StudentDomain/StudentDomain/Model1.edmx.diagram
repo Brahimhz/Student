@@ -93,6 +93,7 @@
         <AssociationConnector Association="Model1.DocumentPartageMatiereRef" />
         <AssociationConnector Association="Model1.PersonneRelationCommunication" />
         <AssociationConnector Association="Model1.PersonneRelationCommunication1" />
+        <AssociationConnector Association="Model1.NiveauSpecialiteDocumentPartage" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

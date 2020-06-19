@@ -20,7 +20,7 @@ namespace StudentAPI.AppService.Implementation
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<TGetResource> GetById(int id, bool eagerLoading = true)
+        public async Task<TGetResource> GetById(int id)
         {
             return _mapper.Map<T, TGetResource>(await _repository.GetById(id));
         }
@@ -52,10 +52,11 @@ namespace StudentAPI.AppService.Implementation
             return _mapper.Map<T, TGetResource>(await _repository.GetById(id));
         }
 
-        public async void Remove(int id)
+        public async Task<int> Remove(int id)
         {
             _repository.Remove(id);
             await _unitOfWork.CompleteAsync();
+            return id;
         }
     }
 }

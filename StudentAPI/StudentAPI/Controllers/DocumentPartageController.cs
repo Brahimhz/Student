@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StudentAPI.AppService.Contracts;
 using StudentAPI.Controllers.Resources.DocumentPartage;
+using StudentAPI.Controllers.Resources.Query;
 using System;
 using System.Threading.Tasks;
 
 namespace StudentAPI.Controllers
 {
-    [Route("api/documentpartage")]
+    [Route("/api/documentpartage")]
     [ApiController]
     public class DocumentPartageController : ControllerBase
     {
@@ -17,17 +18,6 @@ namespace StudentAPI.Controllers
             _appService = appService;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetDocumentPartage(int id)
-        {
-
-            var documentPartageR = await _appService.GetById(id);
-
-            if (documentPartageR == null)
-                return NotFound();
-
-            return Ok(documentPartageR);
-        }
 
         [HttpPost]
         public async Task<IActionResult> CreateDocumentPartage([FromBody]SetDocumentPartageResource documentPartageResource)
@@ -48,9 +38,7 @@ namespace StudentAPI.Controllers
             if (documentPartageR == null)
                 return NotFound();
 
-            _appService.Remove(id);
-
-            return Ok(id);
+            return Ok(await _appService.RemoveWithFile(id));
 
         }
 
@@ -68,5 +56,23 @@ namespace StudentAPI.Controllers
 
         }
 
+        [HttpGet]
+        public async Task<QueryResultResource<GetDocumentPartageResource>> GetDocumentPartages([FromQuery]DocumentPartageQueryResource filterResource)
+        {
+            return await _appService.GetAllDP(filterResource);
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetDocumentPartage(int id)
+        {
+
+            var documentPartageR = await _appService.GetByIdFull(id);
+
+            if (documentPartageR == null)
+                return NotFound();
+
+            return Ok(documentPartageR);
+        }
     }
 }

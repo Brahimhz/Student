@@ -50,9 +50,7 @@ namespace StudentAPI.Controllers
             if (etudiantR == null)
                 return NotFound();
 
-            _etudiantAppService.Remove(id);
-
-            return Ok(id);
+            return Ok(_etudiantAppService.Remove(id));
 
         }
 

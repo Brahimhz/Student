@@ -2,8 +2,12 @@
 using StudentAPI.Controllers.Resources;
 using StudentAPI.Controllers.Resources.DocumentPartage;
 using StudentAPI.Controllers.Resources.Etudiant;
+using StudentAPI.Controllers.Resources.MatiereRef;
+using StudentAPI.Controllers.Resources.NiveauSpecialite;
+using StudentAPI.Controllers.Resources.Personne;
 using StudentAPI.Controllers.Resources.Query;
 using StudentAPI.Core.Models;
+using StudentAPI.Core.QueryObject;
 using System.Linq;
 
 namespace StudentAPI.Mapping
@@ -14,20 +18,41 @@ namespace StudentAPI.Mapping
         {
             // *************   Domaine => API   ***************
 
-            CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
+            CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>)).ReverseMap();
 
             CreateMap<DocumentPartage, GetDocumentPartageResource>();
             CreateMap<DocumentPartage, SetDocumentPartageResource>();
 
+            CreateMap<DocumentPartageQuery, DocumentPartageQueryResource>().ReverseMap();
+
             CreateMap<DocumentFile, DocumentFileResource>().ReverseMap();
 
 
-            CreateMap<Personne, GetPersonneResource>();
+            CreateMap<MatiereRef, MatiereRefResourceNoNav>().ReverseMap();
+
+            CreateMap<Specialite, SpecialiteResource>().ReverseMap();
+
+            CreateMap<Filiere, FiliereResource>().ReverseMap();
+
+            CreateMap<DomaineFormation, DomaineFormationResource>().ReverseMap();
+
+
+            CreateMap<NiveauSpecialite, NiveauSpecialiteResource>().ReverseMap();
+
+
+
+            CreateMap<Personne, GetPersonneResource>().ReverseMap();
+            CreateMap<Personne, GetPersonneResourceNoNav>().ReverseMap();
+
             CreateMap<Personne, SetPersonneResource>()
                 .ForMember(spr => spr.DocumentPartages, opt => opt.MapFrom(p => p.DocumentPartages.Select(dp => dp.Id)));
 
             CreateMap<Etudiant, SetEtudiantResource>();
             CreateMap<Etudiant, GetEtudiantResource>();
+
+
+
+
 
             // ***********  API => Domaine  **************
 
