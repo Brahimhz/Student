@@ -8,11 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using StudentAPI.AppService;
 using StudentAPI.AppService.Contracts;
 using StudentAPI.AppService.Implementation;
+using StudentAPI.Controllers.Resources.Classe.Section;
 using StudentAPI.Controllers.Resources.DocumentPartage;
 using StudentAPI.Controllers.Resources.Etudiant;
+using StudentAPI.Controllers.Resources.Section;
 using StudentAPI.Core.IRepository;
 using StudentAPI.Core.Models;
-using StudentAPI.Core.QueryObject;
 using StudentAPI.Core.Settings;
 using StudentAPI.Persistance;
 using StudentAPI.Persistance.Repository;
@@ -51,6 +52,9 @@ namespace StudentAPI
             services.AddScoped<IEtudiantRepository, EtudientRepository>();
             services.AddScoped<IGenericRepository<Etudiant>, EtudientRepository>();
 
+            services.AddScoped<ISectionRepository, SectionRepository>();
+            services.AddScoped<IGenericRepository<Section>, SectionRepository>();
+
             services.AddScoped<IDocumentPartageRepository, DocumentPartageRepository>();
             services.AddScoped<IGenericRepository<DocumentPartage>, DocumentPartageRepository>();
 
@@ -58,12 +62,15 @@ namespace StudentAPI
 
             //AppServices
 
-            services.AddTransient(typeof(IGenericAppService<,,,>), typeof(GenericAppService<,,,>));
+            services.AddTransient(typeof(IGenericAppService<,,>), typeof(GenericAppService<,,>));
 
-            services.AddTransient<IGenericAppService<Etudiant, GetEtudiantResource, SetEtudiantResource, DocumentPartageQuery>, EtudiantAppService>();
+            services.AddTransient<IGenericAppService<Section, GetSectionResource, SetSectionResource>, SectionAppService>();
+            services.AddTransient<ISectionAppService, SectionAppService>();
+
+            services.AddTransient<IGenericAppService<Etudiant, GetEtudiantResource, SetEtudiantResource>, EtudiantAppService>();
             services.AddTransient<IEtudiantAppService, EtudiantAppService>();
 
-            services.AddTransient<IGenericAppService<DocumentPartage, GetDocumentPartageResource, SetDocumentPartageResource, DocumentPartageQuery>, DocumentPartageAppService>();
+            services.AddTransient<IGenericAppService<DocumentPartage, GetDocumentPartageResource, SetDocumentPartageResource>, DocumentPartageAppService>();
             services.AddTransient<IDocumentPartageAppService, DocumentPartageAppService>();
 
             services.AddTransient<IDocumentFileAppService, DocumentFileAppService>();

@@ -21,7 +21,7 @@ namespace StudentAPI.Core.Models
         }
 
         public int Id { get; set; }
-        public string NombreGroupe { get; set; }
+        public string RefSection { get; set; }
         public int NiveauSpecialiteId { get; set; }
 
         public virtual NiveauSpecialite NiveauSpecialite { get; set; }

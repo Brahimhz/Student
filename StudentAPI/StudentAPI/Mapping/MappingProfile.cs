@@ -1,11 +1,21 @@
 ﻿using AutoMapper;
 using StudentAPI.Controllers.Resources;
+using StudentAPI.Controllers.Resources.Classe.Groupe;
+using StudentAPI.Controllers.Resources.Classe.Section;
+using StudentAPI.Controllers.Resources.Classe.SousGroupe;
 using StudentAPI.Controllers.Resources.DocumentPartage;
 using StudentAPI.Controllers.Resources.Etudiant;
 using StudentAPI.Controllers.Resources.MatiereRef;
 using StudentAPI.Controllers.Resources.NiveauSpecialite;
 using StudentAPI.Controllers.Resources.Personne;
+using StudentAPI.Controllers.Resources.Planning.Planning;
+using StudentAPI.Controllers.Resources.Planning.PlanningGroupe;
+using StudentAPI.Controllers.Resources.Planning.PlanningGroupe.NoNavigationProperty;
+using StudentAPI.Controllers.Resources.Planning.PlanningSection;
+using StudentAPI.Controllers.Resources.Planning.PlanningSGroupe;
+using StudentAPI.Controllers.Resources.Planning.PlanningSGroupe.NoNavigationProperty;
 using StudentAPI.Controllers.Resources.Query;
+using StudentAPI.Controllers.Resources.Section;
 using StudentAPI.Core.Models;
 using StudentAPI.Core.QueryObject;
 using System.Linq;
@@ -18,8 +28,50 @@ namespace StudentAPI.Mapping
         {
             // *************   Domaine => API   ***************
 
+
+
             CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>)).ReverseMap();
 
+
+
+            // ******Classe*****
+            CreateMap<Groupe, GetGroupeResourceNoNav>().ReverseMap();
+            CreateMap<Groupe, GetGroupeResource>().ReverseMap();
+            CreateMap<Groupe, SetGroupeResource>().ReverseMap();
+
+            CreateMap<Section, GetSectionResourceNoNav>().ReverseMap();
+            CreateMap<Section, GetSectionResource>().ReverseMap();
+            CreateMap<Section, SetSectionResource>().ReverseMap();
+            CreateMap<SectionQuery, SectionQueryResource>().ReverseMap();
+
+
+
+            CreateMap<SousGroupe, GetSousGroupeResourceNoNav>().ReverseMap();
+            CreateMap<SousGroupe, GetSousGroupeResource>().ReverseMap();
+            CreateMap<SousGroupe, SetSousGroupeResource>().ReverseMap();
+
+
+            //****** Planning *****
+            CreateMap<Planning, GetPlanningResource>().ReverseMap();
+            CreateMap<Planning, SetPlanningResource>().ReverseMap();
+
+            CreateMap<PlanningGroupe, GetPlanningGroupeResource>().ReverseMap();
+            CreateMap<PlanningGroupe, GetPlanningGroupeResourceNoNavG>().ReverseMap();
+            CreateMap<PlanningGroupe, GetPlanningGroupeResourceNoNavP>().ReverseMap();
+            CreateMap<PlanningGroupe, SetPlanningGroupeResource>().ReverseMap();
+
+            CreateMap<PlanningSGroupe, GetPlanningSGroupeResource>().ReverseMap();
+            CreateMap<PlanningSGroupe, GetPlanningSGroupeResourceNoNavG>().ReverseMap();
+            CreateMap<PlanningSGroupe, GetPlanningSGroupeResourceNoNavP>().ReverseMap();
+            CreateMap<PlanningSGroupe, SetPlanningSGroupeResource>().ReverseMap();
+
+            CreateMap<PlanningSection, GetPlanningSectionResource>().ReverseMap();
+            CreateMap<PlanningSection, GetPlanningSectionResourceNoNavS>().ReverseMap();
+            CreateMap<PlanningSection, GetPlanningSectionResourceNoNavP>().ReverseMap();
+            CreateMap<PlanningSection, SetPlanningSectionResource>().ReverseMap();
+
+
+            //******DocumentPartage*****
             CreateMap<DocumentPartage, GetDocumentPartageResource>();
             CreateMap<DocumentPartage, SetDocumentPartageResource>();
 
@@ -28,6 +80,7 @@ namespace StudentAPI.Mapping
             CreateMap<DocumentFile, DocumentFileResource>().ReverseMap();
 
 
+            //******Specialité*****
             CreateMap<MatiereRef, MatiereRefResourceNoNav>().ReverseMap();
 
             CreateMap<Specialite, SpecialiteResource>().ReverseMap();
@@ -40,7 +93,7 @@ namespace StudentAPI.Mapping
             CreateMap<NiveauSpecialite, NiveauSpecialiteResource>().ReverseMap();
 
 
-
+            //****Personne****
             CreateMap<Personne, GetPersonneResource>().ReverseMap();
             CreateMap<Personne, GetPersonneResourceNoNav>().ReverseMap();
 

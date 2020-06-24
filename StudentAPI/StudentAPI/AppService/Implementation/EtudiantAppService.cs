@@ -3,13 +3,12 @@ using StudentAPI.AppService.Contracts;
 using StudentAPI.Controllers.Resources.Etudiant;
 using StudentAPI.Core.IRepository;
 using StudentAPI.Core.Models;
-using StudentAPI.Core.QueryObject;
 using System;
 using System.Threading.Tasks;
 
 namespace StudentAPI.AppService.Implementation
 {
-    public class EtudiantAppService : GenericAppService<Etudiant, GetEtudiantResource, SetEtudiantResource, DocumentPartageQuery>, IEtudiantAppService
+    public class EtudiantAppService : GenericAppService<Etudiant, GetEtudiantResource, SetEtudiantResource>, IEtudiantAppService
     {
         private readonly IMapper _mapper;
         private readonly IEtudiantRepository _repository;

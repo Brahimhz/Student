@@ -1,13 +1,11 @@
 ﻿using AutoMapper;
 using StudentAPI.Core.IRepository;
-using StudentAPI.Extensions;
 using System.Threading.Tasks;
 
 namespace StudentAPI.AppService.Implementation
 {
-    public class GenericAppService<T, TGetResource, TSetResource, TQueryObject> : IGenericAppService<T, TGetResource, TSetResource, TQueryObject>
+    public class GenericAppService<T, TGetResource, TSetResource> : IGenericAppService<T, TGetResource, TSetResource>
         where T : class
-        where TQueryObject : IQueryObject
     {
         private readonly IMapper _mapper;
         private readonly IGenericRepository<T> _repository;

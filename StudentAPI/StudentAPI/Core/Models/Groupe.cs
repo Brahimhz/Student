@@ -21,7 +21,7 @@ namespace StudentAPI.Core.Models
         }
 
         public int Id { get; set; }
-        public string NombreSGrope { get; set; }
+        public string RefGroupe { get; set; }
         public int SectionId { get; set; }
 
 

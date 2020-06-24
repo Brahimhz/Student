@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StudentAPI.AppService.Implementation
 {
-    public class DocumentPartageAppService : GenericAppService<DocumentPartage, GetDocumentPartageResource, SetDocumentPartageResource, DocumentPartageQuery>, IDocumentPartageAppService
+    public class DocumentPartageAppService : GenericAppService<DocumentPartage, GetDocumentPartageResource, SetDocumentPartageResource>, IDocumentPartageAppService
     {
         private readonly IMapper _mapper;
         private readonly IDocumentPartageRepository _repository;

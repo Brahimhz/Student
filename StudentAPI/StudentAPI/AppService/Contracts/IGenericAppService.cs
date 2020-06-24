@@ -1,11 +1,9 @@
-﻿using StudentAPI.Extensions;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace StudentAPI.AppService
 {
-    public interface IGenericAppService<T, TGetResource, TSetResource, TQueryObject>
+    public interface IGenericAppService<T, TGetResource, TSetResource>
         where T : class
-        where TQueryObject : IQueryObject
     {
         Task<TGetResource> GetById(int id);
 

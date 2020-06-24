@@ -21,6 +21,7 @@ namespace StudentAPI.Core.Models
         }
 
         public int Id { get; set; }
+        public string RefSousGroupe { get; set; }
         public int GroupeId { get; set; }
 
         public virtual Groupe Groupe { get; set; }
