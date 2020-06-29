@@ -15,12 +15,12 @@ namespace StudentAPI.Controllers
     [ApiController]
     public class ClasseController : ControllerBase
     {
-        private readonly ISectionAppService _sectionAppService;
+        private readonly IClasseAppService _sectionAppService;
         private readonly IGenericAppService<Groupe, GetGroupeResource, SetGroupeResource> _groupeAppService;
         private readonly IGenericAppService<SousGroupe, GetSousGroupeResource, SetSousGroupeResource> _sGroupeAppService;
 
         public ClasseController(
-            ISectionAppService sectionAppService,
+            IClasseAppService sectionAppService,
             IGenericAppService<Groupe, GetGroupeResource, SetGroupeResource> groupeAppService,
             IGenericAppService<SousGroupe, GetSousGroupeResource, SetSousGroupeResource> sGroupeAppService
             )
@@ -34,7 +34,7 @@ namespace StudentAPI.Controllers
 
 
         [HttpGet]
-        public async Task<QueryResultResource<GetSectionResource>> GetSections([FromQuery]SectionQueryResource filterResource)
+        public async Task<QueryResultResource<GetSectionResource>> GetSections([FromQuery]ClasseQueryResource filterResource)
         {
             return await _sectionAppService.GetAllSections(filterResource);
         }

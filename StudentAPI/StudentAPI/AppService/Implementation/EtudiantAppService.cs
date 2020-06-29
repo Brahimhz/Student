@@ -3,7 +3,7 @@ using StudentAPI.AppService.Contracts;
 using StudentAPI.Controllers.Resources.Etudiant;
 using StudentAPI.Core.IRepository;
 using StudentAPI.Core.Models;
-using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace StudentAPI.AppService.Implementation
@@ -21,9 +21,10 @@ namespace StudentAPI.AppService.Implementation
             _unitOfWork = unitOfWork;
         }
 
-        public Task<GetEtudiantResource> GetByMatricule(string matricule)
+        public async Task<IEnumerable<GetEtudiantResource>> GetAll()
         {
-            throw new NotImplementedException();
+            return _mapper.Map<IEnumerable<Etudiant>, IEnumerable<GetEtudiantResource>>(await _repository.GetAll());
         }
+
     }
 }

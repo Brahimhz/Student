@@ -11,6 +11,8 @@ using StudentAPI.AppService.Implementation;
 using StudentAPI.Controllers.Resources.Classe.Section;
 using StudentAPI.Controllers.Resources.DocumentPartage;
 using StudentAPI.Controllers.Resources.Etudiant;
+using StudentAPI.Controllers.Resources.NiveauSpecialite;
+using StudentAPI.Controllers.Resources.Parcour;
 using StudentAPI.Controllers.Resources.Section;
 using StudentAPI.Core.IRepository;
 using StudentAPI.Core.Models;
@@ -49,6 +51,12 @@ namespace StudentAPI
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+            services.AddScoped<IParcourRepository, ParcourRepository>();
+            services.AddScoped<IGenericRepository<Parcour>, ParcourRepository>();
+
+            services.AddScoped<INiveauSpecialiteRepository, NiveauSpecialiteRepository>();
+            services.AddScoped<IGenericRepository<NiveauSpecialite>, NiveauSpecialiteRepository>();
+
             services.AddScoped<IEtudiantRepository, EtudientRepository>();
             services.AddScoped<IGenericRepository<Etudiant>, EtudientRepository>();
 
@@ -64,8 +72,14 @@ namespace StudentAPI
 
             services.AddTransient(typeof(IGenericAppService<,,>), typeof(GenericAppService<,,>));
 
-            services.AddTransient<IGenericAppService<Section, GetSectionResource, SetSectionResource>, SectionAppService>();
-            services.AddTransient<ISectionAppService, SectionAppService>();
+            services.AddTransient<IGenericAppService<Parcour, GetParcourResource, SetParcourResource>, ParcourAppService>();
+            services.AddTransient<IParcourAppService, ParcourAppService>();
+
+            services.AddTransient<IGenericAppService<NiveauSpecialite, NiveauSpecialiteResource, NiveauSpecialiteResource>, NiveauSpecialiteAppService>();
+            services.AddTransient<INiveauSpecialiteAppService, NiveauSpecialiteAppService>();
+
+            services.AddTransient<IGenericAppService<Section, GetSectionResource, SetSectionResource>, ClasseAppService>();
+            services.AddTransient<IClasseAppService, ClasseAppService>();
 
             services.AddTransient<IGenericAppService<Etudiant, GetEtudiantResource, SetEtudiantResource>, EtudiantAppService>();
             services.AddTransient<IEtudiantAppService, EtudiantAppService>();

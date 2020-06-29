@@ -40,12 +40,14 @@ namespace StudentAPI.Persistance
                 .HasForeignKey<Seance>(s => s.InfoSeanceId);
 
 
+            modelBuilder.Entity<Resultat>()
+                .HasOne(r => r.Parcour)
+                .WithOne(p => p.Resultat)
+                .HasForeignKey<Parcour>(p => p.ResultatId);
+
+
             modelBuilder.Entity<Matiere>()
              .HasKey(m => new { m.MatiereRefId, m.NiveauSpecialiteId, m.UnitePedagogiqueId });
-
-
-            modelBuilder.Entity<Parcour>()
-             .HasKey(p => new { p.NiveauSpecialiteId, p.EtudientId });
 
             modelBuilder.Entity<Personne>()
                 .HasMany(p => p.RelationCommunications1)

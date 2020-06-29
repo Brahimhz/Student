@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace StudentAPI.AppService.Contracts
 {
-    public interface ISectionAppService : IGenericAppService<Section, GetSectionResource, SetSectionResource>
+    public interface IClasseAppService : IGenericAppService<Section, GetSectionResource, SetSectionResource>
     {
-        Task<QueryResultResource<GetSectionResource>> GetAllSections(SectionQueryResource filterResource);
+        Task<QueryResultResource<GetSectionResource>> GetAllSections(ClasseQueryResource filterResource);
     }
 }

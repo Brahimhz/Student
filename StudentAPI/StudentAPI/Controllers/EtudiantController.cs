@@ -2,6 +2,7 @@
 using StudentAPI.AppService.Contracts;
 using StudentAPI.Controllers.Resources.Etudiant;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace StudentAPI.Controllers
@@ -17,7 +18,11 @@ namespace StudentAPI.Controllers
             _etudiantAppService = etudiantAppService;
         }
 
-
+        [HttpGet]
+        public async Task<IEnumerable<GetEtudiantResource>> GetEtudiants()
+        {
+            return await _etudiantAppService.GetAll();
+        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEtudiant(int id)

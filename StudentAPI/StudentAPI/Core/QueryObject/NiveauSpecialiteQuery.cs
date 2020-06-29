@@ -2,12 +2,11 @@
 
 namespace StudentAPI.Core.QueryObject
 {
-    public class SectionQuery : IQueryObject
+    public class NiveauSpecialiteQuery : IQueryObject
     {
         public int? DFId { get; set; }
         public int? FiliaireId { get; set; }
         public int? SpecialiteId { get; set; }
-        public int? NivSpecId { get; set; }
 
         public string SortBy { get; set; }
         public bool IsAsc { get; set; }

@@ -7,6 +7,7 @@ using StudentAPI.Controllers.Resources.DocumentPartage;
 using StudentAPI.Controllers.Resources.Etudiant;
 using StudentAPI.Controllers.Resources.MatiereRef;
 using StudentAPI.Controllers.Resources.NiveauSpecialite;
+using StudentAPI.Controllers.Resources.Parcour;
 using StudentAPI.Controllers.Resources.Personne;
 using StudentAPI.Controllers.Resources.Planning.Planning;
 using StudentAPI.Controllers.Resources.Planning.PlanningGroupe;
@@ -42,7 +43,7 @@ namespace StudentAPI.Mapping
             CreateMap<Section, GetSectionResourceNoNav>().ReverseMap();
             CreateMap<Section, GetSectionResource>().ReverseMap();
             CreateMap<Section, SetSectionResource>().ReverseMap();
-            CreateMap<SectionQuery, SectionQueryResource>().ReverseMap();
+            CreateMap<ClasseQuery, ClasseQueryResource>().ReverseMap();
 
 
 
@@ -71,6 +72,14 @@ namespace StudentAPI.Mapping
             CreateMap<PlanningSection, SetPlanningSectionResource>().ReverseMap();
 
 
+            //******Parcour*****
+            CreateMap<Parcour, GetParcourResource>().ReverseMap();
+            CreateMap<Parcour, SetParcourResource>();
+
+            CreateMap<ParcourQuery, ParcourQueryResource>().ReverseMap();
+
+
+
             //******DocumentPartage*****
             CreateMap<DocumentPartage, GetDocumentPartageResource>();
             CreateMap<DocumentPartage, SetDocumentPartageResource>();
@@ -91,6 +100,9 @@ namespace StudentAPI.Mapping
 
 
             CreateMap<NiveauSpecialite, NiveauSpecialiteResource>().ReverseMap();
+
+            CreateMap<NiveauSpecialiteQuery, NiveauSpecialiteQueryResource>().ReverseMap();
+
 
 
             //****Personne****
@@ -123,6 +135,10 @@ namespace StudentAPI.Mapping
 
             CreateMap<SetDocumentPartageResource, DocumentPartage>()
                 .ForMember(dp => dp.Id, opt => opt.Ignore());
+
+            CreateMap<SetParcourResource, Parcour>()
+                .ForMember(p => p.Id, opt => opt.Ignore());
+
 
 
         }

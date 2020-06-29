@@ -21,7 +21,7 @@ namespace StudentAPI.Persistance.Repository
             _context = context;
             _dbSet = _context.Set<Section>();
         }
-        public async Task<QueryResult<Section>> GetAll(SectionQuery sectionQuery)
+        public async Task<QueryResult<Section>> GetAll(ClasseQuery sectionQuery)
         {
             var result = new QueryResult<Section>();
 

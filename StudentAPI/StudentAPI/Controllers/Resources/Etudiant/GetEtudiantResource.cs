@@ -1,6 +1,8 @@
-﻿namespace StudentAPI.Controllers.Resources.Etudiant
+﻿using StudentAPI.Controllers.Resources.Personne;
+
+namespace StudentAPI.Controllers.Resources.Etudiant
 {
-    public class GetEtudiantResource : GetPersonneResource
+    public class GetEtudiantResource : GetPersonneResourceNoNav
     {
         public string Matricule { get; set; }
     }

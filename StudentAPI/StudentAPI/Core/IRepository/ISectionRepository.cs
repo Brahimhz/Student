@@ -6,7 +6,7 @@ namespace StudentAPI.Core.IRepository
 {
     public interface ISectionRepository : IGenericRepository<Section>
     {
-        Task<QueryResult<Section>> GetAll(SectionQuery sectionQuery);
+        Task<QueryResult<Section>> GetAll(ClasseQuery sectionQuery);
 
     }
 }
