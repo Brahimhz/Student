@@ -22,10 +22,14 @@ namespace StudentAPI.Core.Models
 
         public int Id { get; set; }
         public Nullable<double> MoyenneFinal { get; set; }
-        public Nullable<double> Credit { get; set; }
-        public int ParcourId { get; set; }
-        public DateTime LastUpdate { get; set; }
+        public Nullable<double> TotalCredit { get; set; }
+        public Nullable<double> Total { get; set; }
+        public Nullable<double> TotalCoff { get; set; }
 
+        public int ParcourId { get; set; }
+        public bool Acquit { get; set; }
+
+        public DateTime LastUpdate { get; set; }
 
         public virtual Parcour Parcour { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

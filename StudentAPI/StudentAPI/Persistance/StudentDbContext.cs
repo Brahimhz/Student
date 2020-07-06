@@ -45,10 +45,6 @@ namespace StudentAPI.Persistance
                 .WithOne(p => p.Resultat)
                 .HasForeignKey<Parcour>(p => p.ResultatId);
 
-
-            modelBuilder.Entity<Matiere>()
-             .HasKey(m => new { m.MatiereRefId, m.NiveauSpecialiteId, m.UnitePedagogiqueId });
-
             modelBuilder.Entity<Personne>()
                 .HasMany(p => p.RelationCommunications1)
                 .WithOne(rc => rc.Personne1)

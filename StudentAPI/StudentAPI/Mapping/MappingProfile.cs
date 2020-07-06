@@ -16,6 +16,10 @@ using StudentAPI.Controllers.Resources.Planning.PlanningSection;
 using StudentAPI.Controllers.Resources.Planning.PlanningSGroupe;
 using StudentAPI.Controllers.Resources.Planning.PlanningSGroupe.NoNavigationProperty;
 using StudentAPI.Controllers.Resources.Query;
+using StudentAPI.Controllers.Resources.Resultat;
+using StudentAPI.Controllers.Resources.Resultat.General;
+using StudentAPI.Controllers.Resources.Resultat.ResultatMatiere;
+using StudentAPI.Controllers.Resources.Resultat.ResultatUnite;
 using StudentAPI.Controllers.Resources.Section;
 using StudentAPI.Core.Models;
 using StudentAPI.Core.QueryObject;
@@ -32,6 +36,18 @@ namespace StudentAPI.Mapping
 
 
             CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>)).ReverseMap();
+
+
+            // ******Resultat*****
+            CreateMap<Resultat, GetResultatResource>().ReverseMap();
+            CreateMap<Resultat, SetResultatResource>().ReverseMap();
+
+            CreateMap<ResultatUnite, GetResultatUniteResource>().ReverseMap();
+            CreateMap<ResultatUnite, SetResultatUniteResource>().ReverseMap();
+
+            CreateMap<ResultatMatiere, GetResultatMatiereResource>().ReverseMap();
+            CreateMap<ResultatMatiere, SetResultatMatiereResource>().ReverseMap();
+
 
 
 
@@ -89,9 +105,14 @@ namespace StudentAPI.Mapping
             CreateMap<DocumentFile, DocumentFileResource>().ReverseMap();
 
 
-            //******Specialité*****
+            //******Matiere*****
             CreateMap<MatiereRef, MatiereRefResourceNoNav>().ReverseMap();
 
+            CreateMap<Matiere, MatiereResource>().ReverseMap();
+
+            CreateMap<UnitePedagogique, UnitePedagogiqueResource>().ReverseMap();
+
+            //******Specialité*****
             CreateMap<Specialite, SpecialiteResource>().ReverseMap();
 
             CreateMap<Filiere, FiliereResource>().ReverseMap();

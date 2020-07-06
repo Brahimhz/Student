@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAPI.Persistance;
 
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200706124121_DeleteLastUpdateFromMatiereEntity")]
+    partial class DeleteLastUpdateFromMatiereEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,23 +271,19 @@ namespace StudentAPI.Migrations
 
             modelBuilder.Entity("StudentAPI.Core.Models.Matiere", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Coefficient");
-
-                    b.Property<double>("Credit");
-
                     b.Property<int>("MatiereRefId");
 
                     b.Property<int>("NiveauSpecialiteId");
 
                     b.Property<int>("UnitePedagogiqueId");
 
-                    b.HasKey("Id");
+                    b.Property<double>("Coefficient");
 
-                    b.HasIndex("MatiereRefId");
+                    b.Property<double>("Credit");
+
+                    b.Property<int>("Id");
+
+                    b.HasKey("MatiereRefId", "NiveauSpecialiteId", "UnitePedagogiqueId");
 
                     b.HasIndex("NiveauSpecialiteId");
 
@@ -449,19 +447,13 @@ namespace StudentAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Acquit");
+                    b.Property<double?>("Credit");
 
                     b.Property<DateTime>("LastUpdate");
 
                     b.Property<double?>("MoyenneFinal");
 
                     b.Property<int>("ParcourId");
-
-                    b.Property<double?>("Total");
-
-                    b.Property<double?>("TotalCoff");
-
-                    b.Property<double?>("TotalCredit");
 
                     b.HasKey("Id");
 
@@ -474,13 +466,17 @@ namespace StudentAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Acquit");
-
                     b.Property<double?>("CreditMatiere");
+
+                    b.Property<DateTime>("LastUpdate");
 
                     b.Property<int>("MatiereId");
 
-                    b.Property<double?>("MoyenneMatiere");
+                    b.Property<int?>("MatiereNiveauSpecialiteId");
+
+                    b.Property<int?>("MatiereRefId");
+
+                    b.Property<int?>("MatiereUnitePedagogiqueId");
 
                     b.Property<double?>("NoteControl");
 
@@ -488,13 +484,11 @@ namespace StudentAPI.Migrations
 
                     b.Property<int>("ResultatUniteId");
 
-                    b.Property<double?>("TotalMatiere");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("MatiereId");
-
                     b.HasIndex("ResultatUniteId");
+
+                    b.HasIndex("MatiereRefId", "MatiereNiveauSpecialiteId", "MatiereUnitePedagogiqueId");
 
                     b.ToTable("ResultatMatieres");
                 });
@@ -505,17 +499,13 @@ namespace StudentAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Acquit");
-
                     b.Property<double?>("CreditUnite");
+
+                    b.Property<DateTime>("LastUpdate");
 
                     b.Property<double?>("MoyenneUnite");
 
                     b.Property<int>("ResultatId");
-
-                    b.Property<double?>("TotalCoff");
-
-                    b.Property<double?>("TotalUnite");
 
                     b.Property<int>("UnitePedagogiqueId");
 
@@ -891,15 +881,14 @@ namespace StudentAPI.Migrations
 
             modelBuilder.Entity("StudentAPI.Core.Models.ResultatMatiere", b =>
                 {
-                    b.HasOne("StudentAPI.Core.Models.Matiere", "Matiere")
-                        .WithMany("ResultatMatieres")
-                        .HasForeignKey("MatiereId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("StudentAPI.Core.Models.ResultatUnite", "ResultatUnite")
                         .WithMany("ResultatMatieres")
                         .HasForeignKey("ResultatUniteId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("StudentAPI.Core.Models.Matiere", "Matiere")
+                        .WithMany("ResultatMatieres")
+                        .HasForeignKey("MatiereRefId", "MatiereNiveauSpecialiteId", "MatiereUnitePedagogiqueId");
                 });
 
             modelBuilder.Entity("StudentAPI.Core.Models.ResultatUnite", b =>

@@ -23,9 +23,12 @@ namespace StudentAPI.Core.Models
         public int Id { get; set; }
         public Nullable<double> MoyenneUnite { get; set; }
         public Nullable<double> CreditUnite { get; set; }
+        public Nullable<double> TotalCoff { get; set; }
+        public Nullable<double> TotalUnite { get; set; }
+
         public int UnitePedagogiqueId { get; set; }
         public int ResultatId { get; set; }
-        public DateTime LastUpdate { get; set; }
+        public bool Acquit { get; set; }
 
 
         public virtual UnitePedagogique UnitePedagogique { get; set; }

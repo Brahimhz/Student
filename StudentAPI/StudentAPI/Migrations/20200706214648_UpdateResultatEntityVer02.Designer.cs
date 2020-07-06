@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAPI.Persistance;
 
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200706214648_UpdateResultatEntityVer02")]
+    partial class UpdateResultatEntityVer02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -451,17 +453,13 @@ namespace StudentAPI.Migrations
 
                     b.Property<bool>("Acquit");
 
+                    b.Property<double?>("Credit");
+
                     b.Property<DateTime>("LastUpdate");
 
                     b.Property<double?>("MoyenneFinal");
 
                     b.Property<int>("ParcourId");
-
-                    b.Property<double?>("Total");
-
-                    b.Property<double?>("TotalCoff");
-
-                    b.Property<double?>("TotalCredit");
 
                     b.HasKey("Id");
 
@@ -488,8 +486,6 @@ namespace StudentAPI.Migrations
 
                     b.Property<int>("ResultatUniteId");
 
-                    b.Property<double?>("TotalMatiere");
-
                     b.HasKey("Id");
 
                     b.HasIndex("MatiereId");
@@ -512,10 +508,6 @@ namespace StudentAPI.Migrations
                     b.Property<double?>("MoyenneUnite");
 
                     b.Property<int>("ResultatId");
-
-                    b.Property<double?>("TotalCoff");
-
-                    b.Property<double?>("TotalUnite");
 
                     b.Property<int>("UnitePedagogiqueId");
 

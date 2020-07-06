@@ -51,6 +51,9 @@ namespace StudentAPI
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+            services.AddScoped<IResultatRepository, ResultatRepository>();
+            services.AddScoped<IGenericRepository<Resultat>, ResultatRepository>();
+
             services.AddScoped<IParcourRepository, ParcourRepository>();
             services.AddScoped<IGenericRepository<Parcour>, ParcourRepository>();
 
@@ -71,6 +74,9 @@ namespace StudentAPI
             //AppServices
 
             services.AddTransient(typeof(IGenericAppService<,,>), typeof(GenericAppService<,,>));
+
+            services.AddTransient<IResultatAppService, ResultatAppService>();
+
 
             services.AddTransient<IGenericAppService<Parcour, GetParcourResource, SetParcourResource>, ParcourAppService>();
             services.AddTransient<IParcourAppService, ParcourAppService>();

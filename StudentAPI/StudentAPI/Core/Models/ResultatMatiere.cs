@@ -16,10 +16,12 @@ namespace StudentAPI.Core.Models
         public int Id { get; set; }
         public Nullable<double> NoteControl { get; set; }
         public Nullable<double> NoteExamen { get; set; }
+        public Nullable<double> TotalMatiere { get; set; }
+        public Nullable<double> MoyenneMatiere { get; set; }
         public Nullable<double> CreditMatiere { get; set; }
         public int MatiereId { get; set; }
         public int ResultatUniteId { get; set; }
-        public DateTime LastUpdate { get; set; }
+        public bool Acquit { get; set; }
 
 
         public virtual Matiere Matiere { get; set; }

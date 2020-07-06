@@ -40,14 +40,6 @@ namespace StudentAPI.Persistance.Repository
                                         .ThenInclude(pg => pg.PlanningSection)
 
                           .Include(p => p.Resultat)
-                                .ThenInclude(r => r.ResultatUnites)
-                                           .ThenInclude(ru => ru.UnitePedagogique)
-
-                          .Include(p => p.Resultat)
-                                .ThenInclude(r => r.ResultatUnites)
-                                          .ThenInclude(ru => ru.ResultatMatieres)
-                                              .ThenInclude(rm => rm.Matiere)
-                                                   .ThenInclude(m => m.MatiereRef)
 
                           .AsQueryable();
 
@@ -116,11 +108,6 @@ namespace StudentAPI.Persistance.Repository
                                          .ThenInclude(pg => pg.PlanningSection)
 
                            .Include(p => p.Resultat)
-                                 .ThenInclude(r => r.ResultatUnites)
-                                     .ThenInclude(ru => ru.ResultatMatieres)
-                                         .ThenInclude(rm => rm.Matiere)
-                                             .ThenInclude(m => m.MatiereRef)
-
 
                       .SingleOrDefaultAsync(p => p.Id == id);
 
