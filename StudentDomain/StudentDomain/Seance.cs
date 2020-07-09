@@ -14,12 +14,18 @@ namespace StudentDomain
     
     public partial class Seance
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Seance()
+        {
+            this.InfoSeances = new HashSet<InfoSeance>();
+        }
+    
         public int Id { get; set; }
         public string Heure { get; set; }
         public int JourneeId { get; set; }
         public Nullable<int> InfoSeanceId { get; set; }
     
-        public virtual Journee Journee { get; set; }
-        public virtual InfoSeance InfoSeances { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InfoSeance> InfoSeances { get; set; }
     }
 }

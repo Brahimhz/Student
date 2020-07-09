@@ -34,11 +34,6 @@ namespace StudentAPI.Persistance
             modelBuilder.Entity<InfoSeance>()
                     .HasKey(i => new { i.MatiereRefId });
 
-            modelBuilder.Entity<InfoSeance>()
-                .HasOne(i => i.Seance)
-                .WithOne(s => s.InfoSeances)
-                .HasForeignKey<Seance>(s => s.InfoSeanceId);
-
 
             modelBuilder.Entity<Resultat>()
                 .HasOne(r => r.Parcour)

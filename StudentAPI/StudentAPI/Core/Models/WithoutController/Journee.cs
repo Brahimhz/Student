@@ -16,16 +16,14 @@ namespace StudentAPI.Core.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Journee()
         {
-            this.Seances = new HashSet<Seance>();
+            this.InfoSeances = new HashSet<InfoSeance>();
         }
 
         public int Id { get; set; }
         public int PlanningId { get; set; }
         public string Jour { get; set; }
 
-
-        public virtual Planning Planning { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Seance> Seances { get; set; }
+        public virtual ICollection<InfoSeance> InfoSeances { get; set; }
     }
 }

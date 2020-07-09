@@ -17,6 +17,8 @@ namespace StudentAPI.Core.Models
         public Matiere()
         {
             this.ResultatMatieres = new HashSet<ResultatMatiere>();
+            this.InfoSeances = new HashSet<InfoSeance>();
+
         }
 
         public int Id { get; set; }
@@ -26,7 +28,8 @@ namespace StudentAPI.Core.Models
         public int MatiereRefId { get; set; }
         public int NiveauSpecialiteId { get; set; }
 
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InfoSeance> InfoSeances { get; set; }
         public virtual UnitePedagogique UnitePedagogique { get; set; }
         public virtual MatiereRef MatiereRef { get; set; }
         public virtual NiveauSpecialite NiveauSpecialite { get; set; }

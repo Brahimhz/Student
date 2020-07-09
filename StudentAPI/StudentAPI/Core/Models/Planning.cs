@@ -9,22 +9,19 @@
 
 namespace StudentAPI.Core.Models
 {
-    using System;
     using System.Collections.Generic;
 
-    public partial class Planning
+    public abstract partial class Planning
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Planning()
         {
-            this.Journees = new HashSet<Journee>();
+            this.InfoSeances = new HashSet<InfoSeance>();
         }
 
         public int Id { get; set; }
-        public DateTime LastUpdate { get; set; }
-
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Journee> Journees { get; set; }
+        public virtual ICollection<InfoSeance> InfoSeances { get; set; }
     }
 }

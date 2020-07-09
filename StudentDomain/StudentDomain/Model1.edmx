@@ -15,20 +15,8 @@
         <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Plannings" EntityType="Model1.Planning" />
           <EntitySet Name="Journees" EntityType="Model1.Journee" />
-          <AssociationSet Name="PlanningJournee" Association="Model1.PlanningJournee">
-            <End Role="Planning" EntitySet="Plannings" />
-            <End Role="Journee" EntitySet="Journees" />
-          </AssociationSet>
           <EntitySet Name="Seances" EntityType="Model1.Seance" />
-          <AssociationSet Name="JourneeSeance" Association="Model1.JourneeSeance">
-            <End Role="Journee" EntitySet="Journees" />
-            <End Role="Seance" EntitySet="Seances" />
-          </AssociationSet>
           <EntitySet Name="InfoSeances" EntityType="Model1.InfoSeance" />
-          <AssociationSet Name="SeanceInfoSeance" Association="Model1.SeanceInfoSeance">
-            <End Role="Seance" EntitySet="Seances" />
-            <End Role="InfoSeance" EntitySet="InfoSeances" />
-          </AssociationSet>
           <EntitySet Name="Blocs" EntityType="Model1.Bloc" />
           <EntitySet Name="Salles" EntityType="Model1.Salle" />
           <AssociationSet Name="BlocSalle" Association="Model1.BlocSalle">
@@ -165,10 +153,6 @@
             <End Role="ResultatMatiere" EntitySet="ResultatMatieres" />
             <End Role="ResultatUnite" EntitySet="ResultatUnites" />
           </AssociationSet>
-          <AssociationSet Name="MatiereRefInfoSeance" Association="Model1.MatiereRefInfoSeance">
-            <End Role="MatiereRef" EntitySet="MatiereRefs" />
-            <End Role="InfoSeance" EntitySet="InfoSeances" />
-          </AssociationSet>
           <AssociationSet Name="EnseignatInfoSeance" Association="Model1.EnseignatInfoSeance">
             <End Role="Enseignat" EntitySet="Personnes" />
             <End Role="InfoSeance" EntitySet="InfoSeances" />
@@ -205,59 +189,49 @@
             <End Role="NiveauSpecialite" EntitySet="NiveauSpecialites" />
             <End Role="DocumentPartage" EntitySet="DocumentPartages" />
           </AssociationSet>
+          <AssociationSet Name="SeanceInfoSeance" Association="Model1.SeanceInfoSeance">
+            <End Role="InfoSeance" EntitySet="InfoSeances" />
+            <End Role="Seance" EntitySet="Seances" />
+          </AssociationSet>
+          <AssociationSet Name="JourneeInfoSeance" Association="Model1.JourneeInfoSeance">
+            <End Role="InfoSeance" EntitySet="InfoSeances" />
+            <End Role="Journee" EntitySet="Journees" />
+          </AssociationSet>
+          <AssociationSet Name="InfoSeancePlanning" Association="Model1.InfoSeancePlanning">
+            <End Role="InfoSeance" EntitySet="InfoSeances" />
+            <End Role="Planning" EntitySet="Plannings" />
+          </AssociationSet>
+          <AssociationSet Name="MatiereInfoSeance" Association="Model1.MatiereInfoSeance">
+            <End Role="InfoSeance" EntitySet="InfoSeances" />
+            <End Role="Matiere" EntitySet="Matieres" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Planning" Abstract="true">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Journees" Relationship="Model1.PlanningJournee" FromRole="Planning" ToRole="Journee" />
+          <NavigationProperty Name="InfoSeances" Relationship="Model1.InfoSeancePlanning" FromRole="Planning" ToRole="InfoSeance" />
         </EntityType>
         <EntityType Name="Journee">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Planning" Relationship="Model1.PlanningJournee" FromRole="Journee" ToRole="Planning" />
           <Property Name="PlanningId" Type="Int32" Nullable="false" />
           <Property Name="Jour" Type="String" Nullable="false" />
-          <NavigationProperty Name="Seances" Relationship="Model1.JourneeSeance" FromRole="Journee" ToRole="Seance" />
+          <NavigationProperty Name="InfoSeances" Relationship="Model1.JourneeInfoSeance" FromRole="Journee" ToRole="InfoSeance" />
         </EntityType>
-        <Association Name="PlanningJournee">
-          <End Type="Model1.Planning" Role="Planning" Multiplicity="1" />
-          <End Type="Model1.Journee" Role="Journee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Planning">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Journee">
-              <PropertyRef Name="PlanningId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Seance">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Heure" Type="String" Nullable="false" />
-          <NavigationProperty Name="Journee" Relationship="Model1.JourneeSeance" FromRole="Seance" ToRole="Journee" />
           <Property Name="JourneeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="InfoSeances" Relationship="Model1.SeanceInfoSeance" FromRole="Seance" ToRole="InfoSeance" />
           <Property Name="InfoSeanceId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="InfoSeances" Relationship="Model1.SeanceInfoSeance" FromRole="Seance" ToRole="InfoSeance" />
         </EntityType>
-        <Association Name="JourneeSeance">
-          <End Type="Model1.Journee" Role="Journee" Multiplicity="1" />
-          <End Type="Model1.Seance" Role="Seance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Journee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Seance">
-              <PropertyRef Name="JourneeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="InfoSeance">
           <Key>
             <PropertyRef Name="Id" />
@@ -265,18 +239,20 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Type" Type="String" Nullable="false" />
           <Property Name="SeanceId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Seance" Relationship="Model1.SeanceInfoSeance" FromRole="InfoSeance" ToRole="Seance" />
           <NavigationProperty Name="Salle" Relationship="Model1.SalleInfoSeance" FromRole="InfoSeance" ToRole="Salle" />
           <Property Name="SalleId" Type="Int32" Nullable="true" />
-          <NavigationProperty Name="MatiereRef" Relationship="Model1.MatiereRefInfoSeance" FromRole="InfoSeance" ToRole="MatiereRef" />
           <Property Name="MatiereRefId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Enseignat" Relationship="Model1.EnseignatInfoSeance" FromRole="InfoSeance" ToRole="Enseignat" />
           <Property Name="EnseignatId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Seance" Relationship="Model1.SeanceInfoSeance" FromRole="InfoSeance" ToRole="Seance" />
+          <Property Name="SeanceId1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Journee" Relationship="Model1.JourneeInfoSeance" FromRole="InfoSeance" ToRole="Journee" />
+          <Property Name="JourneeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Planning" Relationship="Model1.InfoSeancePlanning" FromRole="InfoSeance" ToRole="Planning" />
+          <Property Name="PlanningId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Matiere" Relationship="Model1.MatiereInfoSeance" FromRole="InfoSeance" ToRole="Matiere" />
+          <Property Name="MatiereId" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="SeanceInfoSeance">
-          <End Type="Model1.Seance" Role="Seance" Multiplicity="1" />
-          <End Type="Model1.InfoSeance" Role="InfoSeance" Multiplicity="0..1" />
-        </Association>
         <EntityType Name="Bloc">
           <Key>
             <PropertyRef Name="Id" />
@@ -585,6 +561,7 @@
           <NavigationProperty Name="NiveauSpecialite" Relationship="Model1.NiveauSpecialiteMatiere" FromRole="Matiere" ToRole="NiveauSpecialite" />
           <Property Name="NiveauSpecialiteId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ResultatMatieres" Relationship="Model1.ResultatMatiereMatiere" FromRole="Matiere" ToRole="ResultatMatiere" />
+          <NavigationProperty Name="InfoSeances" Relationship="Model1.MatiereInfoSeance" FromRole="Matiere" ToRole="InfoSeance" />
         </EntityType>
         <Association Name="SectionPlanningSection">
           <End Type="Model1.Section" Role="Section" Multiplicity="1" />
@@ -676,7 +653,6 @@
           <Property Name="Abrevation" Type="String" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="true" MaxLength="Max" />
           <NavigationProperty Name="Matieres" Relationship="Model1.MatiereRefMatiere" FromRole="MatiereRef" ToRole="Matiere" />
-          <NavigationProperty Name="InfoSeances" Relationship="Model1.MatiereRefInfoSeance" FromRole="MatiereRef" ToRole="InfoSeance" />
           <NavigationProperty Name="DocumentPartages" Relationship="Model1.DocumentPartageMatiereRef" FromRole="MatiereRef" ToRole="DocumentPartage" />
         </EntityType>
         <Association Name="MatiereRefMatiere">
@@ -872,18 +848,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="MatiereRefInfoSeance">
-          <End Type="Model1.MatiereRef" Role="MatiereRef" Multiplicity="1" />
-          <End Type="Model1.InfoSeance" Role="InfoSeance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MatiereRef">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="InfoSeance">
-              <PropertyRef Name="MatiereRefId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="EnseignatInfoSeance">
           <End Type="Model1.Enseignat" Role="Enseignat" Multiplicity="0..1" />
           <End Type="Model1.InfoSeance" Role="InfoSeance" Multiplicity="*" />
@@ -1023,6 +987,54 @@
             </Principal>
             <Dependent Role="DocumentPartage">
               <PropertyRef Name="NiveauSpecialiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SeanceInfoSeance">
+          <End Type="Model1.InfoSeance" Role="InfoSeance" Multiplicity="*" />
+          <End Type="Model1.Seance" Role="Seance" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Seance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InfoSeance">
+              <PropertyRef Name="SeanceId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JourneeInfoSeance">
+          <End Type="Model1.InfoSeance" Role="InfoSeance" Multiplicity="*" />
+          <End Type="Model1.Journee" Role="Journee" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Journee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InfoSeance">
+              <PropertyRef Name="JourneeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InfoSeancePlanning">
+          <End Type="Model1.InfoSeance" Role="InfoSeance" Multiplicity="*" />
+          <End Type="Model1.Planning" Role="Planning" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Planning">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InfoSeance">
+              <PropertyRef Name="PlanningId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MatiereInfoSeance">
+          <End Type="Model1.InfoSeance" Role="InfoSeance" Multiplicity="*" />
+          <End Type="Model1.Matiere" Role="Matiere" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Matiere">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InfoSeance">
+              <PropertyRef Name="MatiereId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

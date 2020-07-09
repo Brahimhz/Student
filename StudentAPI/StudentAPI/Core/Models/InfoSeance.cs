@@ -19,12 +19,15 @@ namespace StudentAPI.Core.Models
         public Nullable<int> SalleId { get; set; }
         public int MatiereRefId { get; set; }
         public Nullable<int> EnseignatId { get; set; }
-        public DateTime LastUpdate { get; set; }
+        public int SeanceId1 { get; set; }
+        public int JourneeId { get; set; }
+        public int PlanningId { get; set; }
 
-
-        public virtual Seance Seance { get; set; }
         public virtual Salle Salle { get; set; }
-        public virtual MatiereRef MatiereRef { get; set; }
+        public virtual Matiere Matiere { get; set; }
         public virtual Enseignant Enseignat { get; set; }
+        public virtual Seance Seance { get; set; }
+        public virtual Journee Journee { get; set; }
+        public virtual Planning Planning { get; set; }
     }
 }

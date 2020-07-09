@@ -18,7 +18,6 @@ namespace StudentDomain
         public MatiereRef()
         {
             this.Matieres = new HashSet<Matiere>();
-            this.InfoSeances = new HashSet<InfoSeance>();
             this.DocumentPartages = new HashSet<DocumentPartage>();
         }
     
@@ -29,8 +28,6 @@ namespace StudentDomain
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Matiere> Matieres { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InfoSeance> InfoSeances { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentPartage> DocumentPartages { get; set; }
     }
