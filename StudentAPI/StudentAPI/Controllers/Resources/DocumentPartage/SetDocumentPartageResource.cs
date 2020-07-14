@@ -4,7 +4,6 @@ namespace StudentAPI.Controllers.Resources.DocumentPartage
 {
     public class SetDocumentPartageResource
     {
-        public int Id { get; set; }
         public string NomDoc { get; set; }
         public string TypeDoc { get; set; }
         public int PersonneId { get; set; }

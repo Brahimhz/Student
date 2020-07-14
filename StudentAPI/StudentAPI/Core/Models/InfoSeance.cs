@@ -10,16 +10,17 @@
 namespace StudentAPI.Core.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class InfoSeance
     {
-        public int Id { get; set; }
+        [Key]
+        public int id { get; set; }
         public string Type { get; set; }
         public int SeanceId { get; set; }
         public Nullable<int> SalleId { get; set; }
-        public int MatiereRefId { get; set; }
+        public int MatiereId { get; set; }
         public Nullable<int> EnseignatId { get; set; }
-        public int SeanceId1 { get; set; }
         public int JourneeId { get; set; }
         public int PlanningId { get; set; }
 

@@ -28,12 +28,12 @@ namespace StudentAPI.Persistance
                   .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<RelationCommunication>()
-             .HasKey(rc => new { rc.PersonneId1, rc.PersonneId2 });
-
+             .HasIndex(rc => new { rc.PersonneId1, rc.PersonneId2 })
+             .IsUnique();
 
             modelBuilder.Entity<InfoSeance>()
-                    .HasKey(i => new { i.MatiereRefId });
-
+                 .HasIndex(inse => new { inse.EnseignatId, inse.JourneeId, inse.SeanceId, inse.SalleId })
+                 .IsUnique();
 
             modelBuilder.Entity<Resultat>()
                 .HasOne(r => r.Parcour)

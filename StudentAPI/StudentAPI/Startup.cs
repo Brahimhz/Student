@@ -51,6 +51,8 @@ namespace StudentAPI
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+            services.AddScoped<IPlanningRepository, PlanningRepository>();
+
             services.AddScoped<IResultatRepository, ResultatRepository>();
             services.AddScoped<IGenericRepository<Resultat>, ResultatRepository>();
 

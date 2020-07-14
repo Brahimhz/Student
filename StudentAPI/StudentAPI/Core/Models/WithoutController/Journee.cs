@@ -20,7 +20,6 @@ namespace StudentAPI.Core.Models
         }
 
         public int Id { get; set; }
-        public int PlanningId { get; set; }
         public string Jour { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -2,7 +2,7 @@
 
 namespace StudentAPI.Controllers.Resources.Planning.PlanningSGroupe
 {
-    public class SetPlanningSGroupeResource : GetPlanningResource
+    public class SetPlanningSGroupeResource : SetPlanningResource
     {
         public int PlanningGroupeId { get; set; }
         public int SousGroupeId { get; set; }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAPI.Persistance;
 
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200713194540_UpdateDomainVer2")]
+    partial class UpdateDomainVer2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,9 +75,13 @@ namespace StudentAPI.Migrations
 
                     b.Property<int>("RelationCommunicationId");
 
+                    b.Property<int?>("RelationCommunicationPersonneId1");
+
+                    b.Property<int?>("RelationCommunicationPersonneId2");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("RelationCommunicationId");
+                    b.HasIndex("RelationCommunicationPersonneId1", "RelationCommunicationPersonneId2");
 
                     b.ToTable("Discussions");
                 });
@@ -217,15 +223,15 @@ namespace StudentAPI.Migrations
 
             modelBuilder.Entity("StudentAPI.Core.Models.InfoSeance", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("MatiereRefId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("EnseignatId");
 
-                    b.Property<int>("JourneeId");
+                    b.Property<int>("Id");
 
-                    b.Property<int>("MatiereId");
+                    b.Property<int>("JourneeId");
 
                     b.Property<int>("PlanningId");
 
@@ -233,23 +239,23 @@ namespace StudentAPI.Migrations
 
                     b.Property<int>("SeanceId");
 
+                    b.Property<int>("SeanceId1");
+
                     b.Property<string>("Type");
 
-                    b.HasKey("id");
+                    b.HasKey("MatiereRefId");
+
+                    b.HasIndex("EnseignatId");
+
+                    b.HasIndex("Id");
 
                     b.HasIndex("JourneeId");
-
-                    b.HasIndex("MatiereId");
 
                     b.HasIndex("PlanningId");
 
                     b.HasIndex("SalleId");
 
                     b.HasIndex("SeanceId");
-
-                    b.HasIndex("EnseignatId", "JourneeId", "SeanceId", "SalleId")
-                        .IsUnique()
-                        .HasFilter("[EnseignatId] IS NOT NULL AND [SalleId] IS NOT NULL");
 
                     b.ToTable("InfoSeances");
                 });
@@ -261,6 +267,8 @@ namespace StudentAPI.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Jour");
+
+                    b.Property<int>("PlanningId");
 
                     b.HasKey("Id");
 
@@ -419,8 +427,6 @@ namespace StudentAPI.Migrations
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
-                    b.Property<DateTime>("LastUpdate");
-
                     b.HasKey("Id");
 
                     b.ToTable("Planning");
@@ -430,20 +436,15 @@ namespace StudentAPI.Migrations
 
             modelBuilder.Entity("StudentAPI.Core.Models.RelationCommunication", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("PersonneId1");
 
                     b.Property<int>("PersonneId2");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Id");
+
+                    b.HasKey("PersonneId1", "PersonneId2");
 
                     b.HasIndex("PersonneId2");
-
-                    b.HasIndex("PersonneId1", "PersonneId2")
-                        .IsUnique();
 
                     b.ToTable("RelationCommunications");
                 });
@@ -559,6 +560,10 @@ namespace StudentAPI.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Heure");
+
+                    b.Property<int?>("InfoSeanceId");
+
+                    b.Property<int>("JourneeId");
 
                     b.HasKey("Id");
 
@@ -737,8 +742,7 @@ namespace StudentAPI.Migrations
                 {
                     b.HasOne("StudentAPI.Core.Models.RelationCommunication", "RelationCommunication")
                         .WithMany("Discussions")
-                        .HasForeignKey("RelationCommunicationId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RelationCommunicationPersonneId1", "RelationCommunicationPersonneId2");
                 });
 
             modelBuilder.Entity("StudentAPI.Core.Models.DocumentFile", b =>
@@ -800,14 +804,14 @@ namespace StudentAPI.Migrations
                         .WithMany("InfoSeances")
                         .HasForeignKey("EnseignatId");
 
+                    b.HasOne("StudentAPI.Core.Models.Matiere", "Matiere")
+                        .WithMany("InfoSeances")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("StudentAPI.Core.Models.Journee", "Journee")
                         .WithMany("InfoSeances")
                         .HasForeignKey("JourneeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("StudentAPI.Core.Models.Matiere", "Matiere")
-                        .WithMany("InfoSeances")
-                        .HasForeignKey("MatiereId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("StudentAPI.Core.Models.Planning", "Planning")

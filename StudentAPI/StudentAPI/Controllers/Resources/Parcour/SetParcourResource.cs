@@ -4,7 +4,6 @@ namespace StudentAPI.Controllers.Resources.Parcour
 {
     public class SetParcourResource
     {
-        public int Id { get; set; }
         public int EtudientId { get; set; }
         public int NiveauSpecialiteId { get; set; }
         public Nullable<int> SousGroupeId { get; set; }

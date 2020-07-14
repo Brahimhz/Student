@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAPI.Persistance;
 
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200714202757_UpdateInfoSeanceVer02")]
+    partial class UpdateInfoSeanceVer02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -262,6 +264,8 @@ namespace StudentAPI.Migrations
 
                     b.Property<string>("Jour");
 
+                    b.Property<int>("PlanningId");
+
                     b.HasKey("Id");
 
                     b.ToTable("Journees");
@@ -419,8 +423,6 @@ namespace StudentAPI.Migrations
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
-                    b.Property<DateTime>("LastUpdate");
-
                     b.HasKey("Id");
 
                     b.ToTable("Planning");
@@ -559,6 +561,10 @@ namespace StudentAPI.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Heure");
+
+                    b.Property<int?>("InfoSeanceId");
+
+                    b.Property<int>("JourneeId");
 
                     b.HasKey("Id");
 
@@ -805,7 +811,7 @@ namespace StudentAPI.Migrations
                         .HasForeignKey("JourneeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("StudentAPI.Core.Models.Matiere", "Matiere")
+                    b.HasOne("StudentAPI.Core.Models.Matiere", "MatiereRef")
                         .WithMany("InfoSeances")
                         .HasForeignKey("MatiereId")
                         .OnDelete(DeleteBehavior.Cascade);

@@ -9,6 +9,7 @@
 
 namespace StudentAPI.Core.Models
 {
+    using System;
     using System.Collections.Generic;
 
     public abstract partial class Planning
@@ -20,6 +21,7 @@ namespace StudentAPI.Core.Models
         }
 
         public int Id { get; set; }
+        public DateTime LastUpdate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InfoSeance> InfoSeances { get; set; }

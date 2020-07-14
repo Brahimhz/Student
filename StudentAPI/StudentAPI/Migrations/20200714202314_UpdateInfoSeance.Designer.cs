@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAPI.Persistance;
 
 namespace StudentAPI.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    partial class StudentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200714202314_UpdateInfoSeance")]
+    partial class UpdateInfoSeance
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -217,7 +219,7 @@ namespace StudentAPI.Migrations
 
             modelBuilder.Entity("StudentAPI.Core.Models.InfoSeance", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("MatiereRefId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -225,7 +227,7 @@ namespace StudentAPI.Migrations
 
                     b.Property<int>("JourneeId");
 
-                    b.Property<int>("MatiereId");
+                    b.Property<int?>("MatiereRefId1");
 
                     b.Property<int>("PlanningId");
 
@@ -235,21 +237,19 @@ namespace StudentAPI.Migrations
 
                     b.Property<string>("Type");
 
-                    b.HasKey("id");
+                    b.HasKey("MatiereRefId");
+
+                    b.HasIndex("EnseignatId");
 
                     b.HasIndex("JourneeId");
 
-                    b.HasIndex("MatiereId");
+                    b.HasIndex("MatiereRefId1");
 
                     b.HasIndex("PlanningId");
 
                     b.HasIndex("SalleId");
 
                     b.HasIndex("SeanceId");
-
-                    b.HasIndex("EnseignatId", "JourneeId", "SeanceId", "SalleId")
-                        .IsUnique()
-                        .HasFilter("[EnseignatId] IS NOT NULL AND [SalleId] IS NOT NULL");
 
                     b.ToTable("InfoSeances");
                 });
@@ -261,6 +261,8 @@ namespace StudentAPI.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Jour");
+
+                    b.Property<int>("PlanningId");
 
                     b.HasKey("Id");
 
@@ -419,8 +421,6 @@ namespace StudentAPI.Migrations
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
-                    b.Property<DateTime>("LastUpdate");
-
                     b.HasKey("Id");
 
                     b.ToTable("Planning");
@@ -559,6 +559,10 @@ namespace StudentAPI.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Heure");
+
+                    b.Property<int?>("InfoSeanceId");
+
+                    b.Property<int>("JourneeId");
 
                     b.HasKey("Id");
 
@@ -805,10 +809,9 @@ namespace StudentAPI.Migrations
                         .HasForeignKey("JourneeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("StudentAPI.Core.Models.Matiere", "Matiere")
-                        .WithMany("InfoSeances")
-                        .HasForeignKey("MatiereId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("StudentAPI.Core.Models.MatiereRef", "MatiereRef")
+                        .WithMany()
+                        .HasForeignKey("MatiereRefId1");
 
                     b.HasOne("StudentAPI.Core.Models.Planning", "Planning")
                         .WithMany("InfoSeances")

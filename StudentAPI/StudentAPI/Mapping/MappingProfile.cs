@@ -5,25 +5,29 @@ using StudentAPI.Controllers.Resources.Classe.Section;
 using StudentAPI.Controllers.Resources.Classe.SousGroupe;
 using StudentAPI.Controllers.Resources.DocumentPartage;
 using StudentAPI.Controllers.Resources.Etudiant;
+using StudentAPI.Controllers.Resources.InfoSeance;
 using StudentAPI.Controllers.Resources.MatiereRef;
 using StudentAPI.Controllers.Resources.NiveauSpecialite;
 using StudentAPI.Controllers.Resources.Parcour;
 using StudentAPI.Controllers.Resources.Personne;
+using StudentAPI.Controllers.Resources.Planning;
 using StudentAPI.Controllers.Resources.Planning.Planning;
 using StudentAPI.Controllers.Resources.Planning.PlanningGroupe;
 using StudentAPI.Controllers.Resources.Planning.PlanningGroupe.NoNavigationProperty;
 using StudentAPI.Controllers.Resources.Planning.PlanningSection;
+using StudentAPI.Controllers.Resources.Planning.PlanningSection.NoNavigationProperty;
 using StudentAPI.Controllers.Resources.Planning.PlanningSGroupe;
 using StudentAPI.Controllers.Resources.Planning.PlanningSGroupe.NoNavigationProperty;
+using StudentAPI.Controllers.Resources.Planning.PlanningSGroupe.UpDown;
 using StudentAPI.Controllers.Resources.Query;
 using StudentAPI.Controllers.Resources.Resultat;
 using StudentAPI.Controllers.Resources.Resultat.General;
 using StudentAPI.Controllers.Resources.Resultat.ResultatMatiere;
 using StudentAPI.Controllers.Resources.Resultat.ResultatUnite;
+using StudentAPI.Controllers.Resources.Salle;
 using StudentAPI.Controllers.Resources.Section;
 using StudentAPI.Core.Models;
 using StudentAPI.Core.QueryObject;
-using System.Linq;
 
 namespace StudentAPI.Mapping
 {
@@ -36,6 +40,16 @@ namespace StudentAPI.Mapping
 
 
             CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>)).ReverseMap();
+
+
+
+            //Etablissement
+
+            CreateMap<Bloc, BlocResource>().ReverseMap();
+            CreateMap<Salle, SalleResource>().ReverseMap();
+
+
+
 
 
             // ******Resultat*****
@@ -72,20 +86,29 @@ namespace StudentAPI.Mapping
             CreateMap<Planning, GetPlanningResource>().ReverseMap();
             CreateMap<Planning, SetPlanningResource>().ReverseMap();
 
-            CreateMap<PlanningGroupe, GetPlanningGroupeResource>().ReverseMap();
-            CreateMap<PlanningGroupe, GetPlanningGroupeResourceNoNavG>().ReverseMap();
-            CreateMap<PlanningGroupe, GetPlanningGroupeResourceNoNavP>().ReverseMap();
+            CreateMap<PlanningGroupe, GetPlanningGroupeResourceDown>().ReverseMap();
+            CreateMap<PlanningGroupe, GetPlanningGroupeResourceUp>().ReverseMap();
             CreateMap<PlanningGroupe, SetPlanningGroupeResource>().ReverseMap();
 
-            CreateMap<PlanningSGroupe, GetPlanningSGroupeResource>().ReverseMap();
-            CreateMap<PlanningSGroupe, GetPlanningSGroupeResourceNoNavG>().ReverseMap();
-            CreateMap<PlanningSGroupe, GetPlanningSGroupeResourceNoNavP>().ReverseMap();
+            CreateMap<PlanningSGroupe, GetPlanningSGroupeResourceUp>().ReverseMap();
+            CreateMap<PlanningSGroupe, GetPlanningSGroupeResourceDown>().ReverseMap();
             CreateMap<PlanningSGroupe, SetPlanningSGroupeResource>().ReverseMap();
 
-            CreateMap<PlanningSection, GetPlanningSectionResource>().ReverseMap();
-            CreateMap<PlanningSection, GetPlanningSectionResourceNoNavS>().ReverseMap();
-            CreateMap<PlanningSection, GetPlanningSectionResourceNoNavP>().ReverseMap();
+            CreateMap<PlanningSection, GetPlanningSectionResourceDown>().ReverseMap();
+            CreateMap<PlanningSection, GetPlanningSectionResourceUp>().ReverseMap();
             CreateMap<PlanningSection, SetPlanningSectionResource>().ReverseMap();
+
+
+
+            CreateMap<Seance, SeanceResource>().ReverseMap();
+
+            CreateMap<Journee, JourneeResource>().ReverseMap();
+
+            CreateMap<InfoSeance, GetInfoSeanceResource>().ReverseMap();
+            CreateMap<InfoSeance, SetInfoSeanceResource>().ReverseMap();
+
+
+
 
 
             //******Parcour*****
@@ -97,8 +120,8 @@ namespace StudentAPI.Mapping
 
 
             //******DocumentPartage*****
-            CreateMap<DocumentPartage, GetDocumentPartageResource>();
-            CreateMap<DocumentPartage, SetDocumentPartageResource>();
+            CreateMap<DocumentPartage, GetDocumentPartageResource>().ReverseMap();
+            CreateMap<DocumentPartage, SetDocumentPartageResource>().ReverseMap();
 
             CreateMap<DocumentPartageQuery, DocumentPartageQueryResource>().ReverseMap();
 
@@ -130,37 +153,15 @@ namespace StudentAPI.Mapping
             CreateMap<Personne, GetPersonneResource>().ReverseMap();
             CreateMap<Personne, GetPersonneResourceNoNav>().ReverseMap();
 
-            CreateMap<Personne, SetPersonneResource>()
-                .ForMember(spr => spr.DocumentPartages, opt => opt.MapFrom(p => p.DocumentPartages.Select(dp => dp.Id)));
+            CreateMap<Personne, SetPersonneResource>().ReverseMap();
 
-            CreateMap<Etudiant, SetEtudiantResource>();
-            CreateMap<Etudiant, GetEtudiantResource>();
-
+            CreateMap<Etudiant, SetEtudiantResource>().ReverseMap();
+            CreateMap<Etudiant, GetEtudiantResource>().ReverseMap();
 
 
 
 
             // ***********  API => Domaine  **************
-
-            CreateMap<SetEtudiantResource, Etudiant>()
-                .ForMember(e => e.Parcours, opt => opt.Ignore());
-
-            CreateMap<GetEtudiantResource, SetEtudiantResource>();
-
-            CreateMap<SetPersonneResource, Personne>()
-                .ForMember(p => p.Id, opt => opt.Ignore())
-                .ForMember(p => p.RelationCommunications1, opt => opt.Ignore())
-                .ForMember(p => p.RelationCommunications2, opt => opt.Ignore())
-                .ForMember(e => e.DocumentPartages, opt => opt.Ignore());
-
-
-            CreateMap<SetDocumentPartageResource, DocumentPartage>()
-                .ForMember(dp => dp.Id, opt => opt.Ignore());
-
-            CreateMap<SetParcourResource, Parcour>()
-                .ForMember(p => p.Id, opt => opt.Ignore());
-
-
 
         }
     }

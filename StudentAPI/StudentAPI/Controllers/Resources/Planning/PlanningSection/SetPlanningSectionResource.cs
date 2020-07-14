@@ -2,7 +2,7 @@
 
 namespace StudentAPI.Controllers.Resources.Planning.PlanningSection
 {
-    public class SetPlanningSectionResource : GetPlanningResource
+    public class SetPlanningSectionResource : SetPlanningResource
     {
 
         public string Type { get; set; }

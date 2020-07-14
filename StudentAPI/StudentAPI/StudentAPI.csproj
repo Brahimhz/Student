@@ -9,6 +9,10 @@
     <Compile Remove="Migrations\20200526022409_reset1.Designer.cs" />
     <Compile Remove="Migrations\20200608160719_DFdataAnnAdded.cs" />
     <Compile Remove="Migrations\20200608160719_DFdataAnnAdded.Designer.cs" />
+    <Compile Remove="Migrations\20200714201202_DeleteInfoSeance.cs" />
+    <Compile Remove="Migrations\20200714201202_DeleteInfoSeance.Designer.cs" />
+    <Compile Remove="Migrations\20200714202134_UpdateInfoSeance.cs" />
+    <Compile Remove="Migrations\20200714202134_UpdateInfoSeance.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

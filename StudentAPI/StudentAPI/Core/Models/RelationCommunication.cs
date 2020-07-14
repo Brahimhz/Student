@@ -18,7 +18,6 @@ namespace StudentAPI.Core.Models
         {
             this.Discussions = new HashSet<Discussion>();
         }
-
         public int Id { get; set; }
         public int PersonneId1 { get; set; }
         public int PersonneId2 { get; set; }

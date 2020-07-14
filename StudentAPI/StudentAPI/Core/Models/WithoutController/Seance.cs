@@ -9,7 +9,6 @@
 
 namespace StudentAPI.Core.Models
 {
-    using System;
     using System.Collections.Generic;
 
     public partial class Seance
@@ -22,8 +21,6 @@ namespace StudentAPI.Core.Models
 
         public int Id { get; set; }
         public string Heure { get; set; }
-        public int JourneeId { get; set; }
-        public Nullable<int> InfoSeanceId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InfoSeance> InfoSeances { get; set; }
