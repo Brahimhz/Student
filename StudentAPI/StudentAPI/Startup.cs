@@ -8,12 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using StudentAPI.AppService;
 using StudentAPI.AppService.Contracts;
 using StudentAPI.AppService.Implementation;
-using StudentAPI.Controllers.Resources.Classe.Section;
 using StudentAPI.Controllers.Resources.DocumentPartage;
 using StudentAPI.Controllers.Resources.Etudiant;
 using StudentAPI.Controllers.Resources.NiveauSpecialite;
 using StudentAPI.Controllers.Resources.Parcour;
-using StudentAPI.Controllers.Resources.Section;
 using StudentAPI.Core.IRepository;
 using StudentAPI.Core.Models;
 using StudentAPI.Core.Settings;
@@ -78,6 +76,7 @@ namespace StudentAPI
             services.AddTransient(typeof(IGenericAppService<,,>), typeof(GenericAppService<,,>));
 
             services.AddTransient<IResultatAppService, ResultatAppService>();
+            services.AddTransient<IPlanningAppService, PlanningAppService>();
 
 
             services.AddTransient<IGenericAppService<Parcour, GetParcourResource, SetParcourResource>, ParcourAppService>();
@@ -86,7 +85,6 @@ namespace StudentAPI
             services.AddTransient<IGenericAppService<NiveauSpecialite, NiveauSpecialiteResource, NiveauSpecialiteResource>, NiveauSpecialiteAppService>();
             services.AddTransient<INiveauSpecialiteAppService, NiveauSpecialiteAppService>();
 
-            services.AddTransient<IGenericAppService<Section, GetSectionResource, SetSectionResource>, ClasseAppService>();
             services.AddTransient<IClasseAppService, ClasseAppService>();
 
             services.AddTransient<IGenericAppService<Etudiant, GetEtudiantResource, SetEtudiantResource>, EtudiantAppService>();

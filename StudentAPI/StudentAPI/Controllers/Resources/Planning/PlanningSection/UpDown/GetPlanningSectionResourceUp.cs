@@ -4,5 +4,6 @@ namespace StudentAPI.Controllers.Resources.Planning.PlanningSection.NoNavigation
 {
     public class GetPlanningSectionResourceUp : GetPlanningResource
     {
+        public string Type { get; set; }
     }
 }

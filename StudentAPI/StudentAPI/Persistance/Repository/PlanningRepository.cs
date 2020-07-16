@@ -8,22 +8,21 @@ namespace StudentAPI.Persistance.Repository
     public class PlanningRepository : IPlanningRepository
     {
         private StudentDbContext _context;
-        private DbSet<PlanningSection> _dbSetPSection;
-        private DbSet<PlanningGroupe> _dbSetGroupe;
+        private DbSet<Planning> _dbSetPlanning;
+
         private DbSet<PlanningSGroupe> _dbSetSGroupe;
         private DbSet<Section> _dbSetSection;
 
         public PlanningRepository(StudentDbContext context)
         {
             _context = context;
-            _dbSetPSection = _context.Set<PlanningSection>();
-            _dbSetGroupe = _context.Set<PlanningGroupe>();
+            _dbSetPlanning = _context.Set<Planning>();
             _dbSetSGroupe = _context.Set<PlanningSGroupe>();
             _dbSetSection = _context.Set<Section>();
 
         }
 
-        public async Task<Section> GetBySectionId(int sectionId)
+        public async Task<Section> GetFullBySectionId(int sectionId)
         {
             return await _dbSetSection
                     .Include(s => s.Groupes)
@@ -126,85 +125,33 @@ namespace StudentAPI.Persistance.Repository
                 .SingleOrDefaultAsync(psg => psg.Id == id);
         }
 
-        public async Task<PlanningGroupe> GetPlanningGroupeById(int id)
+        public async Task<Planning> GetPlanningById(int id)
         {
-            return await _dbSetGroupe
+            return await _dbSetPlanning
 
-                            .Include(pg => pg.InfoSeances)
+                            .Include(p => p.InfoSeances)
                                 .ThenInclude(inse => inse.Enseignat)
 
-                            .Include(pg => pg.InfoSeances)
+                            .Include(p => p.InfoSeances)
                                 .ThenInclude(inse => inse.Journee)
 
-                            .Include(pg => pg.InfoSeances)
+                            .Include(p => p.InfoSeances)
                                 .ThenInclude(inse => inse.Salle)
                                     .ThenInclude(s => s.Bloc)
 
-                            .Include(pg => pg.InfoSeances)
+                            .Include(p => p.InfoSeances)
                                 .ThenInclude(inse => inse.Seance)
 
-                            .Include(pg => pg.InfoSeances)
+                            .Include(p => p.InfoSeances)
                                 .ThenInclude(inse => inse.Matiere)
                                     .ThenInclude(m => m.MatiereRef)
-                            .Include(pg => pg.InfoSeances)
+                            .Include(p => p.InfoSeances)
                                 .ThenInclude(inse => inse.Matiere)
                                     .ThenInclude(m => m.UnitePedagogique)
 
-                            .SingleOrDefaultAsync(pg => pg.Id == id);
+                            .SingleOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<PlanningSection> GetPlanningSectionById(int id)
-        {
-            return await _dbSetPSection
 
-                            .Include(ps => ps.InfoSeances)
-                                .ThenInclude(inse => inse.Enseignat)
-
-                            .Include(ps => ps.InfoSeances)
-                                .ThenInclude(inse => inse.Journee)
-
-                            .Include(ps => ps.InfoSeances)
-                                .ThenInclude(inse => inse.Salle)
-                                    .ThenInclude(s => s.Bloc)
-
-                            .Include(ps => ps.InfoSeances)
-                                .ThenInclude(inse => inse.Seance)
-
-                            .Include(pg => pg.InfoSeances)
-                                .ThenInclude(inse => inse.Matiere)
-                                    .ThenInclude(m => m.MatiereRef)
-                            .Include(pg => pg.InfoSeances)
-                                .ThenInclude(inse => inse.Matiere)
-                                    .ThenInclude(m => m.UnitePedagogique)
-
-                            .SingleOrDefaultAsync(ps => ps.Id == id);
-        }
-
-        public async Task<PlanningSGroupe> GetPlanningSGroupeById(int id)
-        {
-            return await _dbSetSGroupe
-
-                            .Include(psg => psg.InfoSeances)
-                                .ThenInclude(inse => inse.Enseignat)
-
-                            .Include(psg => psg.InfoSeances)
-                                .ThenInclude(inse => inse.Journee)
-
-                            .Include(psg => psg.InfoSeances)
-                                .ThenInclude(inse => inse.Salle)
-                                    .ThenInclude(s => s.Bloc)
-
-                            .Include(psg => psg.InfoSeances)
-                                .ThenInclude(inse => inse.Seance)
-
-                            .Include(pg => pg.InfoSeances)
-                                .ThenInclude(inse => inse.Matiere)
-                                    .ThenInclude(m => m.MatiereRef)
-                            .Include(pg => pg.InfoSeances)
-                                .ThenInclude(inse => inse.Matiere)
-                                    .ThenInclude(m => m.UnitePedagogique)
-
-                            .SingleOrDefaultAsync(psg => psg.Id == id);
-        }
     }
 }

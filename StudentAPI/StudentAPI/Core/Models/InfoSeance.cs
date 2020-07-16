@@ -15,7 +15,7 @@ namespace StudentAPI.Core.Models
     public partial class InfoSeance
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         public string Type { get; set; }
         public int SeanceId { get; set; }
         public Nullable<int> SalleId { get; set; }

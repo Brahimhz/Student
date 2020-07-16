@@ -111,6 +111,7 @@ namespace StudentAPI.Mapping
 
 
 
+
             //******Parcour*****
             CreateMap<Parcour, GetParcourResource>().ReverseMap();
             CreateMap<Parcour, SetParcourResource>();
@@ -152,16 +153,20 @@ namespace StudentAPI.Mapping
             //****Personne****
             CreateMap<Personne, GetPersonneResource>().ReverseMap();
             CreateMap<Personne, GetPersonneResourceNoNav>().ReverseMap();
-
             CreateMap<Personne, SetPersonneResource>().ReverseMap();
 
             CreateMap<Etudiant, SetEtudiantResource>().ReverseMap();
             CreateMap<Etudiant, GetEtudiantResource>().ReverseMap();
 
 
+            CreateMap<Enseignant, EnseignantResource>().ReverseMap();
+
+
+
 
 
             // ***********  API => Domaine  **************
+
 
         }
     }
