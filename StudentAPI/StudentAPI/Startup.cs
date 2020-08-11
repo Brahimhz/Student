@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -100,6 +101,20 @@ namespace StudentAPI
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+
+            // 1. Add Authentication Services
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://studentdz.eu.auth0.com/";
+                options.Audience = "https://api.studentdz.com";
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -114,6 +129,9 @@ namespace StudentAPI
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+
+            // 2. Enable authentication middleware
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
             app.UseMvc(routes =>
