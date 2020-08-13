@@ -16,20 +16,17 @@ namespace StudentDomain
     {
         public int Id { get; set; }
         public string Type { get; set; }
-        public int SeanceId { get; set; }
         public Nullable<int> SalleId { get; set; }
-        public int MatiereRefId { get; set; }
         public Nullable<int> EnseignatId { get; set; }
-        public int SeanceId1 { get; set; }
-        public int JourneeId { get; set; }
         public int PlanningId { get; set; }
         public int MatiereId { get; set; }
+        public int IdJourne { get; set; }
+        public int SeanceId { get; set; }
     
         public virtual Salle Salle { get; set; }
         public virtual Enseignat Enseignat { get; set; }
-        public virtual Seance Seance { get; set; }
-        public virtual Journee Journee { get; set; }
         public virtual Planning Planning { get; set; }
         public virtual Matiere Matiere { get; set; }
+        public virtual Seance Seance { get; set; }
     }
 }

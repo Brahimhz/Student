@@ -26,7 +26,6 @@ namespace StudentDomain
         }
     
         public virtual DbSet<Planning> Plannings { get; set; }
-        public virtual DbSet<Journee> Journees { get; set; }
         public virtual DbSet<Seance> Seances { get; set; }
         public virtual DbSet<InfoSeance> InfoSeances { get; set; }
         public virtual DbSet<Bloc> Blocs { get; set; }

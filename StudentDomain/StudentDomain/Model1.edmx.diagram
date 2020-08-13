@@ -6,9 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="d16ceed74abb4515b8404267c933991f" Name="Diagram1" ZoomLevel="67" >
         <EntityTypeShape EntityType="Model1.Planning" Width="1.5" PointX="1" PointY="6.375" IsExpanded="false" />
-        <EntityTypeShape EntityType="Model1.Journee" Width="1.5" PointX="1.25" PointY="9.875" IsExpanded="false" />
-        <EntityTypeShape EntityType="Model1.Seance" Width="1.5" PointX="1.25" PointY="13.5" IsExpanded="false" />
-        <EntityTypeShape EntityType="Model1.InfoSeance" Width="1.5" PointX="2.125" PointY="18.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="Model1.Seance" Width="1.5" PointX="1.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.InfoSeance" Width="1.5" PointX="2.125" PointY="18.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model1.Bloc" Width="1.5" PointX="5.375" PointY="8.25" IsExpanded="false" />
         <EntityTypeShape EntityType="Model1.Salle" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="false" />
         <AssociationConnector Association="Model1.BlocSalle" ManuallyRouted="false" >
@@ -89,10 +88,9 @@
         <AssociationConnector Association="Model1.PersonneRelationCommunication" />
         <AssociationConnector Association="Model1.PersonneRelationCommunication1" />
         <AssociationConnector Association="Model1.NiveauSpecialiteDocumentPartage" />
-        <AssociationConnector Association="Model1.SeanceInfoSeance" />
-        <AssociationConnector Association="Model1.JourneeInfoSeance" />
         <AssociationConnector Association="Model1.InfoSeancePlanning" />
         <AssociationConnector Association="Model1.MatiereInfoSeance" />
+        <AssociationConnector Association="Model1.SeanceInfoSeance" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

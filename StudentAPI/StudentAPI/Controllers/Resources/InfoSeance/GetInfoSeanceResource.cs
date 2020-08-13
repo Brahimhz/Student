@@ -15,6 +15,6 @@ namespace StudentAPI.Controllers.Resources.InfoSeance
         public virtual MatiereResource Matiere { get; set; }
         public virtual EnseignantResource Enseignat { get; set; }
         public virtual SeanceResource Seance { get; set; }
-        public virtual JourneeResource Journee { get; set; }
+        public virtual int JourneeId { get; set; }
     }
 }

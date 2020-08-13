@@ -86,9 +86,6 @@
     <Compile Include="InfoSeance.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Journee.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Matiere.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

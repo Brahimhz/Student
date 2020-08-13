@@ -38,10 +38,9 @@ namespace StudentAPI.Persistance.Repository
 
                 //GetPlanningSGroupeSeance
                 .Include(psg => psg.InfoSeances)
-                    .ThenInclude(inse => inse.Enseignat)
+                    .ThenInclude(inse => inse.Enseignant)
 
-                .Include(psg => psg.InfoSeances)
-                    .ThenInclude(inse => inse.Journee)
+
 
                 .Include(psg => psg.InfoSeances)
                     .ThenInclude(inse => inse.Salle)
@@ -62,11 +61,7 @@ namespace StudentAPI.Persistance.Repository
                 .Include(psg => psg.PlanningGroupe)
 
                     .ThenInclude(pg => pg.InfoSeances)
-                        .ThenInclude(inse => inse.Enseignat)
-
-                .Include(psg => psg.PlanningGroupe)
-                    .ThenInclude(pg => pg.InfoSeances)
-                        .ThenInclude(inse => inse.Journee)
+                        .ThenInclude(inse => inse.Enseignant)
 
 
                 .Include(psg => psg.PlanningGroupe)
@@ -92,12 +87,9 @@ namespace StudentAPI.Persistance.Repository
                         .Include(psg => psg.PlanningGroupe)
                             .ThenInclude(pg => pg.PlanningSection)
                                 .ThenInclude(ps => ps.InfoSeances)
-                                    .ThenInclude(inse => inse.Enseignat)
+                                    .ThenInclude(inse => inse.Enseignant)
 
-                        .Include(psg => psg.PlanningGroupe)
-                        .ThenInclude(pg => pg.PlanningSection)
-                            .ThenInclude(ps => ps.InfoSeances)
-                                .ThenInclude(inse => inse.Journee)
+
 
                         .Include(psg => psg.PlanningGroupe)
                         .ThenInclude(pg => pg.PlanningSection)
@@ -130,10 +122,8 @@ namespace StudentAPI.Persistance.Repository
             return await _dbSetPlanning
 
                             .Include(p => p.InfoSeances)
-                                .ThenInclude(inse => inse.Enseignat)
+                                .ThenInclude(inse => inse.Enseignant)
 
-                            .Include(p => p.InfoSeances)
-                                .ThenInclude(inse => inse.Journee)
 
                             .Include(p => p.InfoSeances)
                                 .ThenInclude(inse => inse.Salle)

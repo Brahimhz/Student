@@ -102,7 +102,6 @@ namespace StudentAPI.Mapping
 
             CreateMap<Seance, SeanceResource>().ReverseMap();
 
-            CreateMap<Journee, JourneeResource>().ReverseMap();
 
             CreateMap<InfoSeance, GetInfoSeanceResource>().ReverseMap();
             CreateMap<InfoSeance, SetInfoSeanceResource>().ReverseMap();
